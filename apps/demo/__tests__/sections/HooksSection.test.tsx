@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { HooksSection } from '../../app/sections/HooksSection'
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 
-vi.mock('@bacsystem/ui')
+vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('HooksSection', () => {
   const mockSetTheme = vi.fn()

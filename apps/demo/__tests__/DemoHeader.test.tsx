@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { DemoHeader } from '../app/DemoHeader'
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 
-vi.mock('@bacsystem/ui')
+vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('DemoHeader', () => {
   const mockToggleTheme = vi.fn()

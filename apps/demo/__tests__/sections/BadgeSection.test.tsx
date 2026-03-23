@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { BadgeSection } from '../../app/sections/BadgeSection'
+
+vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('BadgeSection', () => {
   it('renders without crashing', () => {

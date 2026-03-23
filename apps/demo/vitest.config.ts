@@ -12,7 +12,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@bacsystem/ui': resolve(__dirname, './__mocks__/@bacsystem/ui.tsx'),
+      // Resolves the workspace package to its TypeScript source so the package
+      // can be imported without a pre-built dist. Individual test files that need
+      // component mocks should call vi.mock('@bacsystem/ui', async () => import('@ui-mock'))
+      // rather than relying on a global alias override.
+      '@bacsystem/ui': resolve(__dirname, '../../packages/ui/src/index.ts'),
+      // Convenience alias for the manual mock factory used in vi.mock() calls.
+      '@ui-mock': resolve(__dirname, './__mocks__/@bacsystem/ui.tsx'),
     },
   },
 })

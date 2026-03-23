@@ -106,12 +106,12 @@ export function Modal({
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
-      aria-modal="true"
-      role="dialog"
-      aria-labelledby={title ? titleId : undefined}
     >
       <div
         ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
         className={`bac-modal bac-modal--${size}${className ? ` ${className}` : ''}`}
         tabIndex={-1}
       >
