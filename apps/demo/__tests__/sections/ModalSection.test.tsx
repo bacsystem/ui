@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ModalSection } from '../../app/sections/ModalSection'
+
+vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('ModalSection', () => {
   it('renders without crashing', () => {

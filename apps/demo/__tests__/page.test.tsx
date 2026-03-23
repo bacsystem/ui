@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 import Home from '../app/page'
 
-vi.mock('@bacsystem/ui')
+vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('Home page', () => {
   beforeEach(() => {
