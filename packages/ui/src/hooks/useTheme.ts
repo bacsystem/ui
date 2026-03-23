@@ -3,9 +3,9 @@ import { useState, useEffect, useCallback } from 'react'
 export type Theme = 'light' | 'dark'
 
 export interface UseThemeReturn {
-  theme: Theme
-  setTheme: (theme: Theme) => void
-  toggleTheme: () => void
+  readonly theme: Theme
+  readonly setTheme: (theme: Theme) => void
+  readonly toggleTheme: () => void
 }
 
 const STORAGE_KEY = 'bacsystem-ui-theme'
@@ -24,55 +24,45 @@ function applyTheme(theme: Theme): void {
 }
 
 /**
- * Manages the application's color theme and synchronizes it with the DOM and localStorage.
+ * Reads the persisted UI theme from storage, defaulting to light when no valid value is available or storage is inaccessible.
  *
- * On mount, applies a stored preference if present; otherwise defaults to "light".
+ * @returns `'dark'` if a stored value of `'dark'` is found, `'light'` otherwise.
+ */
+function readStoredTheme(): Theme {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored === 'dark' || stored === 'light') return stored
+  } catch {
+    // localStorage not available
+  }
+  return 'light'
+}
+
+/**
+ * Provides the current UI color theme and controls to update it while keeping the document and localStorage in sync.
  *
- * @returns An object containing:
+ * The hook persists the selected theme to `localStorage` when available and applies the theme to the document root.
+ *
+ * @returns An object with:
  *  - `theme` — the current theme, either `'light'` or `'dark'`
- *  - `setTheme(theme)` — sets the theme to the provided value
- *  - `toggleTheme()` — switches the theme between `'light'` and `'dark'`
+ *  - `setTheme(theme)` — set the theme to the provided value
+ *  - `toggleTheme()` — switch the theme between `'light'` and `'dark'`
  */
 export function useTheme(): UseThemeReturn {
-  const [theme, setThemeState] = useState<Theme>('light')
-  const [hydrated, setHydrated] = useState(false)
+  const [theme, setTheme] = useState<Theme>(readStoredTheme)
 
-  // Sync from localStorage after hydration (client-only)
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored === 'dark' || stored === 'light') {
-        setThemeState(stored)
-        applyTheme(stored)
-        setHydrated(true)
-        return
-      }
-    } catch {
-      // localStorage not available
-    }
-    applyTheme('light')
-    setHydrated(true)
-  }, [])
-
-  // Persist theme changes to localStorage and DOM, gated behind hydration
-  // to avoid overwriting a stored theme before the initial read completes
-  useEffect(() => {
-    if (!hydrated) return
     applyTheme(theme)
     try {
       localStorage.setItem(STORAGE_KEY, theme)
     } catch {
       // localStorage not available
     }
-  }, [theme, hydrated])
-
-  const setTheme = useCallback((next: Theme) => {
-    setThemeState(next)
-  }, [])
+  }, [theme])
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'))
-  }, [])
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
+  }, [setTheme])
 
   return { theme, setTheme, toggleTheme }
 }

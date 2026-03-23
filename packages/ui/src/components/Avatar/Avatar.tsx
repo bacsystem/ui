@@ -5,12 +5,12 @@ export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type AvatarAppearance = 'soft' | 'filled' | 'outline'
 
 export interface AvatarProps {
-  src?: string
-  alt?: string
-  initials?: string
-  size?: AvatarSize
-  appearance?: AvatarAppearance
-  className?: string
+  readonly src?: string
+  readonly alt?: string
+  readonly initials?: string
+  readonly size?: AvatarSize
+  readonly appearance?: AvatarAppearance
+  readonly className?: string
 }
 
 /**
@@ -31,7 +31,7 @@ export function Avatar({
   size = 'md',
   appearance = 'soft',
   className = '',
-}: AvatarProps) {
+}: Readonly<AvatarProps>) {
   const [imgError, setImgError] = useState(false)
 
   // Reset error state whenever src changes so a new image gets a fresh attempt
@@ -43,12 +43,12 @@ export function Avatar({
   const showInitials = !showImage && initials
   const showFallback = !showImage && !showInitials
   const appearanceClass = appearance === 'soft' ? '' : ` bac-avatar--${appearance}`
+  const extraClass = className ? ` ${className}` : ''
+  const avatarClass = `bac-avatar bac-avatar--${size}${appearanceClass}${extraClass}`
 
   if (showImage) {
     return (
-      <span
-        className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
-      >
+      <span className={avatarClass}>
         <img
           src={src}
           alt={alt}
@@ -65,7 +65,7 @@ export function Avatar({
     <span
       role="img"
       aria-label={fallbackLabel}
-      className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
+      className={avatarClass}
     >
       {showInitials && (
         <span className="bac-avatar__initials" aria-hidden="true">

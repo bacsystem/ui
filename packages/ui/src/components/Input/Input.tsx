@@ -5,23 +5,61 @@ import type { LucideIcon } from 'lucide-react'
 export type InputSize = 'sm' | 'md' | 'lg'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  error?: string
-  hint?: string
-  success?: string
-  inputSize?: InputSize
-  iconLeft?: LucideIcon
-  iconRight?: LucideIcon
-  floating?: boolean
-  prefix?: string
-  suffix?: string
-  className?: string
+  readonly label?: string
+  readonly error?: string
+  readonly hint?: string
+  readonly success?: string
+  readonly inputSize?: InputSize
+  readonly iconLeft?: LucideIcon
+  readonly iconRight?: LucideIcon
+  readonly floating?: boolean
+  readonly prefix?: string
+  readonly suffix?: string
+  readonly className?: string
 }
 
 const sizeMap: Record<InputSize, string> = {
   sm: 'bac-input--sm',
   md: '',
   lg: 'bac-input--lg',
+}
+
+interface InputClassConfig {
+  readonly inputSize: InputSize
+  readonly error?: string
+  readonly success?: string
+  readonly disabled?: boolean
+  readonly floating: boolean
+  readonly hasIconLeft: boolean
+  readonly hasRightIcon: boolean
+  readonly prefix?: string
+  readonly suffix?: string
+  readonly className: string
+}
+
+/**
+ * Constructs the space-separated CSS class list for an input element from a configuration object.
+ *
+ * @param cfg - Configuration that controls which base and modifier classes are included. If `cfg.error` is set the state class will be `bac-input--error`; otherwise if `cfg.success` is set the state class will be `bac-input--success`. Other boolean flags enable corresponding `bac-input--*` modifier classes (disabled, floating, icon/prefix/suffix presence) and `cfg.className` is appended verbatim.
+ * @returns The final space-separated CSS class string for the input element.
+ */
+function buildInputClasses(cfg: InputClassConfig): string {
+  let stateClass = ''
+  if (cfg.error) stateClass = 'bac-input--error'
+  else if (cfg.success) stateClass = 'bac-input--success'
+
+  return [
+    'bac-input',
+    sizeMap[cfg.inputSize],
+    stateClass,
+    cfg.disabled     ? 'bac-input--disabled'    : '',
+    cfg.floating     ? 'bac-input--floating'    : '',
+    cfg.hasIconLeft  ? 'bac-input--icon-left'   : '',
+    cfg.hasRightIcon ? 'bac-input--icon-right'  : '',
+    cfg.prefix       ? 'bac-input--with-prefix' : '',
+    cfg.suffix       ? 'bac-input--with-suffix' : '',
+    cfg.className,
+  ].filter(Boolean).join(' ')
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -42,30 +80,29 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       id,
       placeholder,
       ...props
-    },
+    }: Readonly<InputProps>,
     ref
   ) => {
     const uid = useId()
-    const inputId = id ?? `bac-input-${uid.replace(/:/g, '')}`
-    const errorId     = error                    ? `${inputId}-error`   : undefined
-    const hintId      = hint && !error           ? `${inputId}-hint`    : undefined
-    const successId   = success && !error        ? `${inputId}-success` : undefined
+    const inputId = id ?? `bac-input-${uid.replaceAll(':', '')}`
+    const errorId     = error             ? `${inputId}-error`   : undefined
+    const hintId      = hint && !error    ? `${inputId}-hint`    : undefined
+    const successId   = success && !error ? `${inputId}-success` : undefined
     const describedBy = [errorId, hintId, successId].filter(Boolean).join(' ') || undefined
 
     const hasRightIcon = !!(error || success || IconRight)
-
-    const classes = [
-      'bac-input',
-      sizeMap[inputSize],
-      error   ? 'bac-input--error'   : success ? 'bac-input--success' : '',
-      disabled                       ? 'bac-input--disabled'   : '',
-      floating                       ? 'bac-input--floating'   : '',
-      IconLeft                       ? 'bac-input--icon-left'  : '',
-      hasRightIcon                   ? 'bac-input--icon-right' : '',
-      prefix                         ? 'bac-input--with-prefix': '',
-      suffix                         ? 'bac-input--with-suffix': '',
+    const classes = buildInputClasses({
+      inputSize,
+      error,
+      success,
+      disabled,
+      floating,
+      hasIconLeft: !!IconLeft,
+      hasRightIcon,
+      prefix,
+      suffix,
       className,
-    ].filter(Boolean).join(' ')
+    })
 
     return (
       <div className="bac-input__wrapper">
@@ -137,8 +174,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
 
-        {error              && <p id={errorId} className="bac-input__error-text"   role="alert">{error}</p>}
-        {!error && success  && <p id={successId} className="bac-input__success-text">{success}</p>}
+        {error             && <p id={errorId}   className="bac-input__error-text"   role="alert">{error}</p>}
+        {!error && success && <p id={successId} className="bac-input__success-text">{success}</p>}
         {!error && !success && hint && (
           <p id={hintId} className="bac-input__hint">{hint}</p>
         )}

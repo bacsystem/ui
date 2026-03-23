@@ -3,21 +3,28 @@ import type { ReactNode, KeyboardEvent } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TabItem {
-  id: string
-  label: string
-  icon?: LucideIcon
-  disabled?: boolean
-  content: ReactNode
+  readonly id: string
+  readonly label: string
+  readonly icon?: LucideIcon
+  readonly disabled?: boolean
+  readonly content: ReactNode
 }
 
 export interface TabsProps {
-  items: TabItem[]
-  defaultTab?: string
-  activeTab?: string
-  onChange?: (tabId: string) => void
-  className?: string
+  readonly items: TabItem[]
+  readonly defaultTab?: string
+  readonly activeTab?: string
+  readonly onChange?: (tabId: string) => void
+  readonly className?: string
 }
 
+/**
+ * Selects the initial active tab id from the available tab items and an optional preferred default.
+ *
+ * @param items - Array of tab items to choose from
+ * @param defaultTab - Preferred tab id to use if it exists in `items` and is not disabled
+ * @returns The chosen tab id: `defaultTab` when present and enabled; otherwise the first enabled tab's id; or an empty string if no enabled tab exists
+ */
 function resolveInitialTab(items: TabItem[], defaultTab: string | undefined): string {
   if (defaultTab !== undefined) {
     const found = items.find((t) => t.id === defaultTab)
@@ -42,7 +49,7 @@ export function Tabs({
   activeTab: controlledTab,
   onChange,
   className = '',
-}: TabsProps) {
+}: Readonly<TabsProps>) {
   const firstEnabledId = useMemo(() => items.find((t) => !t.disabled)?.id ?? '', [items])
   const isControlled = controlledTab !== undefined
   const [internalTab, setInternalTab] = useState(() => resolveInitialTab(items, defaultTab))
@@ -81,16 +88,19 @@ export function Tabs({
   }
 
   const activeContent = items.find((t) => t.id === activeId)?.content
+  const extraClass = className ? ` ${className}` : ''
 
-  if (items.length === 0 || items.every((t) => t.disabled)) return null
+  if (items.every((t) => t.disabled)) return null
 
   return (
-    <div className={`bac-tabs${className ? ` ${className}` : ''}`}>
+    <div className={`bac-tabs${extraClass}`}>
       <div className="bac-tabs__bar">
-        <div className="bac-tabs__list" role="tablist" onKeyDown={handleKeyDown}>
+        <div className="bac-tabs__list" role="tablist" tabIndex={0} onKeyDown={handleKeyDown}>
           {items.map((tab, index) => {
             const Icon = tab.icon
             const isActive = activeId === tab.id
+            const activeClass = isActive ? ' bac-tabs__tab--active' : ''
+            const disabledClass = tab.disabled ? ' bac-tabs__tab--disabled' : ''
             return (
               <button
                 key={tab.id}
@@ -102,8 +112,8 @@ export function Tabs({
                 id={`bac-tab-${tab.id}`}
                 disabled={tab.disabled}
                 tabIndex={isActive ? 0 : -1}
-                onClick={() => !tab.disabled && handleSelect(tab.id)}
-                className={`bac-tabs__tab${isActive ? ' bac-tabs__tab--active' : ''}${tab.disabled ? ' bac-tabs__tab--disabled' : ''}`}
+                onClick={() => handleSelect(tab.id)}
+                className={`bac-tabs__tab${activeClass}${disabledClass}`}
               >
                 {Icon && (
                   <Icon

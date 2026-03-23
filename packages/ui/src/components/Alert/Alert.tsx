@@ -5,13 +5,13 @@ export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 export type AlertAppearance = 'soft' | 'filled' | 'outline'
 
 export interface AlertProps {
-  variant?: AlertVariant
-  appearance?: AlertAppearance
-  title?: string
-  onClose?: () => void
-  closeAriaLabel?: string
-  className?: string
-  children: ReactNode
+  readonly variant?: AlertVariant
+  readonly appearance?: AlertAppearance
+  readonly title?: string
+  readonly onClose?: () => void
+  readonly closeAriaLabel?: string
+  readonly className?: string
+  readonly children: ReactNode
 }
 
 const icons: Record<AlertVariant, LucideIcon> = {
@@ -43,14 +43,15 @@ export function Alert({
   closeAriaLabel = 'Close',
   className = '',
   children,
-}: AlertProps) {
+}: Readonly<AlertProps>) {
   const Icon = icons[variant]
   const appearanceClass = appearance === 'soft' ? '' : ` bac-alert--${appearance}`
+  const extraClass = className ? ` ${className}` : ''
 
   return (
     <div
       role="alert"
-      className={`bac-alert bac-alert--${variant}${appearanceClass}${className ? ` ${className}` : ''}`}
+      className={`bac-alert bac-alert--${variant}${appearanceClass}${extraClass}`}
     >
       <Icon className="bac-alert__icon" size={18} aria-hidden="true" />
       <div className="bac-alert__content">

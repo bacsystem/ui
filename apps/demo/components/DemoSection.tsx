@@ -16,7 +16,7 @@ interface DemoSectionProps {
  * @param children - Content to render inside the section's content area
  * @returns The React element representing the demo section
  */
-export function DemoSection({ title, description, tag, children }: DemoSectionProps) {
+export function DemoSection({ title, description, tag, children }: Readonly<DemoSectionProps>) {
   return (
     <section className="demo-section">
       <div className="demo-section__header">

@@ -59,11 +59,27 @@ export const Alert = vi.fn(({ children, variant, appearance, title, onClose }: a
   </div>
 ))
 
-export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: any) => (
-  <div data-size={size} data-appearance={appearance} aria-label={alt || initials || 'avatar'}>
-    {src ? <img src={src} alt={alt} /> : initials ? <span>{initials}</span> : <span aria-hidden="true">icon</span>}
-  </div>
-))
+export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: Readonly<{
+  initials?: string
+  src?: string
+  alt?: string
+  size?: string
+  appearance?: string
+}>) => {
+  let avatarContent: React.ReactNode
+  if (src) {
+    avatarContent = <img src={src} alt={alt} />
+  } else if (initials) {
+    avatarContent = <span>{initials}</span>
+  } else {
+    avatarContent = <span aria-hidden="true">icon</span>
+  }
+  return (
+    <div data-size={size} data-appearance={appearance} aria-label={alt || initials || 'avatar'}>
+      {avatarContent}
+    </div>
+  )
+})
 
 export const Toggle = vi.fn(({ label, size, checked, defaultChecked, disabled, onChange }: any) => (
   <label>
@@ -82,32 +98,38 @@ export const Toggle = vi.fn(({ label, size, checked, defaultChecked, disabled, o
 export const Modal = vi.fn(({ open, onClose, title, size, children }: any) => {
   if (!open) return null
   return (
-    <div role="dialog" aria-modal="true" data-size={size}>
+    <dialog open aria-modal="true" data-size={size}>
       <div>
         {title && <h2>{title}</h2>}
         <button onClick={onClose} aria-label="close">×</button>
       </div>
       <div>{children}</div>
-    </div>
+    </dialog>
   )
 })
 
-export const DataTable = vi.fn(({ columns, data, loading, emptyText }: any) => {
+export const DataTable = vi.fn(({ columns, data, loading, emptyText, getRowKey }: Readonly<{
+  columns: DataTableColumn<Record<string, unknown>>[]
+  data: Record<string, unknown>[]
+  loading?: boolean
+  emptyText?: string
+  getRowKey?: (row: Record<string, unknown>, index: number) => string | number
+}>) => {
   if (loading) return <div data-testid="datatable-loading">Loading...</div>
   if (!data || data.length === 0) return <div data-testid="datatable-empty">{emptyText}</div>
   return (
     <table>
       <thead>
         <tr>
-          {columns.map((col: any) => <th key={col.key}>{col.header}</th>)}
+          {columns.map((col) => <th key={String(col.key)}>{col.header}</th>)}
         </tr>
       </thead>
       <tbody>
-        {data.map((row: any, i: number) => (
-          <tr key={i}>
-            {columns.map((col: any) => (
-              <td key={col.key}>
-                {col.render ? col.render(row) : row[col.key]}
+        {data.map((row, rowIndex) => (
+          <tr key={getRowKey ? getRowKey(row, rowIndex) : String(rowIndex)}>
+            {columns.map((col) => (
+              <td key={String(col.key)}>
+                {col.render ? col.render(row) : row[col.key as string] as React.ReactNode}
               </td>
             ))}
           </tr>

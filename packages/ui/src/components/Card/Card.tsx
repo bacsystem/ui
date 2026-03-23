@@ -19,10 +19,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
  * @param rest - Other HTML attributes spread onto the root `<div>`
  * @returns The rendered `<div>` element with composed `bac-card` class names and provided children
  */
-export function Card({ variant = 'default', size = 'md', className = '', children, ...rest }: CardProps) {
+export function Card({ variant = 'default', size = 'md', className = '', children, ...rest }: Readonly<CardProps>) {
+  const extraClass = className ? ` ${className}` : ''
   return (
     <div
-      className={`bac-card bac-card--${variant} bac-card--${size}${className ? ` ${className}` : ''}`}
+      className={`bac-card bac-card--${variant} bac-card--${size}${extraClass}`}
       {...rest}
     >
       {children}

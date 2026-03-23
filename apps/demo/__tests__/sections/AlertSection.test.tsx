@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { AlertSection } from '../../app/sections/AlertSection'
-import { Alert } from '@bacsystem/ui'
 
 vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
@@ -39,9 +38,9 @@ describe('AlertSection', () => {
   it('renders 4 soft alerts with correct variants', () => {
     render(<AlertSection />)
     const softAlerts = screen.getAllByRole('alert').filter(
-      (el) => el.getAttribute('data-appearance') === 'soft' || el.getAttribute('data-appearance') === null
+      (el) => el.dataset['appearance'] === 'soft' || el.dataset['appearance'] === undefined
     )
-    const variants = softAlerts.map((el) => el.getAttribute('data-variant'))
+    const variants = softAlerts.map((el) => el.dataset['variant'])
     expect(variants).toContain('info')
     expect(variants).toContain('success')
     expect(variants).toContain('warning')
@@ -52,14 +51,14 @@ describe('AlertSection', () => {
   it('renders filled alerts for all 4 variants', () => {
     render(<AlertSection />)
     const alerts = screen.getAllByRole('alert')
-    const filledAlerts = alerts.filter((el) => el.getAttribute('data-appearance') === 'filled')
+    const filledAlerts = alerts.filter((el) => el.dataset['appearance'] === 'filled')
     expect(filledAlerts).toHaveLength(4)
   })
 
   it('renders outline alerts for all 4 variants', () => {
     render(<AlertSection />)
     const alerts = screen.getAllByRole('alert')
-    const outlineAlerts = alerts.filter((el) => el.getAttribute('data-appearance') === 'outline')
+    const outlineAlerts = alerts.filter((el) => el.dataset['appearance'] === 'outline')
     expect(outlineAlerts).toHaveLength(4)
   })
 

@@ -9,14 +9,14 @@ export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ButtonAppearance = 'filled' | 'outline' | 'soft' | 'link'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant
-  size?: ButtonSize
-  appearance?: ButtonAppearance
-  outline?: boolean
-  loading?: boolean
-  iconLeft?: LucideIcon
-  iconRight?: LucideIcon
-  className?: string
+  readonly variant?: ButtonVariant
+  readonly size?: ButtonSize
+  readonly appearance?: ButtonAppearance
+  readonly outline?: boolean
+  readonly loading?: boolean
+  readonly iconLeft?: LucideIcon
+  readonly iconRight?: LucideIcon
+  readonly className?: string
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -51,11 +51,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       children,
       ...props
-    },
+    }: Readonly<ButtonProps>,
     ref
   ) => {
     const isDisabled = disabled || loading
-    const resolvedAppearance = appearanceProp !== undefined ? appearanceProp : (outline ? 'outline' : 'filled')
+    const resolvedAppearance = appearanceProp ?? (outline ? 'outline' : 'filled')
     const appearanceClass = resolvedAppearance === 'filled' ? '' : `bac-btn--${resolvedAppearance}`
     const classes = ['bac-btn', variantStyles[variant], sizeStyles[size], appearanceClass, loading && 'bac-btn--loading', className].filter(Boolean).join(' ')
 

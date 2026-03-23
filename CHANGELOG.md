@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.0.2 — 2026-03-23
+
+### Bug fixes (code quality — SonarQube & TypeScript)
+
+- **S6759 — Read-only props** — wrapped all component prop types with `Readonly<…>` across `Alert`, `Avatar`, `Badge`, `Button`, `Card`, `DataTable`, `Input`, `Modal`, `StatCard`, `Tabs`, `Toggle`, `DemoSection`, `RootLayout`, and `Swatch` (demo).
+- **S7924 — CSS contrast** — introduced `--color-success-text`, `--color-warning-text`, and `--color-error-text` design tokens (dark values in `[data-theme="dark"]`, light values in `:root`). Replaced all hardcoded `#6EE7B7`, `#FCD34D`, `#FCA5A5` hex literals in `components.css` with the new CSS variables; resolves false-positive contrast failures under static analysis.
+- **S6754 — useState destructuring** — `useTheme`: removed the `hydrated` state flag, replaced with a lazy `useState` initializer (`readStoredTheme`), collapsed two `useEffect` calls into one. Setter renamed from `setThemeState` to `setTheme` to form an explicit value+setter pair.
+- **S4624 — Nested template literals** — extracted inner template literals to intermediate variables in `Card`, `DataTable`, and `TokensSection` (`Swatch`).
+- **S3358 — Nested ternaries** — extracted nested ternary in `DataTable` (body rows) and Avatar mock to `if/else if/else` statements.
+- **S7761 — Prefer `.dataset`** — replaced `getAttribute('data-appearance')` / `getAttribute('data-variant')` with `.dataset['appearance']` / `.dataset['variant']` in `AlertSection.test.tsx` and `BadgeSection.test.tsx`; updated `null` checks to `undefined`.
+- **S7764 — Prefer `globalThis`** — replaced all `window` references with `globalThis` in `useBreakpoint.ts` and `DataTableSection.test.tsx`.
+- **S6819 — Native `<dialog>`** — replaced `<div role="dialog">` with `<dialog>` in the `@bacsystem/ui` test mock; existing `getByRole('dialog')` queries continue to work via the element's implicit ARIA role.
+- **S6479 — Array index keys** — `DataTable` mock: removed index param, uses `JSON.stringify(row)` as stable key. `TabsSection`: renamed loop variable `i` → `slotNum` to clarify it is a slot value, not an array index.
+- **S3776 + S7781 — Input complexity & replaceAll** — extracted `buildInputClasses` helper to reduce cognitive complexity; replaced `replace(/:/g, '')` with `replaceAll(':', '')`.
+- **Accessibility — Modal overlay** — removed `role="presentation"` and all interactive handlers (`onClick`, `onKeyDown`) from the overlay `div`; Escape handling remains via `document.addEventListener` in `useEffect`.
+- **ts(6385) — Deprecated `outline` prop** — replaced `outline` boolean shorthand with `appearance="outline"` in `TabsSection.tsx`.
+- **ts(2307) — Missing `@ui-mock` types** — added `"@ui-mock": ["./__mocks__/@bacsystem/ui.tsx"]` path alias to `apps/demo/tsconfig.json` to match the existing `vitest.config.ts` alias.
+- **tsconfig ES2021** — updated `packages/ui/tsconfig.json` target and lib from `ES2020` to `ES2021` to enable `String.prototype.replaceAll`.
+
 ## v1.0.1 — 2026-03-23
 
 ### Bug fixes

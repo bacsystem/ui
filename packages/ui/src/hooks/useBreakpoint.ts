@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl'
 
 export interface UseBreakpointReturn {
-  isMobile: boolean
-  isTablet: boolean
-  isDesktop: boolean
-  current: Breakpoint
+  readonly isMobile: boolean
+  readonly isTablet: boolean
+  readonly isDesktop: boolean
+  readonly current: Breakpoint
 }
 
 /**
@@ -23,28 +23,28 @@ function getBreakpoint(width: number): Breakpoint {
 }
 
 /**
- * Tracks the current viewport breakpoint and exposes convenient flags for layout.
+ * Tracks the current viewport breakpoint and provides flags indicating mobile, tablet, or desktop layout.
  *
- * The returned values update automatically when the window is resized.
+ * Values update when the viewport is resized.
  *
  * @returns An object with:
  *  - `isMobile`: `true` when the active breakpoint is `'sm'`.
  *  - `isTablet`: `true` when the active breakpoint is `'md'`.
  *  - `isDesktop`: `true` when the active breakpoint is `'lg'` or `'xl'`.
- *  - `current`: the active breakpoint value (`'sm' | 'md' | 'lg' | 'xl'`).
+ *  - `current`: the active breakpoint value — `'sm'`, `'md'`, `'lg'`, or `'xl'`.
  */
 export function useBreakpoint(): UseBreakpointReturn {
   const [current, setCurrent] = useState<Breakpoint>('sm')
 
   useEffect(() => {
-    setCurrent(getBreakpoint(window.innerWidth))
+    setCurrent(getBreakpoint(globalThis.innerWidth))
 
     const handleResize = () => {
-      setCurrent(getBreakpoint(window.innerWidth))
+      setCurrent(getBreakpoint(globalThis.innerWidth))
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    globalThis.addEventListener('resize', handleResize)
+    return () => globalThis.removeEventListener('resize', handleResize)
   }, [])
 
   return {
