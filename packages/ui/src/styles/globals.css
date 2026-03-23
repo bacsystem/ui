@@ -1,0 +1,149 @@
+/* @bacsystem/ui — Design Tokens
+   All values exposed as CSS custom properties.
+   Dark mode activated via [data-theme="dark"] on <html>.
+   Never hardcode values in components — always reference these vars.
+*/
+
+:root {
+  /* ── Colors: Primary ──────────────────────────────────────── */
+  --color-primary-50: #EFF6FF;
+  --color-primary-100: #DBEAFE;
+  --color-primary-200: #BFDBFE;
+  --color-primary-300: #93C5FD;
+  --color-primary-400: #60A5FA;
+  --color-primary-500: #3B82F6;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #1D4ED8;
+  --color-primary-800: #1E3A8A;
+  --color-primary-900: #0F2D5E;
+
+  /* ── Colors: Accent ───────────────────────────────────────── */
+  --color-accent-400: #FBBF24;
+  --color-accent-500: #F59E0B;
+  --color-accent-600: #D97706;
+
+  /* ── Colors: Semantic ─────────────────────────────────────── */
+  --color-success-light: #D1FAE5;
+  --color-success-base: #10B981;
+  --color-success-dark: #065F46;
+
+  --color-warning-light: #FEF3C7;
+  --color-warning-base: #F59E0B;
+  --color-warning-dark: #92400E;
+
+  --color-error-light: #FEE2E2;
+  --color-error-base: #EF4444;
+  --color-error-dark: #991B1B;
+
+  --color-info-light: #DBEAFE;
+  --color-info-base: #3B82F6;
+  --color-info-dark: #1E3A8A;
+
+  /* ── Colors: Neutral ──────────────────────────────────────── */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #F8FAFC;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-200: #E2E8F0;
+  --color-neutral-300: #CBD5E1;
+  --color-neutral-400: #94A3B8;
+  --color-neutral-500: #64748B;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1E293B;
+  --color-neutral-900: #0F172A;
+
+  /* ── Semantic UI Colors (light mode) ──────────────────────── */
+  --color-bg: var(--color-neutral-50);
+  --color-bg-card: var(--color-neutral-0);
+  --color-bg-elevated: var(--color-neutral-0);
+  --color-border: var(--color-neutral-200);
+  --color-text-primary: var(--color-neutral-800);
+  --color-text-secondary: var(--color-neutral-500);
+  --color-text-disabled: var(--color-neutral-400);
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ── Spacing ──────────────────────────────────────────────── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* ── Border Radius ────────────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-base: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* ── Dark Mode ────────────────────────────────────────────────── */
+/*
+  Strategy:
+  - Primary & accent scale → kept as absolute values (they represent real brand colors).
+    Components that need different shades in dark mode get explicit overrides below.
+  - Neutral scale → inverted (powers all surface/border/text semantic vars).
+  - Semantic UI vars → remapped to dark surfaces.
+*/
+[data-theme="dark"] {
+  /* Neutral — inverted (powers surface colors) */
+  --color-neutral-0:   #0F172A;
+  --color-neutral-50:  #1E293B;
+  --color-neutral-100: #334155;
+  --color-neutral-200: #475569;
+  --color-neutral-300: #64748B;
+  --color-neutral-400: #94A3B8;
+  --color-neutral-500: #CBD5E1;
+  --color-neutral-600: #E2E8F0;
+  --color-neutral-700: #F1F5F9;
+  --color-neutral-800: #F8FAFC;
+  --color-neutral-900: #FFFFFF;
+
+  /* Semantic UI Colors (dark mode) */
+  --color-bg:           #0F172A;
+  --color-bg-card:      #1E293B;
+  --color-bg-elevated:  #334155;
+  --color-border:       #334155;
+  --color-text-primary:    #F8FAFC;
+  --color-text-secondary:  #94A3B8;
+  --color-text-disabled:   #64748B;
+
+  /* Shadows — stronger on dark backgrounds */
+  --shadow-sm:   0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+  --shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+}

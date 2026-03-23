@@ -1,0 +1,52 @@
+export const colors = {
+  primary: {
+    50: '#EFF6FF',
+    100: '#DBEAFE',
+    200: '#BFDBFE',
+    300: '#93C5FD',
+    400: '#60A5FA',
+    500: '#3B82F6',
+    600: '#2563EB',
+    700: '#1D4ED8',
+    800: '#1E3A8A',
+    900: '#0F2D5E',
+  },
+  accent: {
+    400: '#FBBF24',
+    500: '#F59E0B',
+    600: '#D97706',
+  },
+  success: {
+    light: '#D1FAE5',
+    base: '#10B981',
+    dark: '#065F46',
+  },
+  warning: {
+    light: '#FEF3C7',
+    base: '#F59E0B',
+    dark: '#92400E',
+  },
+  error: {
+    light: '#FEE2E2',
+    base: '#EF4444',
+    dark: '#991B1B',
+  },
+  info: {
+    light: '#DBEAFE',
+    base: '#3B82F6',
+    dark: '#1E3A8A',
+  },
+  neutral: {
+    0: '#FFFFFF',
+    50: '#F8FAFC',
+    100: '#F1F5F9',
+    200: '#E2E8F0',
+    300: '#CBD5E1',
+    400: '#94A3B8',
+    500: '#64748B',
+    600: '#475569',
+    700: '#334155',
+    800: '#1E293B',
+    900: '#0F172A',
+  },
+} as const

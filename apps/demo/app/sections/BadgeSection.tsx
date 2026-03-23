@@ -1,0 +1,39 @@
+'use client'
+
+import { Badge } from '@bacsystem/ui'
+import { DemoSection } from '../../components/DemoSection'
+
+const variants = ['default', 'primary', 'success', 'warning', 'danger', 'info'] as const
+
+export function BadgeSection() {
+  return (
+    <div id="badge">
+      <DemoSection title="Badge" tag="Component" description="6 variantes × 3 estilos: soft, filled y outline">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-5)', width: '100%' }}>
+
+          <div>
+            <p className="demo-label">Soft</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-2)' }}>
+              {variants.map((v) => <Badge key={v} variant={v}>{v}</Badge>)}
+            </div>
+          </div>
+
+          <div>
+            <p className="demo-label">Filled</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-2)' }}>
+              {variants.map((v) => <Badge key={v} variant={v} appearance="filled">{v}</Badge>)}
+            </div>
+          </div>
+
+          <div>
+            <p className="demo-label">Outline</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-2)' }}>
+              {variants.map((v) => <Badge key={v} variant={v} appearance="outline">{v}</Badge>)}
+            </div>
+          </div>
+
+        </div>
+      </DemoSection>
+    </div>
+  )
+}

@@ -1,0 +1,82 @@
+import { useCallback, useRef } from 'react'
+import { Check } from 'lucide-react'
+
+export type ToggleSize = 'sm' | 'md' | 'lg'
+
+export interface ToggleProps {
+  checked?: boolean
+  defaultChecked?: boolean
+  onChange?: (checked: boolean) => void
+  disabled?: boolean
+  size?: ToggleSize
+  label?: string
+  className?: string
+}
+
+export function Toggle({
+  checked,
+  defaultChecked = false,
+  onChange,
+  disabled = false,
+  size = 'md',
+  label,
+  className = '',
+}: ToggleProps) {
+  const isControlled = checked !== undefined
+  const internalRef = useRef(defaultChecked)
+
+  const currentChecked = isControlled ? checked : internalRef.current
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        internalRef.current = e.target.checked
+      }
+      onChange?.(e.target.checked)
+    },
+    [isControlled, onChange]
+  )
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLLabelElement>) => {
+      if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
+        e.preventDefault()
+        const next = !currentChecked
+        if (!isControlled) {
+          internalRef.current = next
+        }
+        onChange?.(next)
+      }
+    },
+    [currentChecked, disabled, isControlled, onChange]
+  )
+
+  return (
+    <label
+      className={`bac-toggle bac-toggle--${size}${disabled ? ' bac-toggle--disabled' : ''}${className ? ` ${className}` : ''}`}
+      role="switch"
+      aria-checked={currentChecked}
+      onKeyDown={handleKeyDown}
+      tabIndex={disabled ? -1 : 0}
+    >
+      <input
+        type="checkbox"
+        checked={isControlled ? checked : undefined}
+        defaultChecked={!isControlled ? defaultChecked : undefined}
+        onChange={handleChange}
+        disabled={disabled}
+        className="bac-toggle__input"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <span className="bac-toggle__track">
+        <span className="bac-toggle__dot">
+          {currentChecked && (
+            <Check className="bac-toggle__check" size={10} aria-hidden="true" />
+          )}
+        </span>
+      </span>
+      {label && <span className="bac-toggle__label">{label}</span>}
+    </label>
+  )
+}

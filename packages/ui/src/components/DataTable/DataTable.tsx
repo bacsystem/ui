@@ -1,0 +1,78 @@
+import { Loader2, Inbox } from 'lucide-react'
+
+export interface DataTableColumn<T> {
+  key: keyof T | string
+  header: string
+  render?: (row: T) => React.ReactNode
+  className?: string
+}
+
+export interface DataTableProps<T extends object> {
+  columns: DataTableColumn<T>[]
+  data: T[]
+  loading?: boolean
+  emptyText?: string
+  className?: string
+}
+
+export function DataTable<T extends object>({
+  columns,
+  data,
+  loading = false,
+  emptyText = 'No hay datos disponibles',
+  className = '',
+}: DataTableProps<T>) {
+  return (
+    <div className={`bac-datatable${className ? ` ${className}` : ''}`}>
+      <table className="bac-datatable__table">
+        <thead className="bac-datatable__head">
+          <tr>
+            {columns.map((col) => (
+              <th
+                key={String(col.key)}
+                className={`bac-datatable__th${col.className ? ` ${col.className}` : ''}`}
+              >
+                {col.header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="bac-datatable__body">
+          {loading ? (
+            <tr>
+              <td colSpan={columns.length} className="bac-datatable__state-cell">
+                <Loader2
+                  className="bac-datatable__loader"
+                  size={24}
+                  aria-label="Cargando datos"
+                />
+              </td>
+            </tr>
+          ) : data.length === 0 ? (
+            <tr>
+              <td colSpan={columns.length} className="bac-datatable__state-cell">
+                <Inbox size={32} className="bac-datatable__empty-icon" aria-hidden="true" />
+                <p className="bac-datatable__empty-text">{emptyText}</p>
+              </td>
+            </tr>
+          ) : (
+            data.map((row, rowIndex) => (
+              <tr key={rowIndex} className="bac-datatable__row">
+                {columns.map((col) => (
+                  <td
+                    key={String(col.key)}
+                    className={`bac-datatable__td${col.className ? ` ${col.className}` : ''}`}
+                  >
+                    {col.render
+                      ? col.render(row)
+                      : String((row as Record<string, unknown>)[col.key as string] ?? '')}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )
+}

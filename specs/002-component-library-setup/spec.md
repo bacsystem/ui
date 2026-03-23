@@ -2,7 +2,7 @@
 
 **Feature Branch**: `002-component-library-setup`
 **Created**: 2026-03-22
-**Last Updated**: 2026-03-22
+**Last Updated**: 2026-03-23
 **Status**: Draft
 **Input**: React component library with TypeScript, design tokens, 11 components, 2 hooks, publishable to GitHub Packages as `@bacsystem/ui`. Monorepo structure with interactive demo app at `apps/demo/`.
 
@@ -291,27 +291,50 @@ first-class workspace package.
   interactive `Modal` component instance.
 - **FR-028**: The DataTable section MUST display sample invoice data (number, client, total,
   status) and provide toggles to switch between default, loading, and empty states.
+- **FR-031**: `DataTable` rows MUST display a visible hover state: row background changes to
+  `--color-primary-50` and a `--color-primary-400` left-border accent appears on the first
+  cell. The transition MUST be smooth (CSS transition, ≤ 150 ms). Row hover MUST NOT apply
+  during loading or empty states.
 - **FR-029**: The Hooks section MUST show the live state of `useTheme` (current theme,
   buttons for `setTheme('light')`, `setTheme('dark')`, `toggleTheme()`) and `useBreakpoint`
   (all four returned values updating reactively on resize).
 - **FR-030**: The repository README MUST include a "Demo" section with setup instructions:
   `npm install` and `npm run dev` to open `localhost:3000`.
+- **FR-032**: `Button` MUST support an `appearance` prop (`'filled' | 'outline' | 'soft' | 'link'`,
+  default `'filled'`). Each appearance applies to all 6 variants: `filled` = solid background;
+  `outline` = transparent background with colored border; `soft` = tinted low-opacity background;
+  `link` = text only with underline on hover and no padding. The legacy `outline` boolean prop
+  MUST remain functional for backward compatibility.
+
+- **FR-033**: `Badge`, `Alert`, `Avatar`, and `StatCard` MUST each support an `appearance` prop
+  (`'soft' | 'filled' | 'outline'`, default `'soft'`). `soft` preserves the prior default
+  (light tinted background); `filled` uses a solid color background with white text; `outline`
+  uses transparent background with a colored border and text. All appearance styles MUST include
+  dark mode CSS overrides. This pattern MUST be applied to all future components at time of
+  creation.
+
+- **FR-034**: Dark mode MUST be implemented via component-specific CSS overrides rather than
+  inverting the primary color scale. The neutral scale inversion powers surface/border/text
+  semantic variables. Each component that uses light background colors (badge soft, alert soft,
+  avatar soft, card tinted, ghost button hover, etc.) MUST have explicit `[data-theme="dark"]`
+  rules that replace light backgrounds with translucent dark overlays and lighten text colors
+  to maintain contrast ratios.
 
 ### Component Variants & Sizes Reference
 
-| Component  | Variants                                           | Sizes              |
-|------------|----------------------------------------------------|--------------------|
-| Button     | primary, secondary, accent, ghost, danger, success | xs, sm, md, lg, xl |
-| Badge      | default, primary, success, warning, danger, info   | — (single)         |
-| Input      | default, error, disabled                           | — (single)         |
-| Card       | default, elevated, outlined, tinted                | sm, md, lg         |
-| Alert      | info, success, warning, error                      | — (single)         |
-| Avatar     | with image, with initials                          | xs, sm, md, lg, xl |
-| Toggle     | checked, unchecked, disabled                       | sm, md, lg         |
-| Modal      | — (single style)                                   | sm, md, lg         |
-| DataTable  | default, loading, empty                            | — (single)         |
-| StatCard   | blue, teal, amber, green, purple                   | — (single)         |
-| Tabs       | — (single style)                                   | — (single)         |
+| Component  | Variants                                           | Sizes              | Appearances               |
+|------------|----------------------------------------------------|--------------------|---------------------------|
+| Button     | primary, secondary, accent, ghost, danger, success | xs, sm, md, lg, xl | filled, outline, soft, link |
+| Badge      | default, primary, success, warning, danger, info   | — (single)         | soft, filled, outline     |
+| Input      | default, error, disabled                           | — (single)         | —                         |
+| Card       | default, elevated, outlined, tinted                | sm, md, lg         | —                         |
+| Alert      | info, success, warning, error                      | — (single)         | soft, filled, outline     |
+| Avatar     | with image, with initials, icon fallback           | xs, sm, md, lg, xl | soft, filled, outline     |
+| Toggle     | checked, unchecked, disabled                       | sm, md, lg         | —                         |
+| Modal      | — (single style)                                   | sm, md, lg         | —                         |
+| DataTable  | default (with row hover), loading, empty           | — (single)         | —                         |
+| StatCard   | blue, teal, amber, green, purple                   | — (single)         | soft, filled, outline     |
+| Tabs       | — (single style)                                   | — (single)         | —                         |
 
 ### Icon Assignments Reference
 

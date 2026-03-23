@@ -1,0 +1,15 @@
+{
+  "name": "bacsystem-ui-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @bacsystem/ui",
+    "typecheck": "npm run typecheck -w @bacsystem/ui"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
