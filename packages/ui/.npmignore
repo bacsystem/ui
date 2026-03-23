@@ -1,0 +1,7 @@
+# Source — only dist/ is published
+src/
+scripts/
+tsconfig.json
+tsup.config.ts
+*.test.ts
+*.test.tsx
