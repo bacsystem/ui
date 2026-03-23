@@ -282,7 +282,7 @@ body {
 .bac-btn--success:hover:not(:disabled) { background-color: var(--color-success-dark, #065F46); }
 
 /* Outline — transparent bg, colored border + text */
-.bac-btn--outline { background-color: transparent; border: 1px solid currentColor; }
+.bac-btn--outline { background-color: transparent; border: 1px solid currentcolor; }
 .bac-btn--primary.bac-btn--outline   { color: var(--color-primary-700); border-color: var(--color-primary-700); }
 .bac-btn--primary.bac-btn--outline:hover:not(:disabled)  { background-color: var(--color-primary-50); }
 .bac-btn--accent.bac-btn--outline    { color: var(--color-accent-600); border-color: var(--color-accent-600); }
@@ -508,7 +508,7 @@ body {
 .bac-alert__content { flex: 1; }
 .bac-alert__title { font-weight: var(--font-weight-semibold, 600); font-size: var(--text-sm, 0.875rem); margin-bottom: var(--sp-1, 4px); }
 .bac-alert__body { font-size: var(--text-sm, 0.875rem); }
-.bac-alert__close { margin-left: auto; background: none; border: none; cursor: pointer; color: currentColor; padding: var(--sp-1, 4px); border-radius: var(--radius-sm, 4px); opacity: 0.7; }
+.bac-alert__close { margin-left: auto; background: none; border: none; cursor: pointer; color: currentcolor; padding: var(--sp-1, 4px); border-radius: var(--radius-sm, 4px); opacity: 0.7; }
 .bac-alert__close:hover { opacity: 1; }
 
 /* Avatar */
@@ -686,9 +686,6 @@ body {
 .bac-statcard--amber.bac-statcard--outline  { border-color: var(--color-accent-500); }
 .bac-statcard--green.bac-statcard--outline  { border-color: var(--color-success-base); }
 .bac-statcard--purple.bac-statcard--outline { border-color: #A78BFA; }
-
-/* Tabs */
-.bac-tabs {}
 
 /* Pill bar — the rounded container from the image */
 .bac-tabs__bar {
