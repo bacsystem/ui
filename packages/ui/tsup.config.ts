@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
-import { copyFileSync, mkdirSync, existsSync } from 'fs'
-import { resolve, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { copyFileSync, mkdirSync, existsSync } from 'node:fs'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
   entry: ['src/index.ts'],

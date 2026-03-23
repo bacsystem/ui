@@ -17,9 +17,9 @@ const STORAGE_KEY = 'bacsystem-ui-theme'
  */
 function applyTheme(theme: Theme): void {
   if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark')
+    document.documentElement.dataset['theme'] = 'dark'
   } else {
-    document.documentElement.removeAttribute('data-theme')
+    delete document.documentElement.dataset['theme']
   }
 }
 

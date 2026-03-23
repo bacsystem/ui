@@ -5,8 +5,8 @@
  * Never hand-edit dist/tokens.json — it is generated.
  */
 
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from 'node:fs'
+import * as path from 'node:path'
 import { colors } from '../src/tokens/colors'
 import { typography } from '../src/tokens/typography'
 import { spacing } from '../src/tokens/spacing'

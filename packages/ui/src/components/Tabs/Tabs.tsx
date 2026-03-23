@@ -70,6 +70,8 @@ export function Tabs({
 
   const activeContent = items.find((t) => t.id === activeId)?.content
 
+  if (items.length === 0 || items.every((t) => t.disabled)) return null
+
   return (
     <div className={`bac-tabs${className ? ` ${className}` : ''}`}>
       <div className="bac-tabs__bar">
@@ -103,14 +105,16 @@ export function Tabs({
           })}
         </div>
       </div>
-      <div
-        id={`bac-tab-panel-${activeId}`}
-        role="tabpanel"
-        aria-labelledby={`bac-tab-${activeId}`}
-        className="bac-tabs__panel"
-      >
-        {activeContent}
-      </div>
+      {activeId && (
+        <div
+          id={`bac-tab-panel-${activeId}`}
+          role="tabpanel"
+          aria-labelledby={`bac-tab-${activeId}`}
+          className="bac-tabs__panel"
+        >
+          {activeContent}
+        </div>
+      )}
     </div>
   )
 }
