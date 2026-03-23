@@ -84,7 +84,41 @@ export function DataTableSection() {
 
   return (
     <div id="datatable">
-      <DemoSection title="DataTable" tag="Component" description="Generic typed table with loading and empty states">
+      <DemoSection title="DataTable" tag="Component" description="Generic typed table with loading and empty states" code={`
+import { DataTable, Badge } from '@bacsystem/ui'
+import type { DataTableColumn } from '@bacsystem/ui'
+
+interface Invoice {
+  numero: string
+  cliente: string
+  total: string
+  estado: 'pagado' | 'pendiente'
+}
+
+const columns: DataTableColumn<Invoice>[] = [
+  { key: 'numero', header: 'N°' },
+  { key: 'cliente', header: 'Cliente' },
+  { key: 'total', header: 'Total' },
+  {
+    key: 'estado',
+    header: 'Estado',
+    render: (row) => (
+      <Badge variant={row.estado === 'pagado' ? 'success' : 'warning'}>
+        {row.estado}
+      </Badge>
+    ),
+  },
+]
+
+// loading y emptyText son opcionales
+<DataTable
+  columns={columns}
+  data={invoices}
+  loading={false}
+  emptyText="Sin resultados"
+  getRowKey={(row) => row.numero}
+/>
+`}>
         <div style={{ width: '100%' }}>
           <div style={{ display: 'flex', gap: 'var(--sp-2)', marginBottom: 'var(--sp-4)' }}>
             <Button size="sm" variant={state === 'data' ? 'primary' : 'secondary'} onClick={() => setState('data')}>

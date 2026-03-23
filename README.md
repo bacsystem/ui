@@ -9,7 +9,9 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:3000` — interactive showcase of all 11 components, 2 hooks, and design tokens.
+Opens `http://localhost:3000` — interactive showcase of all 11 components, 2 hooks, and design tokens. Each component section includes a **"Ver código"** toggle button that reveals a copy-ready TSX snippet.
+
+The demo is also deployed to GitHub Pages on every push to `main`.
 
 ## Install
 
@@ -94,6 +96,9 @@ CSS custom properties are available after importing `styles.css`:
 ```css
 var(--color-primary-700)   /* #1D4ED8 */
 var(--color-success-base)  /* #10B981 */
+var(--color-success-text)  /* #065F46 light / #6EE7B7 dark */
+var(--color-warning-text)  /* #92400E light / #FCD34D dark */
+var(--color-error-text)    /* #991B1B light / #FCA5A5 dark */
 var(--sp-4)                /* 16px    */
 var(--radius-md)           /* 12px    */
 var(--shadow-lg)
@@ -176,8 +181,8 @@ function ThemeToggle() {
 Triggered automatically on `v*` tags via GitHub Actions:
 
 ```bash
-git tag v1.0.1
-git push origin v1.0.1
+git tag v1.1.0
+git push origin v1.1.0
 ```
 
 ## License

@@ -19,7 +19,23 @@ const cards = [
 export function StatCardSection() {
   return (
     <div id="statcard">
-      <DemoSection title="StatCard" tag="Component" description="5 colores × 3 estilos: soft, filled y outline">
+      <DemoSection title="StatCard" tag="Component" description="5 colores × 3 estilos: soft, filled y outline" code={`
+import { StatCard } from '@bacsystem/ui'
+
+// color: 'blue' | 'teal' | 'amber' | 'green' | 'purple'
+// trend: 'up' | 'down' | 'neutral'
+<StatCard
+  title="Ingresos"
+  value="S/ 48,200"
+  trend="up"
+  trendValue="+12.5%"
+  color="blue"
+/>
+
+// Appearances: soft (default) | filled | outline
+<StatCard title="Pedidos" value="342" color="green" appearance="filled" />
+<StatCard title="Retención" value="94.7%" color="purple" appearance="outline" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)', width: '100%' }}>
 
           <div>

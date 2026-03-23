@@ -13,7 +13,35 @@ const variants = ['info', 'success', 'warning', 'error'] as const
 export function AlertSection() {
   return (
     <div id="alert">
-      <DemoSection title="Alert" tag="Component" description="4 variantes × 3 estilos: soft, filled y outline">
+      <DemoSection title="Alert" tag="Component" description="4 variantes × 3 estilos: soft, filled y outline" code={`
+import { Alert } from '@bacsystem/ui'
+
+// Soft (default)
+<Alert variant="info" title="Información">
+  Esta es una alerta informativa.
+</Alert>
+
+<Alert variant="success" title="¡Éxito!">
+  La operación se completó correctamente.
+</Alert>
+
+<Alert variant="warning" title="Advertencia">
+  Revisa los datos antes de continuar.
+</Alert>
+
+<Alert variant="error" title="Error">
+  No se pudo procesar la solicitud.
+</Alert>
+
+// Appearances: soft | filled | outline
+<Alert variant="success" appearance="filled" title="Éxito">Guardado.</Alert>
+<Alert variant="error" appearance="outline" title="Error">Reintenta.</Alert>
+
+// Con botón de cierre
+<Alert variant="info" title="Aviso" onClose={() => console.log('closed')}>
+  Puedes cerrar esta alerta.
+</Alert>
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)', width: '100%' }}>
 
           <div>
