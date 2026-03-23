@@ -234,11 +234,3 @@ body {
   text-align: center;
 }
 
-/* Component styles are in @bacsystem/ui globals.css */
-
-/* @bacsystem/ui component styles are imported from the library's dist/styles.css */
-
-/* Demo shell dark mode overrides */
-[data-theme="dark"] .demo-section__header {
-  background-color: var(--color-neutral-100); /* #334155 — slightly elevated vs card */
-}
