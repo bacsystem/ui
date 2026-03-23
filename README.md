@@ -59,12 +59,12 @@ export default function Page() {
 ```json
 // angular.json
 "styles": [
-  "node_modules/@bacsystem/ui/dist/styles.css"
+  "@bacsystem/ui/styles.css"
 ]
 ```
 
 ```ts
-import tokens from '@bacsystem/ui/dist/tokens.json'
+import tokens from '@bacsystem/ui/tokens.json'
 const primary = tokens.colors.primary[900] // '#0F2D5E'
 ```
 
@@ -72,14 +72,14 @@ const primary = tokens.colors.primary[900] // '#0F2D5E'
 
 ```ts
 // main.ts
-import '@bacsystem/ui/dist/styles.css'
-import tokens from '@bacsystem/ui/dist/tokens.json'
+import '@bacsystem/ui/styles.css'
+import tokens from '@bacsystem/ui/tokens.json'
 ```
 
 ### React Native
 
 ```ts
-import tokens from '@bacsystem/ui/dist/tokens.json'
+import tokens from '@bacsystem/ui/tokens.json'
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -102,7 +102,7 @@ var(--shadow-lg)
 JSON tokens for framework-agnostic consumption:
 
 ```ts
-import tokens from '@bacsystem/ui/dist/tokens.json'
+import tokens from '@bacsystem/ui/tokens.json'
 
 tokens.colors.primary[700]    // '#1D4ED8'
 tokens.spacing[4]             // '16px'
