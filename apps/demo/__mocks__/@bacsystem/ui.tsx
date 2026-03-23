@@ -129,7 +129,7 @@ export const DataTable = vi.fn(({ columns, data, loading, emptyText, getRowKey }
           <tr key={getRowKey ? getRowKey(row, rowIndex) : String(rowIndex)}>
             {columns.map((col) => (
               <td key={String(col.key)}>
-                {col.render ? col.render(row) : row[col.key as string] as React.ReactNode}
+                {col.render ? col.render(row) : row[col.key] as React.ReactNode}
               </td>
             ))}
           </tr>
