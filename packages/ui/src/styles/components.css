@@ -513,11 +513,6 @@
    components that use light primary/semantic backgrounds.
    ─────────────────────────────────────────────────────────────── */
 
-/* Demo shell */
-[data-theme="dark"] .demo-section__header {
-  background-color: var(--color-neutral-100); /* #334155 — slightly elevated vs card */
-}
-
 /* Button — secondary: border-color = bg-color in dark (both --color-neutral-100 = #334155).
    Use neutral-200 (#475569) so the button shape is distinguishable. */
 [data-theme="dark"] .bac-btn--secondary { border-color: var(--color-neutral-200); }

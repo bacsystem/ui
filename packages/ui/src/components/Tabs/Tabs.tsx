@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import type { ReactNode, KeyboardEvent } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
