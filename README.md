@@ -15,7 +15,7 @@ Opens `http://localhost:3000` — interactive showcase of all 11 components, 2 h
 
 ### Requirements
 
-- Node.js ≥ 18
+- Node.js ≥ 20 (for local development and running the demo; matches monorepo `engines.node >= 20`)
 - React ^18.0 (peer dependency)
 - React DOM ^18.0 (peer dependency)
 

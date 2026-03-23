@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev": "npm run dev -w @bacsystem/demo",
-    "build": "npm run build -w @bacsystem/ui",
+    "build": "npm run build -w @bacsystem/ui && npm run build -w @bacsystem/demo",
     "build:ui": "npm run build -w @bacsystem/ui",
     "dev:ui": "npm run dev -w @bacsystem/ui",
     "typecheck": "npm run typecheck -w @bacsystem/ui"

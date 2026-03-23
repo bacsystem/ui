@@ -44,20 +44,29 @@ export function Avatar({
   const showFallback = !showImage && !showInitials
   const appearanceClass = appearance === 'soft' ? '' : ` bac-avatar--${appearance}`
 
-  return (
-    <span
-      role="img"
-      className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
-      aria-label={alt || initials}
-    >
-      {showImage && (
+  if (showImage) {
+    return (
+      <span
+        className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
+      >
         <img
           src={src}
           alt={alt}
           className="bac-avatar__img"
           onError={() => setImgError(true)}
         />
-      )}
+      </span>
+    )
+  }
+
+  const fallbackLabel = initials || alt || 'Avatar'
+
+  return (
+    <span
+      role="img"
+      aria-label={fallbackLabel}
+      className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
+    >
       {showInitials && (
         <span className="bac-avatar__initials" aria-hidden="true">
           {initials}
