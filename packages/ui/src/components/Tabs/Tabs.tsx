@@ -18,6 +18,14 @@ export interface TabsProps {
   className?: string
 }
 
+function resolveInitialTab(items: TabItem[], defaultTab: string | undefined): string {
+  if (defaultTab !== undefined) {
+    const found = items.find((t) => t.id === defaultTab)
+    if (found && !found.disabled) return defaultTab
+  }
+  return items.find((t) => !t.disabled)?.id ?? ''
+}
+
 /**
  * Renders a tabbed interface with selectable tabs and an associated content panel; supports controlled (`activeTab`) and uncontrolled (`defaultTab`) selection.
  *
@@ -37,12 +45,7 @@ export function Tabs({
 }: TabsProps) {
   const firstEnabledId = useMemo(() => items.find((t) => !t.disabled)?.id ?? '', [items])
   const isControlled = controlledTab !== undefined
-  const [internalTab, setInternalTab] = useState(() => {
-    if (defaultTab !== undefined && items.some((t) => t.id === defaultTab && !t.disabled)) {
-      return defaultTab
-    }
-    return firstEnabledId
-  })
+  const [internalTab, setInternalTab] = useState(() => resolveInitialTab(items, defaultTab))
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   const rawActiveId = isControlled ? controlledTab : internalTab
@@ -60,11 +63,11 @@ export function Tabs({
     const enabledItems = items.filter((t) => !t.disabled)
     if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
-    if (currentIndex === -1) return
+    const safeIndex = currentIndex === -1 ? 0 : currentIndex
 
     let nextIndex: number | null = null
-    if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % enabledItems.length
-    else if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length
+    if (e.key === 'ArrowRight') nextIndex = (safeIndex + 1) % enabledItems.length
+    else if (e.key === 'ArrowLeft') nextIndex = (safeIndex - 1 + enabledItems.length) % enabledItems.length
     else if (e.key === 'Home') nextIndex = 0
     else if (e.key === 'End') nextIndex = enabledItems.length - 1
 
