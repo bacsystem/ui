@@ -102,6 +102,7 @@ export function DataTableSection() {
             data={state === 'data' ? invoices : []}
             loading={state === 'loading'}
             emptyText="No hay facturas registradas"
+            getRowKey={(row) => row.numero}
           />
         </div>
       </DemoSection>
