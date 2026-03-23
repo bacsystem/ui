@@ -59,7 +59,13 @@ export const Alert = vi.fn(({ children, variant, appearance, title, onClose }: a
   </div>
 ))
 
-export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: any) => {
+export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: Readonly<{
+  initials?: string
+  src?: string
+  alt?: string
+  size?: string
+  appearance?: string
+}>) => {
   let avatarContent: React.ReactNode
   if (src) {
     avatarContent = <img src={src} alt={alt} />
@@ -92,7 +98,7 @@ export const Toggle = vi.fn(({ label, size, checked, defaultChecked, disabled, o
 export const Modal = vi.fn(({ open, onClose, title, size, children }: any) => {
   if (!open) return null
   return (
-    <dialog aria-modal="true" data-size={size}>
+    <dialog open aria-modal="true" data-size={size}>
       <div>
         {title && <h2>{title}</h2>}
         <button onClick={onClose} aria-label="close">×</button>
@@ -102,22 +108,28 @@ export const Modal = vi.fn(({ open, onClose, title, size, children }: any) => {
   )
 })
 
-export const DataTable = vi.fn(({ columns, data, loading, emptyText }: any) => {
+export const DataTable = vi.fn(({ columns, data, loading, emptyText, getRowKey }: Readonly<{
+  columns: DataTableColumn<Record<string, unknown>>[]
+  data: Record<string, unknown>[]
+  loading?: boolean
+  emptyText?: string
+  getRowKey?: (row: Record<string, unknown>, index: number) => string | number
+}>) => {
   if (loading) return <div data-testid="datatable-loading">Loading...</div>
   if (!data || data.length === 0) return <div data-testid="datatable-empty">{emptyText}</div>
   return (
     <table>
       <thead>
         <tr>
-          {columns.map((col: any) => <th key={col.key}>{col.header}</th>)}
+          {columns.map((col) => <th key={String(col.key)}>{col.header}</th>)}
         </tr>
       </thead>
       <tbody>
-        {data.map((row: any) => (
-          <tr key={JSON.stringify(row)}>
-            {columns.map((col: any) => (
-              <td key={col.key}>
-                {col.render ? col.render(row) : row[col.key]}
+        {data.map((row, rowIndex) => (
+          <tr key={getRowKey ? getRowKey(row, rowIndex) : String(rowIndex)}>
+            {columns.map((col) => (
+              <td key={String(col.key)}>
+                {col.render ? col.render(row) : row[col.key as string] as React.ReactNode}
               </td>
             ))}
           </tr>
