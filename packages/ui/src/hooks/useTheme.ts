@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export type Theme = 'light' | 'dark'
 
@@ -35,7 +35,7 @@ function applyTheme(theme: Theme): void {
  */
 export function useTheme(): UseThemeReturn {
   const [theme, setThemeState] = useState<Theme>('light')
-  const isInitializing = useRef(true)
+  const [hydrated, setHydrated] = useState(false)
 
   // Sync from localStorage after hydration (client-only)
   useEffect(() => {
@@ -44,26 +44,27 @@ export function useTheme(): UseThemeReturn {
       if (stored === 'dark' || stored === 'light') {
         setThemeState(stored)
         applyTheme(stored)
+        setHydrated(true)
         return
       }
     } catch {
       // localStorage not available
     }
     applyTheme('light')
+    setHydrated(true)
   }, [])
 
+  // Persist theme changes to localStorage and DOM, gated behind hydration
+  // to avoid overwriting a stored theme before the initial read completes
   useEffect(() => {
-    if (isInitializing.current) {
-      isInitializing.current = false
-      return
-    }
+    if (!hydrated) return
     applyTheme(theme)
     try {
       localStorage.setItem(STORAGE_KEY, theme)
     } catch {
       // localStorage not available
     }
-  }, [theme])
+  }, [theme, hydrated])
 
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next)

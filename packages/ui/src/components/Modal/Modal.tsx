@@ -74,19 +74,14 @@ export function Modal({
   )
 
   useEffect(() => {
-    if (open) {
-      previousActiveElement.current = document.activeElement
-      document.addEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'hidden'
-      // Focus the dialog
-      setTimeout(() => dialogRef.current?.focus(), 0)
-    } else {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
-      if (previousActiveElement.current instanceof HTMLElement) {
-        previousActiveElement.current.focus()
-      }
-    }
+    if (!open) return
+
+    previousActiveElement.current = document.activeElement
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    // Focus the dialog
+    setTimeout(() => dialogRef.current?.focus(), 0)
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''

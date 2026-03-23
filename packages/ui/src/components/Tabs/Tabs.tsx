@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import type { ReactNode } from 'react'
+import type { ReactNode, KeyboardEvent } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TabItem {
@@ -43,18 +43,23 @@ export function Tabs({
   onChange,
   className = '',
 }: TabsProps) {
+  const firstEnabledId = useMemo(() => items.find((t) => !t.disabled)?.id ?? '', [items])
   const isControlled = controlledTab !== undefined
   const [internalTab, setInternalTab] = useState(() => resolveInitialTab(items, defaultTab))
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  const activeId = isControlled ? controlledTab : internalTab
+  const rawActiveId = isControlled ? controlledTab : internalTab
+  const activeId = useMemo(
+    () => (items.some((t) => t.id === rawActiveId && !t.disabled) ? rawActiveId : firstEnabledId),
+    [items, rawActiveId, firstEnabledId],
+  )
 
   const handleSelect = (id: string) => {
     if (!isControlled) setInternalTab(id)
     onChange?.(id)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const enabledItems = items.filter((t) => !t.disabled)
     if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
