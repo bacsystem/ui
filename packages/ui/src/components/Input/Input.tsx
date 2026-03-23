@@ -1,10 +1,10 @@
-import { forwardRef, useId } from 'react'
+import { forwardRef, useId, type InputHTMLAttributes } from 'react'
 import { AlertCircle, CheckCircle2 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export type InputSize = 'sm' | 'md' | 'lg'
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   error?: string
   hint?: string
