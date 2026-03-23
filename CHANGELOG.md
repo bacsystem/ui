@@ -34,12 +34,12 @@
 
 #### DataTable row hover
 
-- Row hover state: `--color-primary-50` background + `--color-primary-400` left-border accent, CSS transition ≤ 150 ms
+- Row hover state: `--color-primary-100` background + `--color-primary-600` left-border accent, CSS transition ≤ 150 ms
 
 #### Design tokens JSON
 
-- `dist/tokens.json` generated at build time from `src/tokens/*.ts`
-- Accessible via `import tokens from '@bacsystem/ui/dist/tokens.json'`
+- `tokens.json` generated at build time from `src/tokens/*.ts`
+- Accessible via `import tokens from '@bacsystem/ui/tokens.json'`
 - Contains: `colors`, `typography`, `spacing`, `radius`, `shadows`
 
 ---
