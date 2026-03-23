@@ -5,6 +5,13 @@ import { DemoSection } from '../../components/DemoSection'
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 
+/**
+ * Renders the "Avatar" demo section showing avatars in five sizes (xs, sm, md, lg, xl) across three appearances: soft, filled, and outline.
+ *
+ * The section includes labeled rows for each appearance; each row displays one avatar per size, an avatar with an external image (`alt="Usuario"`), and a fallback avatar.
+ *
+ * @returns The JSX element for the Avatar demo section.
+ */
 export function AvatarSection() {
   return (
     <div id="avatar">

@@ -39,6 +39,12 @@ const navGroups = [
   },
 ]
 
+/**
+ * Wraps page content in the demo application's top-level HTML layout, including the sidebar navigation and header.
+ *
+ * @param children - Page content to render inside the demo layout's main content area
+ * @returns The root HTML structure for the demo app, with a sidebar, header, and main content region
+ */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">

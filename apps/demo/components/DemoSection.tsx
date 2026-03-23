@@ -5,6 +5,15 @@ interface DemoSectionProps {
   readonly children: React.ReactNode
 }
 
+/**
+ * Render a sectioned demo block with a header (optional tag and description) and a content area.
+ *
+ * @param title - The section title displayed prominently in the header
+ * @param description - Optional descriptive text shown below the title when provided
+ * @param tag - Optional short label shown before the title when provided
+ * @param children - Content to render inside the section's content area
+ * @returns The React element representing the demo section
+ */
 export function DemoSection({ title, description, tag, children }: DemoSectionProps) {
   return (
     <section className="demo-section">

@@ -78,6 +78,15 @@ const mono: React.CSSProperties = {
   lineHeight: 1.4,
 }
 
+/**
+ * Render a compact color swatch with a primary label and optional subtitle.
+ *
+ * @param color - CSS color value (hex, rgb, or CSS variable) used for the swatch background
+ * @param label - Primary label text displayed beneath the swatch
+ * @param sub - Optional secondary label shown below `label`
+ * @param lightBorder - When true, renders a visible border using `var(--color-border)`; otherwise the border is transparent
+ * @returns A JSX element containing a colored square with the provided labels
+ */
 function Swatch({ color, label, sub, lightBorder = false }: {
   color: string; label: string; sub?: string; lightBorder?: boolean
 }) {
@@ -98,7 +107,14 @@ function Swatch({ color, label, sub, lightBorder = false }: {
   )
 }
 
-// ─── Section: Colors ──────────────────────────────────────────
+/**
+ * Renders the "Colors" demo subsection that visualizes design-system color tokens as swatches.
+ *
+ * The returned section displays primary, accent, neutral palettes and semantic (success/warning/error/info)
+ * groups, with labels and hex (or CSS custom-property) values for each swatch.
+ *
+ * @returns A JSX element containing the Colors DemoSection with organized color swatch grids and labels.
+ */
 
 function ColorsSection() {
   return (
@@ -170,7 +186,14 @@ function ColorsSection() {
   )
 }
 
-// ─── Section: Typography ──────────────────────────────────────
+/**
+ * Render the Typography tokens demo section showing configured font families and the type scale.
+ *
+ * The section lists font-family tokens with their display names and usage, and presents the type
+ * scale entries with size tokens, pixel values, and sample text.
+ *
+ * @returns A JSX element containing the populated Typography DemoSection
+ */
 
 function TypographySection() {
   return (
@@ -245,7 +268,12 @@ function TypographySection() {
   )
 }
 
-// ─── Section: Spacing & Radius ────────────────────────────────
+/**
+ * Renders the "Spacing & Radius" demo section that visualizes spacing tokens as horizontal bars
+ * and border-radius tokens as preview boxes.
+ *
+ * @returns A JSX element containing the demo section markup for spacing and border-radius tokens.
+ */
 
 function SpacingRadiusSection() {
   return (
@@ -302,7 +330,11 @@ function SpacingRadiusSection() {
   )
 }
 
-// ─── Section: Shadows ─────────────────────────────────────────
+/**
+ * Renders the "Shadows" demo subsection showing preview surfaces for each design-system shadow token.
+ *
+ * @returns A React element containing a grid of shadow samples, each labeled with its corresponding `shadow-{name}` token.
+ */
 
 function ShadowsSection() {
   return (
@@ -330,7 +362,11 @@ function ShadowsSection() {
   )
 }
 
-// ─── Main export ──────────────────────────────────────────────
+/**
+ * Renders the Tokens section that showcases design-system token values for colors, typography, spacing/radius, and shadows.
+ *
+ * @returns The JSX element containing the composed subsections: Colors, Typography, Spacing & Radius, and Shadows.
+ */
 
 export function TokensSection() {
   return (

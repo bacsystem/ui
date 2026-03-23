@@ -3,6 +3,13 @@
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 
+/**
+ * Renders a demo section displaying live values and controls for `useTheme` and `useBreakpoint`.
+ *
+ * Shows the current theme with buttons to set or toggle it, and displays the current breakpoint plus `isMobile`, `isTablet`, and `isDesktop` flags, which update as the viewport changes.
+ *
+ * @returns A React element containing the Hooks demo UI
+ */
 export function HooksSection() {
   const { theme, setTheme, toggleTheme } = useTheme()
   const { isMobile, isTablet, isDesktop, current } = useBreakpoint()

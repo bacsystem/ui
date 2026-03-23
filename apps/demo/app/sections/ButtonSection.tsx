@@ -4,6 +4,15 @@ import { Button } from '@bacsystem/ui'
 import { Mail, ArrowRight } from 'lucide-react'
 import { DemoSection } from '../../components/DemoSection'
 
+/**
+ * Renders the Button demo section showcasing variants, appearances, sizes, states, and icon examples.
+ *
+ * The section is wrapped in a container with id "button" and uses `DemoSection` to present:
+ * filled, outline, soft, and link appearances across six variants; five sizes; and examples of loading,
+ * disabled, and icon-left/right states.
+ *
+ * @returns A JSX element containing grouped Button examples for demonstration purposes.
+ */
 export function ButtonSection() {
   return (
     <div id="button">

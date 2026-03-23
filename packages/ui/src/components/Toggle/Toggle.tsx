@@ -13,6 +13,22 @@ export interface ToggleProps {
   className?: string
 }
 
+/**
+ * Renders an accessible switch-style toggle that supports both controlled and uncontrolled usage.
+ *
+ * Supports keyboard activation via Space and Enter, exposes ARIA `role="switch"` and `aria-checked`,
+ * and visually indicates checked state with an icon.
+ *
+ * @param checked - Controlled checked state; when provided the component does not manage internal state.
+ * @param defaultChecked - Initial checked value for uncontrolled usage (ignored when `checked` is provided).
+ * @param onChange - Called with the new checked value whenever the toggle changes via mouse, touch, or keyboard.
+ * @param disabled - When `true`, disables interaction and removes keyboard focus.
+ * @param size - Visual size of the toggle; one of `'sm' | 'md' | 'lg'`.
+ * @param label - Optional label text displayed next to the toggle.
+ * @param className - Additional CSS class names applied to the root element.
+ *
+ * @returns The rendered toggle element.
+ */
 export function Toggle({
   checked,
   defaultChecked = false,

@@ -15,6 +15,19 @@ export interface StatCardProps {
   className?: string
 }
 
+/**
+ * Render a compact statistic card with a title, value, and optional trend indicator and description.
+ *
+ * @param title - Visible title for the card.
+ * @param value - Primary value displayed prominently (string or number).
+ * @param description - Supplemental text shown in the card footer.
+ * @param color - Visual color theme for the card. One of: 'blue', 'teal', 'amber', 'green', 'purple'. Defaults to 'blue'.
+ * @param trend - Direction of the trend used to style the trend indicator. One of: 'up', 'down', 'neutral'. Defaults to 'neutral'.
+ * @param trendValue - Text label for the trend (shown alongside the trend icon when provided).
+ * @param appearance - Visual appearance variant that toggles modifier classes. One of: 'soft', 'filled', 'outline'. Defaults to 'soft'.
+ * @param className - Additional CSS class names appended to the root element.
+ * @returns The JSX element representing the stat card.
+ */
 export function StatCard({
   title,
   value,

@@ -13,6 +13,17 @@ export interface AvatarProps {
   className?: string
 }
 
+/**
+ * Render an avatar element that displays an image, initials, or a fallback icon based on provided props.
+ *
+ * @param src - Optional URL of the avatar image
+ * @param alt - Alternative text for the image; also used for the wrapper's accessible label when present
+ * @param initials - Text to display when the image is not shown
+ * @param size - Visual size of the avatar (`'xs' | 'sm' | 'md' | 'lg' | 'xl'`)
+ * @param appearance - Visual style of the avatar (`'soft' | 'filled' | 'outline'`)
+ * @param className - Additional CSS classes to apply to the root element
+ * @returns A span element containing the avatar image if available, otherwise initials or a fallback icon
+ */
 export function Avatar({
   src,
   alt = '',

@@ -17,6 +17,16 @@ export interface TabsProps {
   className?: string
 }
 
+/**
+ * Renders a tabbed interface with selectable tabs and an associated content panel; supports controlled (`activeTab`) and uncontrolled (`defaultTab`) selection.
+ *
+ * @param items - Array of tab definitions including `id`, `label`, optional `icon`, optional `disabled`, and `content`.
+ * @param defaultTab - Optional initial tab id used when the component is uncontrolled.
+ * @param activeTab - Optional controlled active tab id; when provided the component does not manage selection state internally.
+ * @param onChange - Optional callback invoked with the newly selected tab id whenever a tab is selected.
+ * @param className - Optional additional CSS class applied to the root element.
+ * @returns The rendered tabs component element.
+ */
 export function Tabs({
   items,
   defaultTab,

@@ -11,6 +11,11 @@ const cards = [
   { title: 'Retención', value: '94.7%', trend: 'neutral', trendValue: '0%', color: 'purple' },
 ] as const
 
+/**
+ * Renders a demo section showcasing StatCard components in three appearances: soft (default), filled, and outline, each displaying the predefined set of cards.
+ *
+ * @returns The JSX element containing labeled groups ("Soft", "Filled", "Outline"), each rendering a StatCard for every entry in the `cards` array.
+ */
 export function StatCardSection() {
   return (
     <div id="statcard">

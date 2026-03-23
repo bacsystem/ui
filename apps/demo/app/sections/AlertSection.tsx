@@ -5,6 +5,11 @@ import { DemoSection } from '../../components/DemoSection'
 
 const variants = ['info', 'success', 'warning', 'error'] as const
 
+/**
+ * Renders a demo section showcasing the Alert component's variants and appearances.
+ *
+ * @returns A JSX element containing grouped Alert examples for soft, filled, and outline styles.
+ */
 export function AlertSection() {
   return (
     <div id="alert">

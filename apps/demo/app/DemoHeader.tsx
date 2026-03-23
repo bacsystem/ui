@@ -3,6 +3,13 @@
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 import { Sun, Moon } from 'lucide-react'
 
+/**
+ * Renders a header that displays the current responsive breakpoint and a button to toggle the app theme.
+ *
+ * The button updates its label, icon, and `aria-label` depending on the active theme and invokes the theme toggle when clicked.
+ *
+ * @returns A JSX element containing the breakpoint label and the theme toggle button.
+ */
 export function DemoHeader() {
   const { theme, toggleTheme } = useTheme()
   const { current } = useBreakpoint()

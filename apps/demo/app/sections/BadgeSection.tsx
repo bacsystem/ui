@@ -5,6 +5,11 @@ import { DemoSection } from '../../components/DemoSection'
 
 const variants = ['default', 'primary', 'success', 'warning', 'danger', 'info'] as const
 
+/**
+ * Render a demo section showcasing the Badge component across six variants and three appearances (soft, filled, outline).
+ *
+ * @returns A React element containing the Badge demo layout with grouped examples for each appearance.
+ */
 export function BadgeSection() {
   return (
     <div id="badge">

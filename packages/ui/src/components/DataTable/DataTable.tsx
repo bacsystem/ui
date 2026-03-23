@@ -15,6 +15,16 @@ export interface DataTableProps<T extends object> {
   className?: string
 }
 
+/**
+ * Renders a configurable data table for rows of type `T`.
+ *
+ * @param columns - Column descriptors defining header text, key, optional `render` function, and optional cell `className`
+ * @param data - Array of row objects to display
+ * @param loading - When `true`, shows a loading state spanning all columns
+ * @param emptyText - Message shown when `data` is empty
+ * @param className - Additional CSS class applied to the table container
+ * @returns A JSX element representing the rendered data table
+ */
 export function DataTable<T extends object>({
   columns,
   data,

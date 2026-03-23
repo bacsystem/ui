@@ -3,6 +3,13 @@
 import { Toggle } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 
+/**
+ * Render a demo section that demonstrates Toggle variants: three sizes and examples of checked, unchecked, and disabled states.
+ *
+ * Displays a first row with small, medium, and large toggles set to checked, and a second row with an unchecked toggle and two disabled variants.
+ *
+ * @returns A JSX element containing the Toggle demo section
+ */
 export function ToggleSection() {
   return (
     <div id="toggle">

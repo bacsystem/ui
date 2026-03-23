@@ -103,6 +103,11 @@ const promocionesContent = (
   </div>
 )
 
+/**
+ * Renders a demo section showcasing a pill-style Tabs component with six static tab panels.
+ *
+ * @returns A React element containing the demo section with the configured Tabs and their static content
+ */
 export function TabsSection() {
   return (
     <div id="tabs">

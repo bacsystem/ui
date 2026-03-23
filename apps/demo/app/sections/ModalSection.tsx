@@ -4,6 +4,14 @@ import { useState } from 'react'
 import { Modal, Button } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 
+/**
+ * Renders a demo section with a controllable modal, including an open button and actions to close it.
+ *
+ * The modal demonstrates focus trapping and can be closed via the Escape key, backdrop click, or the provided
+ * "Cancelar" and "Confirmar" buttons.
+ *
+ * @returns The component's rendered JSX element containing the demo section and modal
+ */
 export function ModalSection() {
   const [open, setOpen] = useState(false)
 

@@ -4,6 +4,11 @@ import { Input } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 import { Search, Mail, Eye, Lock, User } from 'lucide-react'
 
+/**
+ * Renders the "Input" documentation/demo section showing states, sizes, icons, addons, and floating-label examples.
+ *
+ * @returns A JSX element containing multiple DemoSection blocks that demonstrate variations of the `Input` component (default, hint, success, error, disabled, sizes, icon placements, prefix/suffix, and floating labels).
+ */
 export function InputSection() {
   return (
     <div id="input">

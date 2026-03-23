@@ -12,6 +12,11 @@ import { StatCardSection } from './sections/StatCardSection'
 import { TabsSection } from './sections/TabsSection'
 import { HooksSection } from './sections/HooksSection'
 
+/**
+ * Renders the demo page composed of the library's UI section components.
+ *
+ * @returns A React fragment containing the page sections in order: TokensSection, ButtonSection, BadgeSection, InputSection, CardSection, AlertSection, AvatarSection, ToggleSection, ModalSection, DataTableSection, StatCardSection, TabsSection, and HooksSection.
+ */
 export default function Home() {
   return (
     <>

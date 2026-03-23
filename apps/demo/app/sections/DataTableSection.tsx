@@ -72,6 +72,13 @@ const columns: DataTableColumn<DemoInvoice>[] = [
   },
 ]
 
+/**
+ * Demo section showcasing a typed DataTable with controls to toggle between data, loading, and empty states.
+ *
+ * Renders three buttons to switch the table state and a DataTable configured with demo invoices, loading flag, and empty text.
+ *
+ * @returns A React element that renders the demo DataTable and its state controls.
+ */
 export function DataTableSection() {
   const [state, setState] = useState<'data' | 'loading' | 'empty'>('data')
 

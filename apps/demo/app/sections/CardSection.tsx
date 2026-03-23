@@ -3,6 +3,11 @@
 import { Card } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 
+/**
+ * Renders a demo section showcasing Card component variants and sizes.
+ *
+ * @returns A JSX element containing a `DemoSection` titled "Card" that displays four `Card` variants ("default", "elevated", "outlined", "tinted") arranged in a wrapping flex layout.
+ */
 export function CardSection() {
   return (
     <div id="card">
