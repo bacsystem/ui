@@ -54,7 +54,7 @@ export function DataTable<T extends object>({
         <tbody className="bac-datatable__body">
           {loading ? (
             <tr>
-              <td colSpan={columns.length} className="bac-datatable__state-cell">
+              <td colSpan={Math.max(columns.length, 1)} className="bac-datatable__state-cell">
                 <Loader2
                   className="bac-datatable__loader"
                   size={24}
@@ -64,7 +64,7 @@ export function DataTable<T extends object>({
             </tr>
           ) : data.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className="bac-datatable__state-cell">
+              <td colSpan={Math.max(columns.length, 1)} className="bac-datatable__state-cell">
                 <Inbox size={32} className="bac-datatable__empty-icon" aria-hidden="true" />
                 <p className="bac-datatable__empty-text">{emptyText}</p>
               </td>

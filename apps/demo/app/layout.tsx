@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <aside className="demo-sidebar">
             <div className="demo-sidebar__brand">
               <h1>@bacsystem/ui</h1>
-              <p>v1.0.0 — Design System</p>
+              <p>Design System</p>
             </div>
             <nav className="demo-sidebar__nav">
               {navGroups.map((group) => (

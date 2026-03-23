@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               aria-invalid={error ? 'true' : undefined}
               aria-describedby={describedBy}
               className={classes}
-              placeholder={floating ? ' ' : placeholder}
+              placeholder={floating && label ? ' ' : placeholder}
               {...props}
             />
 
