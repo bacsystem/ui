@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, type ChangeEvent, type KeyboardEvent } from 'react'
 import { Check } from 'lucide-react'
 
 export type ToggleSize = 'sm' | 'md' | 'lg'
@@ -45,7 +45,7 @@ export function Toggle({
   const currentChecked = isControlled ? checked : internalChecked
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
         setInternalChecked(e.target.checked)
       }
@@ -55,7 +55,7 @@ export function Toggle({
   )
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLLabelElement>) => {
+    (e: KeyboardEvent<HTMLLabelElement>) => {
       if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
         e.preventDefault()
         inputRef.current?.click()
