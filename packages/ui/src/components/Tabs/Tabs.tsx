@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import type { ReactNode } from 'react'
+import type { ReactNode, KeyboardEvent } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TabItem {
@@ -16,6 +16,14 @@ export interface TabsProps {
   activeTab?: string
   onChange?: (tabId: string) => void
   className?: string
+}
+
+function resolveInitialTab(items: TabItem[], defaultTab: string | undefined): string {
+  if (defaultTab !== undefined) {
+    const found = items.find((t) => t.id === defaultTab)
+    if (found && !found.disabled) return defaultTab
+  }
+  return items.find((t) => !t.disabled)?.id ?? ''
 }
 
 /**
@@ -35,27 +43,31 @@ export function Tabs({
   onChange,
   className = '',
 }: TabsProps) {
+  const firstEnabledId = useMemo(() => items.find((t) => !t.disabled)?.id ?? '', [items])
   const isControlled = controlledTab !== undefined
-  const [internalTab, setInternalTab] = useState(
-    defaultTab ?? items.find((t) => !t.disabled)?.id ?? ''
-  )
+  const [internalTab, setInternalTab] = useState(() => resolveInitialTab(items, defaultTab))
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  const activeId = isControlled ? controlledTab : internalTab
+  const rawActiveId = isControlled ? controlledTab : internalTab
+  const activeId = useMemo(
+    () => (items.some((t) => t.id === rawActiveId && !t.disabled) ? rawActiveId : firstEnabledId),
+    [items, rawActiveId, firstEnabledId],
+  )
 
   const handleSelect = (id: string) => {
     if (!isControlled) setInternalTab(id)
     onChange?.(id)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const enabledItems = items.filter((t) => !t.disabled)
     if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
+    const safeIndex = currentIndex === -1 ? 0 : currentIndex
 
     let nextIndex: number | null = null
-    if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % enabledItems.length
-    else if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length
+    if (e.key === 'ArrowRight') nextIndex = (safeIndex + 1) % enabledItems.length
+    else if (e.key === 'ArrowLeft') nextIndex = (safeIndex - 1 + enabledItems.length) % enabledItems.length
     else if (e.key === 'Home') nextIndex = 0
     else if (e.key === 'End') nextIndex = enabledItems.length - 1
 

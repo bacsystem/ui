@@ -1,4 +1,5 @@
 import { forwardRef } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 import { Loader2 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -7,7 +8,7 @@ export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ButtonAppearance = 'filled' | 'outline' | 'soft' | 'link'
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
   appearance?: ButtonAppearance
