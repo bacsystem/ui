@@ -18,6 +18,13 @@ export interface TabsProps {
   readonly className?: string
 }
 
+/**
+ * Selects the initial active tab id from the available tab items and an optional preferred default.
+ *
+ * @param items - Array of tab items to choose from
+ * @param defaultTab - Preferred tab id to use if it exists in `items` and is not disabled
+ * @returns The chosen tab id: `defaultTab` when present and enabled; otherwise the first enabled tab's id; or an empty string if no enabled tab exists
+ */
 function resolveInitialTab(items: TabItem[], defaultTab: string | undefined): string {
   if (defaultTab !== undefined) {
     const found = items.find((t) => t.id === defaultTab)

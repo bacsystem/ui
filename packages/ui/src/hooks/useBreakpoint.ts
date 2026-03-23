@@ -23,15 +23,15 @@ function getBreakpoint(width: number): Breakpoint {
 }
 
 /**
- * Tracks the current viewport breakpoint and exposes convenient flags for layout.
+ * Tracks the current viewport breakpoint and provides flags indicating mobile, tablet, or desktop layout.
  *
- * The returned values update automatically when the window is resized.
+ * Values update when the viewport is resized.
  *
  * @returns An object with:
  *  - `isMobile`: `true` when the active breakpoint is `'sm'`.
  *  - `isTablet`: `true` when the active breakpoint is `'md'`.
  *  - `isDesktop`: `true` when the active breakpoint is `'lg'` or `'xl'`.
- *  - `current`: the active breakpoint value (`'sm' | 'md' | 'lg' | 'xl'`).
+ *  - `current`: the active breakpoint value — `'sm'`, `'md'`, `'lg'`, or `'xl'`.
  */
 export function useBreakpoint(): UseBreakpointReturn {
   const [current, setCurrent] = useState<Breakpoint>('sm')

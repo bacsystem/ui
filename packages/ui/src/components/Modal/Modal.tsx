@@ -15,17 +15,17 @@ export interface ModalProps {
 }
 
 /**
- * Render a focus-trapping, accessible modal dialog when open.
+ * Render an accessible modal dialog that traps focus and blocks background scrolling while open.
  *
- * The modal disables background scrolling while open, traps keyboard focus within the dialog,
- * closes on Escape, overlay click, or the close button, and attempts to restore focus to the
- * previously focused element when closed.
+ * The dialog closes when the Escape key is pressed or when the close button is activated,
+ * and it attempts to restore focus to the element that was focused before the dialog opened.
  *
  * @param open - Whether the modal is visible
  * @param onClose - Callback invoked to request closing the modal
  * @param size - Optional size variant for the modal ('sm' | 'md' | 'lg'); defaults to 'md'
- * @param title - Optional title text; when provided, it is used as the dialog label
- * @param className - Optional additional CSS class names to apply to the dialog container
+ * @param title - Optional title text; when provided it is used as the dialog's accessible label
+ * @param closeLabel - Accessible label for the close button; defaults to 'Close modal'
+ * @param className - Optional additional CSS class names applied to the dialog container
  * @param children - Content rendered inside the modal body
  * @returns The modal element when `open` is true, `null` otherwise.
  */

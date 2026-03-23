@@ -1,6 +1,18 @@
 import type { ReactNode } from 'react'
 import { Loader2, Inbox } from 'lucide-react'
 
+/**
+ * Convert a value into a string suitable for display in table cells.
+ *
+ * - Returns `''` for `null` or `undefined`.
+ * - Returns `JSON.stringify(value)` for objects.
+ * - Returns the original string for string values.
+ * - Converts numbers and booleans to their string representation.
+ * - Returns `''` for any other types.
+ *
+ * @param value - The value to convert for display
+ * @returns The resulting display string as described above
+ */
 function toDisplayString(value: unknown): string {
   if (value === null || value === undefined) return ''
   if (typeof value === 'object') return JSON.stringify(value)
@@ -27,15 +39,15 @@ export interface DataTableProps<T extends object> {
 }
 
 /**
- * Renders a configurable data table for rows of type `T`.
+ * Render a configurable table for the provided row objects.
  *
- * @param columns - Column descriptors defining header text, key, optional `render` function, and optional cell `className`
+ * @param columns - Column descriptors with `key`, `header`, optional `render`, and optional `className`
  * @param data - Array of row objects to display
- * @param loading - When `true`, shows a loading state spanning all columns
+ * @param loading - When `true`, show a full-width loading state instead of rows
  * @param emptyText - Message shown when `data` is empty
- * @param getRowKey - Returns a stable, unique key for each row; receives the row object and its index. Strongly recommended when rows can be inserted, removed, or reordered to avoid incorrect React reconciliation.
+ * @param getRowKey - Optional function `(row, index) => string | number` that returns a stable key for a row
  * @param className - Additional CSS class applied to the table container
- * @returns A JSX element representing the rendered data table
+ * @returns A JSX element containing the rendered data table
  */
 export function DataTable<T extends object>({
   columns,

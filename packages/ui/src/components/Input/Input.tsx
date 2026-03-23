@@ -37,6 +37,12 @@ interface InputClassConfig {
   readonly className: string
 }
 
+/**
+ * Constructs the space-separated CSS class list for an input element from a configuration object.
+ *
+ * @param cfg - Configuration that controls which base and modifier classes are included. If `cfg.error` is set the state class will be `bac-input--error`; otherwise if `cfg.success` is set the state class will be `bac-input--success`. Other boolean flags enable corresponding `bac-input--*` modifier classes (disabled, floating, icon/prefix/suffix presence) and `cfg.className` is appended verbatim.
+ * @returns The final space-separated CSS class string for the input element.
+ */
 function buildInputClasses(cfg: InputClassConfig): string {
   let stateClass = ''
   if (cfg.error) stateClass = 'bac-input--error'

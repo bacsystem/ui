@@ -23,6 +23,11 @@ function applyTheme(theme: Theme): void {
   }
 }
 
+/**
+ * Reads the persisted UI theme from storage, defaulting to light when no valid value is available or storage is inaccessible.
+ *
+ * @returns `'dark'` if a stored value of `'dark'` is found, `'light'` otherwise.
+ */
 function readStoredTheme(): Theme {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
@@ -34,14 +39,14 @@ function readStoredTheme(): Theme {
 }
 
 /**
- * Manages the application's color theme and synchronizes it with the DOM and localStorage.
+ * Provides the current UI color theme and controls to update it while keeping the document and localStorage in sync.
  *
- * On mount, applies a stored preference if present; otherwise defaults to "light".
+ * The hook persists the selected theme to `localStorage` when available and applies the theme to the document root.
  *
- * @returns An object containing:
+ * @returns An object with:
  *  - `theme` — the current theme, either `'light'` or `'dark'`
- *  - `setTheme(theme)` — sets the theme to the provided value
- *  - `toggleTheme()` — switches the theme between `'light'` and `'dark'`
+ *  - `setTheme(theme)` — set the theme to the provided value
+ *  - `toggleTheme()` — switch the theme between `'light'` and `'dark'`
  */
 export function useTheme(): UseThemeReturn {
   const [theme, setTheme] = useState<Theme>(readStoredTheme)
