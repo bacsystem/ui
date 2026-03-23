@@ -90,10 +90,11 @@
 .bac-btn--link {
   background-color: transparent;
   border: none;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
   text-decoration: none;
   height: auto;
+  min-height: unset;
+  line-height: inherit;
 }
 .bac-btn.bac-btn--link:hover:not(:disabled) { text-decoration: underline; background-color: transparent; }
 .bac-btn--primary.bac-btn--link    { color: var(--color-primary-700); }
