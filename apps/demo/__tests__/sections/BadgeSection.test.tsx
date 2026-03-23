@@ -40,7 +40,7 @@ describe('BadgeSection', () => {
   it('renders all 6 variants across all appearance groups', () => {
     const { container } = render(<BadgeSection />)
     const badges = container.querySelectorAll('[data-variant]')
-    const variantValues = Array.from(badges).map((b) => b.getAttribute('data-variant'))
+    const variantValues = Array.from(badges).map((b) => (b as HTMLElement).dataset['variant'])
     expect(variantValues).toContain('default')
     expect(variantValues).toContain('primary')
     expect(variantValues).toContain('success')

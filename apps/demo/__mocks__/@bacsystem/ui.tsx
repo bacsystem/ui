@@ -59,11 +59,21 @@ export const Alert = vi.fn(({ children, variant, appearance, title, onClose }: a
   </div>
 ))
 
-export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: any) => (
-  <div data-size={size} data-appearance={appearance} aria-label={alt || initials || 'avatar'}>
-    {src ? <img src={src} alt={alt} /> : initials ? <span>{initials}</span> : <span aria-hidden="true">icon</span>}
-  </div>
-))
+export const Avatar = vi.fn(({ initials, src, alt, size, appearance }: any) => {
+  let avatarContent: React.ReactNode
+  if (src) {
+    avatarContent = <img src={src} alt={alt} />
+  } else if (initials) {
+    avatarContent = <span>{initials}</span>
+  } else {
+    avatarContent = <span aria-hidden="true">icon</span>
+  }
+  return (
+    <div data-size={size} data-appearance={appearance} aria-label={alt || initials || 'avatar'}>
+      {avatarContent}
+    </div>
+  )
+})
 
 export const Toggle = vi.fn(({ label, size, checked, defaultChecked, disabled, onChange }: any) => (
   <label>
@@ -82,13 +92,13 @@ export const Toggle = vi.fn(({ label, size, checked, defaultChecked, disabled, o
 export const Modal = vi.fn(({ open, onClose, title, size, children }: any) => {
   if (!open) return null
   return (
-    <div role="dialog" aria-modal="true" data-size={size}>
+    <dialog aria-modal="true" data-size={size}>
       <div>
         {title && <h2>{title}</h2>}
         <button onClick={onClose} aria-label="close">×</button>
       </div>
       <div>{children}</div>
-    </div>
+    </dialog>
   )
 })
 
@@ -103,8 +113,8 @@ export const DataTable = vi.fn(({ columns, data, loading, emptyText }: any) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((row: any, i: number) => (
-          <tr key={i}>
+        {data.map((row: any) => (
+          <tr key={JSON.stringify(row)}>
             {columns.map((col: any) => (
               <td key={col.key}>
                 {col.render ? col.render(row) : row[col.key]}

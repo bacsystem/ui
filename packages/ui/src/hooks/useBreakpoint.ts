@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react'
 export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl'
 
 export interface UseBreakpointReturn {
-  isMobile: boolean
-  isTablet: boolean
-  isDesktop: boolean
-  current: Breakpoint
+  readonly isMobile: boolean
+  readonly isTablet: boolean
+  readonly isDesktop: boolean
+  readonly current: Breakpoint
 }
 
 /**
@@ -37,14 +37,14 @@ export function useBreakpoint(): UseBreakpointReturn {
   const [current, setCurrent] = useState<Breakpoint>('sm')
 
   useEffect(() => {
-    setCurrent(getBreakpoint(window.innerWidth))
+    setCurrent(getBreakpoint(globalThis.innerWidth))
 
     const handleResize = () => {
-      setCurrent(getBreakpoint(window.innerWidth))
+      setCurrent(getBreakpoint(globalThis.innerWidth))
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    globalThis.addEventListener('resize', handleResize)
+    return () => globalThis.removeEventListener('resize', handleResize)
   }, [])
 
   return {

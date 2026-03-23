@@ -5,14 +5,14 @@ export type StatCardTrend = 'up' | 'down' | 'neutral'
 export type StatCardAppearance = 'soft' | 'filled' | 'outline'
 
 export interface StatCardProps {
-  title: string
-  value: string | number
-  description?: string
-  color?: StatCardColor
-  trend?: StatCardTrend
-  trendValue?: string
-  appearance?: StatCardAppearance
-  className?: string
+  readonly title: string
+  readonly value: string | number
+  readonly description?: string
+  readonly color?: StatCardColor
+  readonly trend?: StatCardTrend
+  readonly trendValue?: string
+  readonly appearance?: StatCardAppearance
+  readonly className?: string
 }
 
 /**
@@ -37,10 +37,11 @@ export function StatCard({
   trendValue,
   appearance = 'soft',
   className = '',
-}: StatCardProps) {
+}: Readonly<StatCardProps>) {
   const appearanceClass = appearance === 'soft' ? '' : ` bac-statcard--${appearance}`
+  const extraClass = className ? ` ${className}` : ''
   return (
-    <div className={`bac-statcard bac-statcard--${color}${appearanceClass}${className ? ` ${className}` : ''}`}>
+    <div className={`bac-statcard bac-statcard--${color}${appearanceClass}${extraClass}`}>
       <p className="bac-statcard__title">{title}</p>
       <p className="bac-statcard__value">{value}</p>
       {(trendValue || description) && (

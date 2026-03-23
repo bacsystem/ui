@@ -6,7 +6,7 @@ vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('DataTableSection', () => {
   beforeEach(() => {
-    vi.spyOn(window, 'alert').mockImplementation(() => {})
+    vi.spyOn(globalThis, 'alert').mockImplementation(() => {})
   })
 
   afterEach(() => {
@@ -112,21 +112,21 @@ describe('DataTableSection', () => {
   it('calls alert when view action is clicked', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Ver F-0001'))
-    expect(window.alert).toHaveBeenCalledWith('Ver: F-0001')
-    expect(window.alert).toHaveBeenCalledTimes(1)
+    expect(globalThis.alert).toHaveBeenCalledWith('Ver: F-0001')
+    expect(globalThis.alert).toHaveBeenCalledTimes(1)
   })
 
   it('calls alert when edit action is clicked', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Editar F-0002'))
-    expect(window.alert).toHaveBeenCalledWith('Editar: F-0002')
-    expect(window.alert).toHaveBeenCalledTimes(1)
+    expect(globalThis.alert).toHaveBeenCalledWith('Editar: F-0002')
+    expect(globalThis.alert).toHaveBeenCalledTimes(1)
   })
 
   it('calls alert when delete action is clicked', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Eliminar F-0003'))
-    expect(window.alert).toHaveBeenCalledWith('Eliminar: F-0003')
-    expect(window.alert).toHaveBeenCalledTimes(1)
+    expect(globalThis.alert).toHaveBeenCalledWith('Eliminar: F-0003')
+    expect(globalThis.alert).toHaveBeenCalledTimes(1)
   })
 })

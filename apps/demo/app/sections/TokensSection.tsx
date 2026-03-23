@@ -87,13 +87,14 @@ const mono: React.CSSProperties = {
  * @param lightBorder - When true, renders a visible border using `var(--color-border)`; otherwise the border is transparent
  * @returns A JSX element containing a colored square with the provided labels
  */
-function Swatch({ color, label, sub, lightBorder = false }: {
+function Swatch({ color, label, sub, lightBorder = false }: Readonly<{
   color: string; label: string; sub?: string; lightBorder?: boolean
-}) {
+}>) {
+  const subLabel = sub ? ` — ${sub}` : ''
   return (
     <div style={{ textAlign: 'center', minWidth: 52 }}>
       <div
-        title={`${label}${sub ? ` — ${sub}` : ''}`}
+        title={`${label}${subLabel}`}
         style={{
           width: 52, height: 44,
           borderRadius: 'var(--radius-base)',

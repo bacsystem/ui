@@ -45,7 +45,7 @@ const navGroups = [
  * @param children - Page content to render inside the demo layout's main content area
  * @returns The root HTML structure for the demo app, with a sidebar, header, and main content region
  */
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>

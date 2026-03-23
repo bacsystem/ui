@@ -47,13 +47,13 @@
 .bac-btn--primary:hover:not(:disabled) { background-color: var(--color-primary-600, #2563EB); }
 .bac-btn--secondary { background-color: var(--color-neutral-100, #F1F5F9); color: var(--color-text-primary, #1E293B); border: 1px solid var(--color-border, #E2E8F0); }
 .bac-btn--secondary:hover:not(:disabled) { background-color: var(--color-neutral-200, #E2E8F0); }
-.bac-btn--accent { background-color: var(--color-accent-600, #D97706); color: #fff; }
-.bac-btn--accent:hover:not(:disabled) { background-color: var(--color-accent-500, #F59E0B); }
+.bac-btn--accent { background-color: #B45309; color: #fff; }
+.bac-btn--accent:hover:not(:disabled) { background-color: #92400E; }
 .bac-btn--ghost { background-color: transparent; color: var(--color-primary-700, #1D4ED8); }
 .bac-btn--ghost:hover:not(:disabled) { background-color: var(--color-primary-50, #EFF6FF); }
 .bac-btn--danger { background-color: var(--color-error-base, #EF4444); color: #fff; }
 .bac-btn--danger:hover:not(:disabled) { background-color: var(--color-error-dark, #991B1B); }
-.bac-btn--success { background-color: var(--color-success-base, #10B981); color: #fff; }
+.bac-btn--success { background-color: #047857; color: #fff; }
 .bac-btn--success:hover:not(:disabled) { background-color: var(--color-success-dark, #065F46); }
 
 /* Outline — transparent bg, colored border + text */
@@ -128,7 +128,7 @@
 .bac-badge--default.bac-badge--filled   { background-color: var(--color-neutral-600); color: #fff; border-color: transparent; }
 .bac-badge--primary.bac-badge--filled   { background-color: var(--color-primary-700); color: #fff; border-color: transparent; }
 .bac-badge--success.bac-badge--filled   { background-color: var(--color-success-base); color: #fff; border-color: transparent; }
-.bac-badge--warning.bac-badge--filled   { background-color: var(--color-warning-base); color: #fff; border-color: transparent; }
+.bac-badge--warning.bac-badge--filled   { background-color: var(--color-warning-base); color: #1c1917; border-color: transparent; }
 .bac-badge--danger.bac-badge--filled    { background-color: var(--color-error-base); color: #fff; border-color: transparent; }
 .bac-badge--info.bac-badge--filled      { background-color: var(--color-info-base); color: #fff; border-color: transparent; }
 
@@ -273,7 +273,7 @@
 /* Filled */
 .bac-alert--filled.bac-alert--info    { background-color: var(--color-info-base); border-color: transparent; color: #fff; }
 .bac-alert--filled.bac-alert--success { background-color: var(--color-success-base); border-color: transparent; color: #fff; }
-.bac-alert--filled.bac-alert--warning { background-color: var(--color-warning-base); border-color: transparent; color: #fff; }
+.bac-alert--filled.bac-alert--warning { background-color: var(--color-warning-base); border-color: transparent; color: #1c1917; }
 .bac-alert--filled.bac-alert--error   { background-color: var(--color-error-base); border-color: transparent; color: #fff; }
 /* Outline */
 .bac-alert--outline.bac-alert--info    { background-color: transparent; border-color: var(--color-info-base); color: var(--color-info-dark); }
@@ -452,8 +452,8 @@
 .bac-statcard--filled .bac-statcard__trend--neutral { color: rgba(255,255,255,0.85); }
 .bac-statcard--blue.bac-statcard--filled   { background-color: var(--color-primary-700); }
 .bac-statcard--teal.bac-statcard--filled   { background-color: #0D9488; }
-.bac-statcard--amber.bac-statcard--filled  { background-color: var(--color-accent-600); }
-.bac-statcard--green.bac-statcard--filled  { background-color: var(--color-success-base); }
+.bac-statcard--amber.bac-statcard--filled  { background-color: #B45309; }
+.bac-statcard--green.bac-statcard--filled  { background-color: #047857; }
 .bac-statcard--purple.bac-statcard--filled { background-color: #7C3AED; }
 
 /* Outline — white card, colored border + text */
@@ -535,20 +535,20 @@
 /* Button — soft variants */
 [data-theme="dark"] .bac-btn--primary.bac-btn--soft    { background-color: rgba(59, 130, 246, 0.12); color: var(--color-primary-400); }
 [data-theme="dark"] .bac-btn--primary.bac-btn--soft:hover:not(:disabled)  { background-color: rgba(59, 130, 246, 0.2); }
-[data-theme="dark"] .bac-btn--accent.bac-btn--soft     { background-color: rgba(245, 158, 11, 0.12); color: #FCD34D; }
+[data-theme="dark"] .bac-btn--accent.bac-btn--soft     { background-color: rgba(245, 158, 11, 0.12); color: var(--color-warning-text); }
 [data-theme="dark"] .bac-btn--accent.bac-btn--soft:hover:not(:disabled)   { background-color: rgba(245, 158, 11, 0.2); }
-[data-theme="dark"] .bac-btn--danger.bac-btn--soft     { background-color: rgba(239, 68, 68, 0.12); color: #FCA5A5; }
+[data-theme="dark"] .bac-btn--danger.bac-btn--soft     { background-color: rgba(239, 68, 68, 0.12); color: var(--color-error-text); }
 [data-theme="dark"] .bac-btn--danger.bac-btn--soft:hover:not(:disabled)   { background-color: rgba(239, 68, 68, 0.2); }
-[data-theme="dark"] .bac-btn--success.bac-btn--soft    { background-color: rgba(16, 185, 129, 0.12); color: #6EE7B7; }
+[data-theme="dark"] .bac-btn--success.bac-btn--soft    { background-color: rgba(16, 185, 129, 0.12); color: var(--color-success-text); }
 [data-theme="dark"] .bac-btn--success.bac-btn--soft:hover:not(:disabled)  { background-color: rgba(16, 185, 129, 0.2); }
 [data-theme="dark"] .bac-btn--ghost.bac-btn--soft      { background-color: rgba(59, 130, 246, 0.12); color: var(--color-primary-400); }
 [data-theme="dark"] .bac-btn--ghost.bac-btn--soft:hover:not(:disabled)    { background-color: rgba(59, 130, 246, 0.2); }
 
 /* Button — link variants */
 [data-theme="dark"] .bac-btn--primary.bac-btn--link    { color: var(--color-primary-400); }
-[data-theme="dark"] .bac-btn--accent.bac-btn--link     { color: #FCD34D; }
-[data-theme="dark"] .bac-btn--danger.bac-btn--link     { color: #FCA5A5; }
-[data-theme="dark"] .bac-btn--success.bac-btn--link    { color: #6EE7B7; }
+[data-theme="dark"] .bac-btn--accent.bac-btn--link     { color: var(--color-warning-text); }
+[data-theme="dark"] .bac-btn--danger.bac-btn--link     { color: var(--color-error-text); }
+[data-theme="dark"] .bac-btn--success.bac-btn--link    { color: var(--color-success-text); }
 [data-theme="dark"] .bac-btn--ghost.bac-btn--link      { color: var(--color-primary-400); }
 
 /* Button — outline variants */
@@ -560,21 +560,21 @@
   background-color: rgba(59, 130, 246, 0.12);
 }
 [data-theme="dark"] .bac-btn--accent.bac-btn--outline {
-  color: #FCD34D;
+  color: var(--color-warning-text);
   border-color: #F59E0B;
 }
 [data-theme="dark"] .bac-btn--accent.bac-btn--outline:hover:not(:disabled) {
   background-color: rgba(245, 158, 11, 0.12);
 }
 [data-theme="dark"] .bac-btn--danger.bac-btn--outline {
-  color: #FCA5A5;
+  color: var(--color-error-text);
   border-color: #EF4444;
 }
 [data-theme="dark"] .bac-btn--danger.bac-btn--outline:hover:not(:disabled) {
   background-color: rgba(239, 68, 68, 0.12);
 }
 [data-theme="dark"] .bac-btn--success.bac-btn--outline {
-  color: #6EE7B7;
+  color: var(--color-success-text);
   border-color: #10B981;
 }
 [data-theme="dark"] .bac-btn--success.bac-btn--outline:hover:not(:disabled) {
@@ -593,7 +593,7 @@
 [data-theme="dark"] .bac-badge--default.bac-badge--filled   { background-color: var(--color-neutral-600);  color: #fff; border-color: transparent; }
 [data-theme="dark"] .bac-badge--primary.bac-badge--filled   { background-color: var(--color-primary-600);  color: #fff; border-color: transparent; }
 [data-theme="dark"] .bac-badge--success.bac-badge--filled   { background-color: var(--color-success-base); color: #fff; border-color: transparent; }
-[data-theme="dark"] .bac-badge--warning.bac-badge--filled   { background-color: var(--color-warning-base); color: #fff; border-color: transparent; }
+[data-theme="dark"] .bac-badge--warning.bac-badge--filled   { background-color: var(--color-warning-base); color: #1c1917; border-color: transparent; }
 [data-theme="dark"] .bac-badge--danger.bac-badge--filled    { background-color: var(--color-error-base);   color: #fff; border-color: transparent; }
 [data-theme="dark"] .bac-badge--info.bac-badge--filled      { background-color: var(--color-info-base);    color: #fff; border-color: transparent; }
 
@@ -610,17 +610,17 @@
 }
 [data-theme="dark"] .bac-badge--success {
   background-color: rgba(16, 185, 129, 0.15);
-  color: #6EE7B7;
+  color: var(--color-success-text);
   border-color: rgba(16, 185, 129, 0.3);
 }
 [data-theme="dark"] .bac-badge--warning {
   background-color: rgba(245, 158, 11, 0.15);
-  color: #FCD34D;
+  color: var(--color-warning-text);
   border-color: rgba(245, 158, 11, 0.3);
 }
 [data-theme="dark"] .bac-badge--danger {
   background-color: rgba(239, 68, 68, 0.15);
-  color: #FCA5A5;
+  color: var(--color-error-text);
   border-color: rgba(239, 68, 68, 0.3);
 }
 [data-theme="dark"] .bac-badge--info {
@@ -639,15 +639,15 @@
   border-color: var(--color-primary-500);
 }
 [data-theme="dark"] .bac-badge--success.bac-badge--outline {
-  color: #6EE7B7;
+  color: var(--color-success-text);
   border-color: #10B981;
 }
 [data-theme="dark"] .bac-badge--warning.bac-badge--outline {
-  color: #FCD34D;
+  color: var(--color-warning-text);
   border-color: #F59E0B;
 }
 [data-theme="dark"] .bac-badge--danger.bac-badge--outline {
-  color: #FCA5A5;
+  color: var(--color-error-text);
   border-color: #EF4444;
 }
 [data-theme="dark"] .bac-badge--info.bac-badge--outline {
@@ -678,14 +678,14 @@
    equal specificity (0,2,0) but comes later in the file. */
 [data-theme="dark"] .bac-alert--filled.bac-alert--info    { background-color: var(--color-info-base);    border-color: transparent; color: #fff; }
 [data-theme="dark"] .bac-alert--filled.bac-alert--success { background-color: var(--color-success-base); border-color: transparent; color: #fff; }
-[data-theme="dark"] .bac-alert--filled.bac-alert--warning { background-color: var(--color-warning-base); border-color: transparent; color: #fff; }
+[data-theme="dark"] .bac-alert--filled.bac-alert--warning { background-color: var(--color-warning-base); border-color: transparent; color: #1c1917; }
 [data-theme="dark"] .bac-alert--filled.bac-alert--error   { background-color: var(--color-error-base);   border-color: transparent; color: #fff; }
 
 /* Alert — outline: dark mode text needs lighter shades */
 [data-theme="dark"] .bac-alert--outline.bac-alert--info    { border-color: var(--color-primary-500); color: var(--color-primary-300); }
-[data-theme="dark"] .bac-alert--outline.bac-alert--success { border-color: #10B981; color: #6EE7B7; }
-[data-theme="dark"] .bac-alert--outline.bac-alert--warning { border-color: #F59E0B; color: #FCD34D; }
-[data-theme="dark"] .bac-alert--outline.bac-alert--error   { border-color: #EF4444; color: #FCA5A5; }
+[data-theme="dark"] .bac-alert--outline.bac-alert--success { border-color: #10B981; color: var(--color-success-text); }
+[data-theme="dark"] .bac-alert--outline.bac-alert--warning { border-color: #F59E0B; color: var(--color-warning-text); }
+[data-theme="dark"] .bac-alert--outline.bac-alert--error   { border-color: #EF4444; color: var(--color-error-text); }
 
 /* Alert — soft: light semantic backgrounds → dark translucent */
 [data-theme="dark"] .bac-alert--info {
@@ -696,17 +696,17 @@
 [data-theme="dark"] .bac-alert--success {
   background-color: rgba(16, 185, 129, 0.1);
   border-color: rgba(16, 185, 129, 0.4);
-  color: #6EE7B7;
+  color: var(--color-success-text);
 }
 [data-theme="dark"] .bac-alert--warning {
   background-color: rgba(245, 158, 11, 0.1);
   border-color: rgba(245, 158, 11, 0.4);
-  color: #FCD34D;
+  color: var(--color-warning-text);
 }
 [data-theme="dark"] .bac-alert--error {
   background-color: rgba(239, 68, 68, 0.1);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #FCA5A5;
+  color: var(--color-error-text);
 }
 
 /* Avatar — soft: light bg → dark tint */
@@ -744,17 +744,17 @@
 }
 [data-theme="dark"] .bac-datatable__action-btn--edit:hover {
   background-color: rgba(245, 158, 11, 0.15);
-  color: #FCD34D;
+  color: var(--color-warning-text);
 }
 [data-theme="dark"] .bac-datatable__action-btn--delete:hover {
   background-color: rgba(239, 68, 68, 0.15);
-  color: #FCA5A5;
+  color: var(--color-error-text);
 }
 
 /* StatCard — soft: lighter value text on dark card */
 [data-theme="dark"] .bac-statcard--blue .bac-statcard__value   { color: var(--color-primary-400); }
 [data-theme="dark"] .bac-statcard--teal .bac-statcard__value   { color: #2DD4BF; }
-[data-theme="dark"] .bac-statcard--amber .bac-statcard__value  { color: #FCD34D; }
+[data-theme="dark"] .bac-statcard--amber .bac-statcard__value  { color: var(--color-warning-text); }
 [data-theme="dark"] .bac-statcard--green .bac-statcard__value  { color: #34D399; }
 [data-theme="dark"] .bac-statcard--purple .bac-statcard__value { color: #A78BFA; }
 /* StatCard — filled: re-assert white text for value, title, description, trends.

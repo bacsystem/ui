@@ -4,15 +4,15 @@ import { Check } from 'lucide-react'
 export type ToggleSize = 'sm' | 'md' | 'lg'
 
 export interface ToggleProps {
-  checked?: boolean
-  defaultChecked?: boolean
-  onChange?: (checked: boolean) => void
-  disabled?: boolean
-  size?: ToggleSize
-  label?: string
-  ariaLabel?: string
-  'aria-labelledby'?: string
-  className?: string
+  readonly checked?: boolean
+  readonly defaultChecked?: boolean
+  readonly onChange?: (checked: boolean) => void
+  readonly disabled?: boolean
+  readonly size?: ToggleSize
+  readonly label?: string
+  readonly ariaLabel?: string
+  readonly 'aria-labelledby'?: string
+  readonly className?: string
 }
 
 /**
@@ -41,7 +41,7 @@ export function Toggle({
   ariaLabel,
   'aria-labelledby': ariaLabelledby,
   className = '',
-}: ToggleProps) {
+}: Readonly<ToggleProps>) {
   const isControlled = checked !== undefined
   const [internalChecked, setInternalChecked] = useState(defaultChecked)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -59,7 +59,7 @@ export function Toggle({
   )
 
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent<HTMLLabelElement>) => {
+    (e: KeyboardEvent<HTMLDivElement>) => {
       if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
         e.preventDefault()
         inputRef.current?.click()
@@ -68,22 +68,32 @@ export function Toggle({
     [disabled]
   )
 
+  const handleClick = useCallback(() => {
+    if (!disabled) {
+      inputRef.current?.click()
+    }
+  }, [disabled])
+
+  const disabledClass = disabled ? ' bac-toggle--disabled' : ''
+  const extraClass = className ? ` ${className}` : ''
+
   return (
-    <label
-      className={`bac-toggle bac-toggle--${size}${disabled ? ' bac-toggle--disabled' : ''}${className ? ` ${className}` : ''}`}
+    <div
+      className={`bac-toggle bac-toggle--${size}${disabledClass}${extraClass}`}
       role="switch"
       aria-checked={currentChecked}
       aria-disabled={disabled}
-      aria-label={!label ? ariaLabel : undefined}
-      aria-labelledby={!label ? ariaLabelledby : undefined}
+      aria-label={label ? undefined : ariaLabel}
+      aria-labelledby={label ? undefined : ariaLabelledby}
       onKeyDown={handleKeyDown}
+      onClick={handleClick}
       tabIndex={disabled ? -1 : 0}
     >
       <input
         ref={inputRef}
         type="checkbox"
         checked={isControlled ? checked : undefined}
-        defaultChecked={!isControlled ? defaultChecked : undefined}
+        defaultChecked={isControlled ? undefined : defaultChecked}
         onChange={handleChange}
         disabled={disabled}
         className="bac-toggle__input"
@@ -98,6 +108,6 @@ export function Toggle({
         </span>
       </span>
       {label && <span className="bac-toggle__label">{label}</span>}
-    </label>
+    </div>
   )
 }

@@ -4,12 +4,12 @@ export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'dang
 export type BadgeAppearance = 'soft' | 'filled' | 'outline'
 
 export interface BadgeProps {
-  variant?: BadgeVariant
-  appearance?: BadgeAppearance
+  readonly variant?: BadgeVariant
+  readonly appearance?: BadgeAppearance
   /** @deprecated use appearance="outline" */
-  outline?: boolean
-  className?: string
-  children: ReactNode
+  readonly outline?: boolean
+  readonly className?: string
+  readonly children: ReactNode
 }
 
 /**
@@ -28,14 +28,15 @@ export interface BadgeProps {
 export function Badge({
   variant = 'default',
   appearance: appearanceProp,
-  outline = false,
+  outline = false, // NOSONAR: intentionally handling the deprecated prop for backward compat
   className = '',
   children,
-}: BadgeProps) {
-  const resolved = appearanceProp !== undefined ? appearanceProp : (outline ? 'outline' : 'soft')
+}: Readonly<BadgeProps>) {
+  const resolved = appearanceProp ?? (outline ? 'outline' : 'soft')
   const appearanceClass = resolved === 'soft' ? '' : ` bac-badge--${resolved}`
+  const extraClass = className ? ` ${className}` : ''
   return (
-    <span className={`bac-badge bac-badge--${variant}${appearanceClass}${className ? ` ${className}` : ''}`}>
+    <span className={`bac-badge bac-badge--${variant}${appearanceClass}${extraClass}`}>
       {children}
     </span>
   )

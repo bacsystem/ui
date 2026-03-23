@@ -5,13 +5,13 @@ import { X } from 'lucide-react'
 export type ModalSize = 'sm' | 'md' | 'lg'
 
 export interface ModalProps {
-  open: boolean
-  onClose: () => void
-  size?: ModalSize
-  title?: string
-  closeLabel?: string
-  className?: string
-  children: ReactNode
+  readonly open: boolean
+  readonly onClose: () => void
+  readonly size?: ModalSize
+  readonly title?: string
+  readonly closeLabel?: string
+  readonly className?: string
+  readonly children: ReactNode
 }
 
 /**
@@ -37,13 +37,13 @@ export function Modal({
   closeLabel = 'Close modal',
   className = '',
   children,
-}: ModalProps) {
-  const dialogRef = useRef<HTMLDivElement>(null)
+}: Readonly<ModalProps>) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
   const previousActiveElement = useRef<Element | null>(null)
   const titleId = useId()
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+  const handleDocumentKeyDown = useCallback(
+    (e: globalThis.KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
         return
@@ -69,11 +69,9 @@ export function Modal({
             e.preventDefault()
             last.focus()
           }
-        } else {
-          if (document.activeElement === last) {
-            e.preventDefault()
-            first.focus()
-          }
+        } else if (document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
         }
       }
     },
@@ -84,36 +82,32 @@ export function Modal({
     if (!open) return
 
     previousActiveElement.current = document.activeElement
-    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keydown', handleDocumentKeyDown)
     document.body.style.overflow = 'hidden'
-    // Focus the dialog
     setTimeout(() => dialogRef.current?.focus(), 0)
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('keydown', handleDocumentKeyDown)
       document.body.style.overflow = ''
       if (previousActiveElement.current instanceof HTMLElement) {
         previousActiveElement.current.focus()
       }
     }
-  }, [open, handleKeyDown])
+  }, [open, handleDocumentKeyDown])
 
   if (!open) return null
 
+  const extraClass = className ? ` ${className}` : ''
+
   return (
-    <div
-      className="bac-modal__overlay"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose()
-      }}
-    >
-      <div
+    <div className="bac-modal__overlay">
+      <dialog
         ref={dialogRef}
-        role="dialog"
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
-        className={`bac-modal bac-modal--${size}${className ? ` ${className}` : ''}`}
+        className={`bac-modal bac-modal--${size}${extraClass}`}
         tabIndex={-1}
+        open
       >
         <div className="bac-modal__header">
           {title && (
@@ -131,7 +125,7 @@ export function Modal({
           </button>
         </div>
         <div className="bac-modal__body">{children}</div>
-      </div>
+      </dialog>
     </div>
   )
 }

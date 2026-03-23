@@ -1,6 +1,6 @@
 {
   "name": "@bacsystem/ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "bacsystem design system — React component library",
   "license": "MIT",
   "main": "./dist/index.js",

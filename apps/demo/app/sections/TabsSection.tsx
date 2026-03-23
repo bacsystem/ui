@@ -14,7 +14,7 @@ const resumenContent = (
     <div style={{ display: 'flex', gap: 'var(--sp-2)', alignItems: 'center' }}>
       <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)' }}>Estado:</span>
       <Badge variant="success">Activo</Badge>
-      <Badge variant="primary" outline>Destacado</Badge>
+      <Badge variant="primary" appearance="outline">Destacado</Badge>
     </div>
   </div>
 )
@@ -39,8 +39,8 @@ const editarContent = (
 
 const imagenesContent = (
   <div style={{ display: 'flex', gap: 'var(--sp-3)', flexWrap: 'wrap' }}>
-    {[1, 2, 3, 4].map((i) => (
-      <div key={i} style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-primary-50)', border: '2px dashed var(--color-primary-200)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    {[1, 2, 3, 4].map((slotNum) => (
+      <div key={slotNum} style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-primary-50)', border: '2px dashed var(--color-primary-200)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Image size={28} style={{ color: 'var(--color-primary-300)' }} aria-hidden />
       </div>
     ))}
@@ -95,7 +95,7 @@ const promocionesContent = (
           <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', marginTop: 2 }}>Vence: {fecha}</p>
         </div>
         <div style={{ display: 'flex', gap: 'var(--sp-2)', alignItems: 'center' }}>
-          <Badge variant="warning" outline>{descuento} OFF</Badge>
+          <Badge variant="warning" appearance="outline">{descuento} OFF</Badge>
           <Badge variant={estado === 'activa' ? 'success' : 'default'}>{estado}</Badge>
         </div>
       </div>
