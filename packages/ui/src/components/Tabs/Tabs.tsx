@@ -60,6 +60,7 @@ export function Tabs({
     const enabledItems = items.filter((t) => !t.disabled)
     if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
+    if (currentIndex === -1) return
 
     let nextIndex: number | null = null
     if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % enabledItems.length
