@@ -16,7 +16,31 @@ import { DemoSection } from '../../components/DemoSection'
 export function ButtonSection() {
   return (
     <div id="button">
-      <DemoSection title="Button" tag="Component" description="6 variants × 4 estilos × 5 tamaños — filled, outline, soft y link">
+      <DemoSection title="Button" tag="Component" description="6 variants × 4 estilos × 5 tamaños — filled, outline, soft y link" code={`
+import { Button } from '@bacsystem/ui'
+import { Mail, ArrowRight } from 'lucide-react'
+
+// Filled (default)
+<Button variant="primary">Primary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="danger">Danger</Button>
+<Button variant="success">Success</Button>
+
+// Appearance
+<Button variant="primary" appearance="outline">Outline</Button>
+<Button variant="primary" appearance="soft">Soft</Button>
+<Button variant="primary" appearance="link">Link</Button>
+
+// Sizes: xs | sm | md | lg | xl
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+
+// Icons & states
+<Button iconLeft={Mail}>Enviar correo</Button>
+<Button iconRight={ArrowRight} variant="secondary">Siguiente</Button>
+<Button loading>Guardando…</Button>
+<Button disabled>Deshabilitado</Button>
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)', width: '100%' }}>
 
           <div>

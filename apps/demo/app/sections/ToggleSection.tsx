@@ -13,7 +13,29 @@ import { DemoSection } from '../../components/DemoSection'
 export function ToggleSection() {
   return (
     <div id="toggle">
-      <DemoSection title="Toggle" tag="Component" description="3 sizes with checked, unchecked, and disabled states">
+      <DemoSection title="Toggle" tag="Component" description="3 sizes with checked, unchecked, and disabled states" code={`
+import { Toggle } from '@bacsystem/ui'
+
+// Uncontrolled (defaultChecked)
+<Toggle label="Activado" defaultChecked />
+<Toggle label="Desactivado" />
+
+// Tamaños: 'sm' | 'md' | 'lg'
+<Toggle size="sm" label="Small" defaultChecked />
+<Toggle size="md" label="Medium" defaultChecked />
+<Toggle size="lg" label="Large" defaultChecked />
+
+// Estados deshabilitados
+<Toggle label="Disabled on"  checked disabled />
+<Toggle label="Disabled off" disabled />
+
+// Controlled
+<Toggle
+  label="Controlled"
+  checked={checked}
+  onChange={(e) => setChecked(e.target.checked)}
+/>
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>
           <div style={{ display: 'flex', gap: 'var(--sp-6)', alignItems: 'center' }}>
             <Toggle size="sm" label="Small" defaultChecked />

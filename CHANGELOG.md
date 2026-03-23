@@ -1,5 +1,31 @@
 # Changelog
 
+## demo v0.2.0 — 2026-03-23
+
+### New features
+
+- **Interactive code examples** — every component section in the demo now includes a `code` prop with a runnable TSX snippet covering the most common usage patterns. Added for all 11 components: Button, Badge, Alert, Input, Card, Avatar, Toggle, Modal, Tabs, StatCard, DataTable.
+- **Collapsible code block** — code is hidden by default; a **"Ver código"** button (with `<Code>` icon) in the section header toggles visibility. The button changes to **"Ocultar"** (with `<ChevronUp>` icon) and highlights in primary blue when active. `aria-expanded` kept in sync for accessibility.
+- **`CodeBlock` component** — new `apps/demo/components/CodeBlock.tsx`: regex-based JSX/TSX syntax tokenizer (no external deps), GitHub dark-theme color palette (`#7ee787` tags, `#ffa657` attrs, `#a5d6ff` strings, `#ff7b72` keywords, `#8b949e` comments), copy-to-clipboard button with 2-second confirmation state.
+- **GitHub Pages deployment** — new `.github/workflows/deploy-pages.yml`: builds the demo as a static export (`output: 'export'`) and deploys to GitHub Pages on every push to `main`. Base path driven by `NEXT_PUBLIC_BASE_PATH` env var set to `/${{ github.event.repository.name }}`.
+
+---
+
+## v1.1.0 — 2026-03-23
+
+### New features
+
+- **Semantic text color tokens** — added `--color-success-text`, `--color-warning-text`, and `--color-error-text` to `globals.css`. Light-mode values (`#065F46`, `#92400E`, `#991B1B`) ensure readable text on soft/outline backgrounds; dark-mode overrides (`#6EE7B7`, `#FCD34D`, `#FCA5A5`) provide high-contrast text on semi-transparent dark surfaces. All hardcoded hex literals in `components.css` replaced with these tokens.
+- **Modal overlay click-to-close** — clicking the backdrop (`bac-modal__overlay`) now calls `onClose`. Inner `<dialog>` calls `e.stopPropagation()` to prevent content clicks from bubbling to the overlay. Keyboard users continue to close via Escape.
+- **DataTable `toDisplayString` hardening** — `JSON.stringify` wrapped in `try/catch` (returns `String(value)` on circular-reference or non-serialisable objects); `bigint` and `symbol` primitives now return `String(value)` instead of `''`.
+
+### Improvements
+
+- **Demo mock `getRowKey`** — the `DataTable` mock now accepts and honours `getRowKey?: (row, index) => string | number`, matching the real component contract; falls back to `String(rowIndex)`.
+- **Demo mock strict types** — replaced `any` on `Avatar` and `DataTable` mock props with explicit `Readonly<{…}>` inline types; callback parameters inferred; `unknown` accesses use `as React.ReactNode`.
+- **Demo mock native `<dialog open>`** — mock `Modal` now renders `<dialog open …>` so `getByRole('dialog')` queries resolve correctly in jsdom.
+- **`tsconfig.json` `@ui-mock` path** — added `"@ui-mock"` alias to `apps/demo/tsconfig.json`, resolving `ts(2307)` across all test files.
+
 ## v1.0.2 — 2026-03-23
 
 ### Bug fixes (code quality — SonarQube & TypeScript)

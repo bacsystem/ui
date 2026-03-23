@@ -111,7 +111,28 @@ const promocionesContent = (
 export function TabsSection() {
   return (
     <div id="tabs">
-      <DemoSection title="Tabs" tag="Component" description="Pill container with icon support — controlled and uncontrolled">
+      <DemoSection title="Tabs" tag="Component" description="Pill container with icon support — controlled and uncontrolled" code={`
+import { Tabs } from '@bacsystem/ui'
+import { Package, Pencil } from 'lucide-react'
+
+// Uncontrolled
+<Tabs
+  defaultTab="resumen"
+  items={[
+    { id: 'resumen', label: 'Resumen', icon: Package,
+      content: <p>Contenido resumen</p> },
+    { id: 'editar', label: 'Editar', icon: Pencil,
+      content: <p>Contenido editar</p> },
+  ]}
+/>
+
+// Controlled
+<Tabs
+  activeTab={activeTab}
+  onTabChange={setActiveTab}
+  items={items}
+/>
+`}>
         <div style={{ width: '100%' }}>
           <Tabs
             defaultTab="resumen"

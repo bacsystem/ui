@@ -13,7 +13,23 @@ const variants = ['default', 'primary', 'success', 'warning', 'danger', 'info'] 
 export function BadgeSection() {
   return (
     <div id="badge">
-      <DemoSection title="Badge" tag="Component" description="6 variantes × 3 estilos: soft, filled y outline">
+      <DemoSection title="Badge" tag="Component" description="6 variantes × 3 estilos: soft, filled y outline" code={`
+import { Badge } from '@bacsystem/ui'
+
+// Soft (default)
+<Badge variant="primary">primary</Badge>
+<Badge variant="success">success</Badge>
+<Badge variant="warning">warning</Badge>
+<Badge variant="danger">danger</Badge>
+<Badge variant="info">info</Badge>
+
+// Filled
+<Badge variant="success" appearance="filled">success</Badge>
+<Badge variant="warning" appearance="filled">warning</Badge>
+
+// Outline
+<Badge variant="primary" appearance="outline">primary</Badge>
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-5)', width: '100%' }}>
 
           <div>

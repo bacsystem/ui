@@ -17,7 +17,29 @@ export function ModalSection() {
 
   return (
     <div id="modal">
-      <DemoSection title="Modal" tag="Component" description="Focus trap, Escape key, backdrop click to close">
+      <DemoSection title="Modal" tag="Component" description="Focus trap, Escape key, backdrop click to close" code={`
+import { useState } from 'react'
+import { Modal, Button } from '@bacsystem/ui'
+
+const [open, setOpen] = useState(false)
+
+<Button onClick={() => setOpen(true)}>Abrir Modal</Button>
+
+<Modal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Título del modal"
+  size="md"
+>
+  <p>Contenido del modal.</p>
+  <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+    <Button variant="secondary" onClick={() => setOpen(false)}>
+      Cancelar
+    </Button>
+    <Button onClick={() => setOpen(false)}>Confirmar</Button>
+  </div>
+</Modal>
+`}>
         <Button onClick={() => setOpen(true)}>Abrir Modal</Button>
         <Modal open={open} onClose={() => setOpen(false)} title="Modal de ejemplo" size="md">
           <p style={{ color: 'var(--color-text-primary)', fontSize: 'var(--text-sm)', marginBottom: 'var(--sp-6)' }}>

@@ -4,17 +4,20 @@ import { Input } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 import { Search, Mail, Eye, Lock, User } from 'lucide-react'
 
-/**
- * Renders the "Input" documentation/demo section showing states, sizes, icons, addons, and floating-label examples.
- *
- * @returns A JSX element containing multiple DemoSection blocks that demonstrate variations of the `Input` component (default, hint, success, error, disabled, sizes, icon placements, prefix/suffix, and floating labels).
- */
 export function InputSection() {
   return (
     <div id="input">
 
       {/* States */}
-      <DemoSection title="Input" tag="Component" description="Default, error, success, hint, and disabled states">
+      <DemoSection title="Input" tag="Component" description="Default, error, success, hint, and disabled states" code={`
+import { Input } from '@bacsystem/ui'
+
+<Input label="Email" placeholder="correo@ejemplo.com" />
+<Input label="Con hint" hint="Usaremos este correo para notificaciones" />
+<Input label="Con éxito" defaultValue="christian@bacsystem.com" success="Correo verificado" />
+<Input label="Con error" defaultValue="inválido" error="Este campo es requerido" />
+<Input label="Deshabilitado" defaultValue="no editable" disabled />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)', width: '100%', maxWidth: 420 }}>
           <Input label="Email" placeholder="correo@ejemplo.com" />
           <Input label="Con hint" placeholder="usuario@ejemplo.com" hint="Usaremos este correo para notificaciones" />
@@ -25,7 +28,12 @@ export function InputSection() {
       </DemoSection>
 
       {/* Sizes */}
-      <DemoSection title="Sizes" tag="Input" description="Tres tamaños: sm, md (default), lg">
+      <DemoSection title="Sizes" tag="Input" description="Tres tamaños: sm, md (default), lg" code={`
+// inputSize: 'sm' | 'md' | 'lg'
+<Input label="Small"  placeholder="size sm" inputSize="sm" />
+<Input label="Medium" placeholder="size md" inputSize="md" />
+<Input label="Large"  placeholder="size lg" inputSize="lg" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)', width: '100%', maxWidth: 420 }}>
           <Input label="Small" placeholder="size sm" inputSize="sm" />
           <Input label="Medium" placeholder="size md (default)" inputSize="md" />
@@ -34,7 +42,15 @@ export function InputSection() {
       </DemoSection>
 
       {/* Icons */}
-      <DemoSection title="Icons" tag="Input" description="Icono izquierdo, derecho, o ambos">
+      <DemoSection title="Icons" tag="Input" description="Icono izquierdo, derecho, o ambos" code={`
+import { Search, Mail, Eye, Lock, User } from 'lucide-react'
+
+<Input label="Icono izquierdo" placeholder="Buscar..." iconLeft={Search} />
+<Input label="Icono derecho"   placeholder="tu@email.com" iconRight={Mail} />
+<Input label="Ambos iconos"    placeholder="Contraseña" iconLeft={Lock} iconRight={Eye} />
+<Input label="Icono + error"   iconLeft={User} error="Usuario no encontrado" />
+<Input label="Icono + éxito"   iconLeft={User} success="Usuario disponible" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)', width: '100%', maxWidth: 420 }}>
           <Input label="Icono izquierdo" placeholder="Buscar..." iconLeft={Search} />
           <Input label="Icono derecho" placeholder="tu@email.com" iconRight={Mail} />
@@ -45,7 +61,11 @@ export function InputSection() {
       </DemoSection>
 
       {/* Prefix & Suffix */}
-      <DemoSection title="Prefix & Suffix" tag="Input" description="Addons de texto al inicio o al final del campo">
+      <DemoSection title="Prefix & Suffix" tag="Input" description="Addons de texto al inicio o al final del campo" code={`
+<Input label="URL"    placeholder="mi-sitio" prefix="https://" suffix=".com" />
+<Input label="Precio" placeholder="0.00" prefix="S/" />
+<Input label="Peso"   placeholder="70" suffix="kg" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)', width: '100%', maxWidth: 420 }}>
           <Input label="Prefijo URL" placeholder="mi-sitio" prefix="https://" suffix=".com" />
           <Input label="Precio" placeholder="0.00" prefix="S/" />
@@ -55,7 +75,13 @@ export function InputSection() {
       </DemoSection>
 
       {/* Floating Label */}
-      <DemoSection title="Floating Label" tag="Input" description="Label que flota al enfocar o escribir">
+      <DemoSection title="Floating Label" tag="Input" description="Label que flota al enfocar o escribir" code={`
+// floating={true} activa el label animado
+<Input label="Nombre completo" floating />
+<Input label="Email"      floating iconLeft={Mail} />
+<Input label="Contraseña" floating iconLeft={Lock} iconRight={Eye} />
+<Input label="Con error"  floating error="Campo requerido" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)', width: '100%', maxWidth: 420 }}>
           <Input label="Nombre completo" floating />
           <Input label="Email" floating iconLeft={Mail} />

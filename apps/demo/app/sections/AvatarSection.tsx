@@ -15,7 +15,24 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 export function AvatarSection() {
   return (
     <div id="avatar">
-      <DemoSection title="Avatar" tag="Component" description="5 tamaños × 3 estilos: soft, filled y outline">
+      <DemoSection title="Avatar" tag="Component" description="5 tamaños × 3 estilos: soft, filled y outline" code={`
+import { Avatar } from '@bacsystem/ui'
+
+// Con iniciales
+<Avatar initials="AB" size="md" />
+<Avatar initials="AB" size="md" appearance="filled" />
+<Avatar initials="AB" size="md" appearance="outline" />
+
+// Con imagen
+<Avatar src="https://i.pravatar.cc/150" alt="Usuario" size="md" />
+
+// Sin datos (fallback)
+<Avatar size="md" />
+
+// Tamaños: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+<Avatar initials="AB" size="xs" />
+<Avatar initials="AB" size="xl" />
+`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-6)', width: '100%' }}>
 
           <div>
