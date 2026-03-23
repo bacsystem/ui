@@ -24,6 +24,7 @@ export interface DataTableProps<T extends object> {
  * @param data - Array of row objects to display
  * @param loading - When `true`, shows a loading state spanning all columns
  * @param emptyText - Message shown when `data` is empty
+ * @param getRowKey - Returns a stable, unique key for each row; receives the row object and its index. Strongly recommended when rows can be inserted, removed, or reordered to avoid incorrect React reconciliation.
  * @param className - Additional CSS class applied to the table container
  * @returns A JSX element representing the rendered data table
  */
