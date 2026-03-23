@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo } from 'react'
-import type { ReactNode } from 'react'
+import { useState, useRef } from 'react'
+import type { ReactNode, KeyboardEvent } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TabItem {
@@ -56,7 +56,7 @@ export function Tabs({
     onChange?.(id)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     const enabledItems = items.filter((t) => !t.disabled)
     if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
