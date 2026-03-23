@@ -9,6 +9,10 @@
 - **`CodeBlock` component** — new `apps/demo/components/CodeBlock.tsx`: regex-based JSX/TSX syntax tokenizer (no external deps), GitHub dark-theme color palette (`#7ee787` tags, `#ffa657` attrs, `#a5d6ff` strings, `#ff7b72` keywords, `#8b949e` comments), copy-to-clipboard button with 2-second confirmation state.
 - **GitHub Pages deployment** — new `.github/workflows/deploy-pages.yml`: builds the demo as a static export (`output: 'export'`) and deploys to GitHub Pages on every push to `main`. Base path driven by `NEXT_PUBLIC_BASE_PATH` env var set to `/${{ github.event.repository.name }}`.
 
+### Infrastructure
+
+- **Dual-registry publish** — `publish.yml` updated to publish `@bacsystem/ui` to both GitHub Packages (`GITHUB_TOKEN`) and npm public registry (`NPM_TOKEN`) on every `v*` tag push. Added `packages/ui/.npmignore` to exclude `src/`, `scripts/`, and config files from the tarball (ships only `dist/`).
+
 ---
 
 ## v1.1.0 — 2026-03-23
