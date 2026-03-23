@@ -27,12 +27,12 @@ export interface BadgeProps {
  */
 export function Badge({
   variant = 'default',
-  appearance = 'soft',
+  appearance: appearanceProp,
   outline = false,
   className = '',
   children,
 }: BadgeProps) {
-  const resolved = outline ? 'outline' : appearance
+  const resolved = appearanceProp !== undefined ? appearanceProp : (outline ? 'outline' : 'soft')
   const appearanceClass = resolved === 'soft' ? '' : ` bac-badge--${resolved}`
   return (
     <span className={`bac-badge bac-badge--${variant}${appearanceClass}${className ? ` ${className}` : ''}`}>

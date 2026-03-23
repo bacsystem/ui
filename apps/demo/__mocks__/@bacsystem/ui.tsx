@@ -126,12 +126,13 @@ export const StatCard = vi.fn(({ title, value, trend, trendValue, color, appeara
 ))
 
 export const Tabs = vi.fn(({ items, defaultTab }: any) => {
-  const [active, setActive] = React.useState(defaultTab || (items[0]?.id ?? ''))
-  const current = items.find((item: any) => item.id === active)
+  const safeItems: any[] = items || []
+  const [active, setActive] = React.useState(defaultTab || (safeItems[0]?.id ?? ''))
+  const current = safeItems.find((item: any) => item.id === active)
   return (
     <div>
       <div role="tablist">
-        {items.map((item: any) => (
+        {safeItems.map((item: any) => (
           <button
             key={item.id}
             role="tab"
@@ -152,7 +153,8 @@ export const Tabs = vi.fn(({ items, defaultTab }: any) => {
 
 // Types
 export type DataTableColumn<T> = {
-  key: string
+  key: keyof T | string
   header: string
   render?: (row: T) => React.ReactNode
+  className?: string
 }

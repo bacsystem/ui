@@ -87,9 +87,9 @@ describe('DataTableSection', () => {
   it('renders status badges for invoice rows', () => {
     render(<DataTableSection />)
     // 2 invoices have 'pagado', 2 have 'pendiente', 1 has 'vencido'
-    expect(screen.getAllByText('pagado').length).toBeGreaterThanOrEqual(2)
-    expect(screen.getAllByText('pendiente').length).toBeGreaterThanOrEqual(2)
-    expect(screen.getAllByText('vencido').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getAllByText('pagado')).toHaveLength(2)
+    expect(screen.getAllByText('pendiente')).toHaveLength(2)
+    expect(screen.getAllByText('vencido')).toHaveLength(1)
   })
 
   it('renders view action button for invoice F-0001', () => {
@@ -111,17 +111,20 @@ describe('DataTableSection', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Ver F-0001'))
     expect(window.alert).toHaveBeenCalledWith('Ver: F-0001')
+    expect(window.alert).toHaveBeenCalledTimes(1)
   })
 
   it('calls alert when edit action is clicked', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Editar F-0002'))
     expect(window.alert).toHaveBeenCalledWith('Editar: F-0002')
+    expect(window.alert).toHaveBeenCalledTimes(1)
   })
 
   it('calls alert when delete action is clicked', () => {
     render(<DataTableSection />)
     fireEvent.click(screen.getByLabelText('Eliminar F-0003'))
     expect(window.alert).toHaveBeenCalledWith('Eliminar: F-0003')
+    expect(window.alert).toHaveBeenCalledTimes(1)
   })
 })
