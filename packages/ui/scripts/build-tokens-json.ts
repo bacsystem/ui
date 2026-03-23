@@ -22,5 +22,6 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true })
 }
 
-fs.writeFileSync(outFile, JSON.stringify(tokens, null, 2) + '\n', 'utf-8')
-console.log(`✔ dist/tokens.json written (${Buffer.byteLength(JSON.stringify(tokens))} bytes)`)
+const json = JSON.stringify(tokens, null, 2) + '\n'
+fs.writeFileSync(outFile, json, 'utf-8')
+console.log(`✔ dist/tokens.json written (${Buffer.byteLength(json)} bytes)`)

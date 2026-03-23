@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import type { ReactNode } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TabItem {
@@ -6,7 +7,7 @@ export interface TabItem {
   label: string
   icon?: LucideIcon
   disabled?: boolean
-  content: React.ReactNode
+  content: ReactNode
 }
 
 export interface TabsProps {
@@ -38,6 +39,7 @@ export function Tabs({
   const [internalTab, setInternalTab] = useState(
     defaultTab ?? items.find((t) => !t.disabled)?.id ?? ''
   )
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   const activeId = isControlled ? controlledTab : internalTab
 
@@ -46,23 +48,44 @@ export function Tabs({
     onChange?.(id)
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const enabledItems = items.filter((t) => !t.disabled)
+    const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
+
+    let nextIndex: number | null = null
+    if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % enabledItems.length
+    else if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + enabledItems.length) % enabledItems.length
+    else if (e.key === 'Home') nextIndex = 0
+    else if (e.key === 'End') nextIndex = enabledItems.length - 1
+
+    if (nextIndex !== null) {
+      e.preventDefault()
+      const nextId = enabledItems[nextIndex].id
+      handleSelect(nextId)
+      const nextItemIndex = items.findIndex((t) => t.id === nextId)
+      tabRefs.current[nextItemIndex]?.focus()
+    }
+  }
+
   const activeContent = items.find((t) => t.id === activeId)?.content
 
   return (
     <div className={`bac-tabs${className ? ` ${className}` : ''}`}>
       <div className="bac-tabs__bar">
-        <div className="bac-tabs__list" role="tablist">
-          {items.map((tab) => {
+        <div className="bac-tabs__list" role="tablist" onKeyDown={handleKeyDown}>
+          {items.map((tab, index) => {
             const Icon = tab.icon
             const isActive = activeId === tab.id
             return (
               <button
                 key={tab.id}
+                ref={(el) => { tabRefs.current[index] = el }}
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`bac-tab-panel-${tab.id}`}
                 id={`bac-tab-${tab.id}`}
                 disabled={tab.disabled}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => !tab.disabled && handleSelect(tab.id)}
                 className={`bac-tabs__tab${isActive ? ' bac-tabs__tab--active' : ''}${tab.disabled ? ' bac-tabs__tab--disabled' : ''}`}
               >

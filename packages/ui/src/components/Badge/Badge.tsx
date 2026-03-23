@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'
 export type BadgeAppearance = 'soft' | 'filled' | 'outline'
 
@@ -7,7 +9,7 @@ export interface BadgeProps {
   /** @deprecated use appearance="outline" */
   outline?: boolean
   className?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 /**

@@ -47,7 +47,7 @@ const navGroups = [
  */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>
         <div className="demo-layout">
           <aside className="demo-sidebar">

@@ -21,7 +21,7 @@ export function DemoHeader() {
       </span>
       <button
         onClick={toggleTheme}
-        aria-label={theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro'}
+        aria-label={theme === 'light' ? 'Activate dark mode' : 'Activate light mode'}
         style={{
           display: 'flex',
           alignItems: 'center',

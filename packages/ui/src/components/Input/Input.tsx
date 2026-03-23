@@ -47,9 +47,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const uid = useId()
     const inputId = id ?? `bac-input-${uid.replace(/:/g, '')}`
-    const errorId   = error              ? `${inputId}-error` : undefined
-    const hintId    = hint && !error     ? `${inputId}-hint`  : undefined
-    const describedBy = [errorId, hintId].filter(Boolean).join(' ') || undefined
+    const errorId     = error                    ? `${inputId}-error`   : undefined
+    const hintId      = hint && !error           ? `${inputId}-hint`    : undefined
+    const successId   = success && !error        ? `${inputId}-success` : undefined
+    const describedBy = [errorId, hintId, successId].filter(Boolean).join(' ') || undefined
 
     const hasRightIcon = !!(error || success || IconRight)
 
@@ -137,7 +138,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {error              && <p id={errorId} className="bac-input__error-text"   role="alert">{error}</p>}
-        {!error && success  && <p               className="bac-input__success-text"             >{success}</p>}
+        {!error && success  && <p id={successId} className="bac-input__success-text">{success}</p>}
         {!error && !success && hint && (
           <p id={hintId} className="bac-input__hint">{hint}</p>
         )}

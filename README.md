@@ -13,7 +13,13 @@ Opens `http://localhost:3000` — interactive showcase of all 11 components, 2 h
 
 ## Install
 
-Add to your `.npmrc`:
+### Requirements
+
+- Node.js ≥ 18
+- React ^18.0 (peer dependency)
+- React DOM ^18.0 (peer dependency)
+
+Add to your `.npmrc` (replace `${GITHUB_TOKEN}` with a personal access token that has `read:packages` scope):
 
 ```ini
 @bacsystem:registry=https://npm.pkg.github.com

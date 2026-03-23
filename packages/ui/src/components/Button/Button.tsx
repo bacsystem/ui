@@ -40,7 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       variant = 'primary',
       size = 'md',
-      appearance = 'filled',
+      appearance: appearanceProp,
       outline = false,
       loading = false,
       iconLeft: IconLeft,
@@ -53,7 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || loading
-    const resolvedAppearance = outline ? 'outline' : appearance
+    const resolvedAppearance = appearanceProp !== undefined ? appearanceProp : (outline ? 'outline' : 'filled')
     const appearanceClass = resolvedAppearance === 'filled' ? '' : `bac-btn--${resolvedAppearance}`
     const classes = ['bac-btn', variantStyles[variant], sizeStyles[size], appearanceClass, loading && 'bac-btn--loading', className].filter(Boolean).join(' ')
 
@@ -61,11 +61,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
+        aria-busy={loading || undefined}
         className={classes}
         {...props}
       >
         {loading ? (
-          <Loader2 className="bac-btn__icon bac-btn__icon--spin" aria-hidden="true" />
+          <>
+            <Loader2 className="bac-btn__icon bac-btn__icon--spin" aria-hidden="true" />
+            <span className="bac-sr-only">Loading…</span>
+          </>
         ) : (
           IconLeft && <IconLeft className="bac-btn__icon bac-btn__icon--left" aria-hidden="true" />
         )}

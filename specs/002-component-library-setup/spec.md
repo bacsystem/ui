@@ -292,9 +292,10 @@ first-class workspace package.
 - **FR-028**: The DataTable section MUST display sample invoice data (number, client, total,
   status) and provide toggles to switch between default, loading, and empty states.
 - **FR-031**: `DataTable` rows MUST display a visible hover state: row background changes to
-  `--color-primary-50` and a `--color-primary-400` left-border accent appears on the first
-  cell. The transition MUST be smooth (CSS transition, ≤ 150 ms). Row hover MUST NOT apply
-  during loading or empty states.
+  a primary-tinted color and a primary-colored left-border accent appears on the first
+  cell. The transition MUST be smooth (≤ 150 ms). Row hover MUST NOT apply
+  during loading or empty states. The hover state MUST render correctly in both light and dark mode
+  using appropriate dark-mode token overrides.
 - **FR-029**: The Hooks section MUST show the live state of `useTheme` (current theme,
   buttons for `setTheme('light')`, `setTheme('dark')`, `toggleTheme()`) and `useBreakpoint`
   (all four returned values updating reactively on resize).
@@ -303,8 +304,10 @@ first-class workspace package.
 - **FR-032**: `Button` MUST support an `appearance` prop (`'filled' | 'outline' | 'soft' | 'link'`,
   default `'filled'`). Each appearance applies to all 6 variants: `filled` = solid background;
   `outline` = transparent background with colored border; `soft` = tinted low-opacity background;
-  `link` = text only with underline on hover and no padding. The legacy `outline` boolean prop
-  MUST remain functional for backward compatibility.
+  `link` = text only with underline on hover and no padding. When the `appearance` prop is
+  explicitly provided, it takes precedence over the legacy `outline` boolean prop. The legacy
+  `outline` boolean prop MUST remain functional for backward compatibility when `appearance` is
+  not explicitly set.
 
 - **FR-033**: `Badge`, `Alert`, `Avatar`, and `StatCard` MUST each support an `appearance` prop
   (`'soft' | 'filled' | 'outline'`, default `'soft'`). `soft` preserves the prior default

@@ -1,6 +1,7 @@
 import { defineConfig } from 'tsup'
 import { copyFileSync, mkdirSync, existsSync } from 'fs'
-import { resolve } from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -14,6 +15,7 @@ export default defineConfig({
   },
   injectStyle: false,
   onSuccess: async () => {
+    const __dirname = dirname(fileURLToPath(import.meta.url))
     // Copy globals.css → dist/styles.css
     const distDir = resolve(__dirname, 'dist')
     if (!existsSync(distDir)) mkdirSync(distDir, { recursive: true })

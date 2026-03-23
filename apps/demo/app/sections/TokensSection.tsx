@@ -311,8 +311,8 @@ function SpacingRadiusSection() {
               <div key={name} style={{ textAlign: 'center' }}>
                 <div
                   style={{
-                    width: name === 'full' ? 56 : 56,
-                    height: name === 'full' ? 56 : 56,
+                    width: 56,
+                    height: 56,
                     backgroundColor: 'var(--color-primary-100)',
                     border: '2px solid var(--color-primary-400)',
                     borderRadius: `var(--radius-${name})`,

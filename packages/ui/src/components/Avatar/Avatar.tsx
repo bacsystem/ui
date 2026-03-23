@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { User } from 'lucide-react'
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -34,6 +34,11 @@ export function Avatar({
 }: AvatarProps) {
   const [imgError, setImgError] = useState(false)
 
+  // Reset error state whenever src changes so a new image gets a fresh attempt
+  useEffect(() => {
+    setImgError(false)
+  }, [src])
+
   const showImage = src && !imgError
   const showInitials = !showImage && initials
   const showFallback = !showImage && !showInitials
@@ -41,6 +46,7 @@ export function Avatar({
 
   return (
     <span
+      role="img"
       className={`bac-avatar bac-avatar--${size}${appearanceClass}${className ? ` ${className}` : ''}`}
       aria-label={alt || initials}
     >

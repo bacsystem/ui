@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react'
 import { Loader2, Inbox } from 'lucide-react'
 
 export interface DataTableColumn<T> {
   key: keyof T | string
   header: string
-  render?: (row: T) => React.ReactNode
+  render?: (row: T) => ReactNode
   className?: string
 }
 
@@ -12,6 +13,7 @@ export interface DataTableProps<T extends object> {
   data: T[]
   loading?: boolean
   emptyText?: string
+  getRowKey?: (row: T, index: number) => string | number
   className?: string
 }
 
@@ -30,6 +32,7 @@ export function DataTable<T extends object>({
   data,
   loading = false,
   emptyText = 'No hay datos disponibles',
+  getRowKey,
   className = '',
 }: DataTableProps<T>) {
   return (
@@ -67,7 +70,7 @@ export function DataTable<T extends object>({
             </tr>
           ) : (
             data.map((row, rowIndex) => (
-              <tr key={rowIndex} className="bac-datatable__row">
+              <tr key={getRowKey ? getRowKey(row, rowIndex) : String(rowIndex)} className="bac-datatable__row">
                 {columns.map((col) => (
                   <td
                     key={String(col.key)}

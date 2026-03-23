@@ -33,17 +33,16 @@
 ## Notes
 
 - **2026-03-23 (v6)**: Replaced FR-032 with full appearance system:
-  FR-032 — `Button` `appearance` prop (`filled | outline | soft | link`) for all 6 variants.
-  FR-033 — `Badge`, `Alert`, `Avatar`, `StatCard` `appearance` prop (`soft | filled | outline`).
-  FR-034 — Dark mode strategy: neutral scale inversion for surfaces; per-component `rgba()`
-  overrides for colored elements (no primary scale inversion). T060–T063 added to tasks.md.
+  FR-032 — `Button` supports multiple visual appearances (filled, outline, soft, link) across all variants.
+  FR-033 — `Badge`, `Alert`, `Avatar`, `StatCard` support multiple visual appearances (soft, filled, outline).
+  FR-034 — Dark mode strategy: neutral surfaces invert across light/dark; colored elements use
+  opacity-based overrides rather than full tone inversion. T060–T063 added to tasks.md.
   Components reference table updated with "Appearances" column. All checklist items pass.
-- **2026-03-22 (v5)**: Added FR-032 — `Badge` `outline` prop; filled variants updated with subtle
-  border. T059 added to tasks.md. All checklist items pass.
-- **2026-03-22 (v4)**: Added FR-031 — `DataTable` row hover state (`--color-primary-50`
-  background + `--color-primary-400` left-border accent, CSS transition ≤ 150 ms). Updated
-  components table (DataTable variants now include "with row hover"). Added T058 to tasks.md.
-  All checklist items pass.
+- **2026-03-22 (v5)**: Added FR-032 — `Badge` supports an outline visual appearance in addition to
+  soft and filled styles. T059 added to tasks.md. All checklist items pass.
+- **2026-03-22 (v4)**: Added FR-031 — `DataTable` rows highlight on hover with a subtle background
+  tint and a left-side accent stripe; the transition is visually smooth. Updated components table
+  (DataTable variants now include "with row hover"). Added T058 to tasks.md. All checklist items pass.
 - **2026-03-22 (v3)**: HU-01 CA-06 — Added `tokens.json` build artifact: FR-013b, updated
   FR-013 (5 artifacts now), FR-018 (exports field), SC-012, Assumptions. Updated
   `contracts/package-exports.md`. All checklist items pass.

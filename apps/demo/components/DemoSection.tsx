@@ -1,8 +1,10 @@
+import type { ReactNode } from 'react'
+
 interface DemoSectionProps {
   readonly title: string
   readonly description?: string
   readonly tag?: string
-  readonly children: React.ReactNode
+  readonly children: ReactNode
 }
 
 /**

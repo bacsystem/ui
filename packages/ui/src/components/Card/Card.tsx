@@ -1,11 +1,12 @@
+import type React from 'react'
+
 export type CardVariant = 'default' | 'elevated' | 'outlined' | 'tinted'
 export type CardSize = 'sm' | 'md' | 'lg'
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: CardVariant
-  size?: CardSize
-  className?: string
-  children: React.ReactNode
+  readonly variant?: CardVariant
+  readonly size?: CardSize
+  readonly children: React.ReactNode
 }
 
 /**

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Info, CheckCircle2, AlertTriangle, XCircle, X, type LucideIcon } from 'lucide-react'
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
@@ -8,8 +9,9 @@ export interface AlertProps {
   appearance?: AlertAppearance
   title?: string
   onClose?: () => void
+  closeAriaLabel?: string
   className?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const icons: Record<AlertVariant, LucideIcon> = {
@@ -38,6 +40,7 @@ export function Alert({
   appearance = 'soft',
   title,
   onClose,
+  closeAriaLabel = 'Close',
   className = '',
   children,
 }: AlertProps) {
@@ -59,7 +62,7 @@ export function Alert({
           type="button"
           className="bac-alert__close"
           onClick={onClose}
-          aria-label="Cerrar alerta"
+          aria-label={closeAriaLabel}
         >
           <X size={16} aria-hidden="true" />
         </button>

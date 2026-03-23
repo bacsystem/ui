@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Check } from 'lucide-react'
 
 export type ToggleSize = 'sm' | 'md' | 'lg'
@@ -39,14 +39,15 @@ export function Toggle({
   className = '',
 }: ToggleProps) {
   const isControlled = checked !== undefined
-  const internalRef = useRef(defaultChecked)
+  const [internalChecked, setInternalChecked] = useState(defaultChecked)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const currentChecked = isControlled ? checked : internalRef.current
+  const currentChecked = isControlled ? checked : internalChecked
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!isControlled) {
-        internalRef.current = e.target.checked
+        setInternalChecked(e.target.checked)
       }
       onChange?.(e.target.checked)
     },
@@ -57,14 +58,10 @@ export function Toggle({
     (e: React.KeyboardEvent<HTMLLabelElement>) => {
       if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
         e.preventDefault()
-        const next = !currentChecked
-        if (!isControlled) {
-          internalRef.current = next
-        }
-        onChange?.(next)
+        inputRef.current?.click()
       }
     },
-    [currentChecked, disabled, isControlled, onChange]
+    [disabled]
   )
 
   return (
@@ -76,6 +73,7 @@ export function Toggle({
       tabIndex={disabled ? -1 : 0}
     >
       <input
+        ref={inputRef}
         type="checkbox"
         checked={isControlled ? checked : undefined}
         defaultChecked={!isControlled ? defaultChecked : undefined}

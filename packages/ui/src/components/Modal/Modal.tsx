@@ -1,4 +1,5 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useId } from 'react'
+import type { ReactNode } from 'react'
 import { X } from 'lucide-react'
 
 export type ModalSize = 'sm' | 'md' | 'lg'
@@ -8,8 +9,9 @@ export interface ModalProps {
   onClose: () => void
   size?: ModalSize
   title?: string
+  closeLabel?: string
   className?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 /**
@@ -32,11 +34,13 @@ export function Modal({
   onClose,
   size = 'md',
   title,
+  closeLabel = 'Close modal',
   className = '',
   children,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const previousActiveElement = useRef<Element | null>(null)
+  const titleId = useId()
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -86,6 +90,9 @@ export function Modal({
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
+      if (previousActiveElement.current instanceof HTMLElement) {
+        previousActiveElement.current.focus()
+      }
     }
   }, [open, handleKeyDown])
 
@@ -99,7 +106,7 @@ export function Modal({
       }}
       aria-modal="true"
       role="dialog"
-      aria-labelledby={title ? 'bac-modal-title' : undefined}
+      aria-labelledby={title ? titleId : undefined}
     >
       <div
         ref={dialogRef}
@@ -108,7 +115,7 @@ export function Modal({
       >
         <div className="bac-modal__header">
           {title && (
-            <h2 id="bac-modal-title" className="bac-modal__title">
+            <h2 id={titleId} className="bac-modal__title">
               {title}
             </h2>
           )}
@@ -116,7 +123,7 @@ export function Modal({
             type="button"
             className="bac-modal__close"
             onClick={onClose}
-            aria-label="Cerrar modal"
+            aria-label={closeLabel}
           >
             <X size={20} aria-hidden="true" />
           </button>
