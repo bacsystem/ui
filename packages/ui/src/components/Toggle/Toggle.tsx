@@ -10,6 +10,8 @@ export interface ToggleProps {
   disabled?: boolean
   size?: ToggleSize
   label?: string
+  ariaLabel?: string
+  'aria-labelledby'?: string
   className?: string
 }
 
@@ -36,6 +38,8 @@ export function Toggle({
   disabled = false,
   size = 'md',
   label,
+  ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   className = '',
 }: ToggleProps) {
   const isControlled = checked !== undefined
@@ -69,6 +73,9 @@ export function Toggle({
       className={`bac-toggle bac-toggle--${size}${disabled ? ' bac-toggle--disabled' : ''}${className ? ` ${className}` : ''}`}
       role="switch"
       aria-checked={currentChecked}
+      aria-disabled={disabled}
+      aria-label={!label ? ariaLabel : undefined}
+      aria-labelledby={!label ? ariaLabelledby : undefined}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}
     >

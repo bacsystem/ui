@@ -95,6 +95,7 @@ export function Tabs({
               <button
                 key={tab.id}
                 ref={(el) => { tabRefs.current[index] = el }}
+                type="button"
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`bac-tab-panel-${tab.id}`}
