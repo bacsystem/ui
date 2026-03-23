@@ -615,8 +615,8 @@ body {
 .bac-datatable__table { width: 100%; border-collapse: collapse; }
 .bac-datatable__th { padding: var(--sp-3, 12px) var(--sp-4, 16px); text-align: left; font-size: var(--text-xs, 0.75rem); font-weight: var(--font-weight-semibold, 600); color: var(--color-text-secondary, #64748B); text-transform: uppercase; letter-spacing: 0.05em; background-color: var(--color-neutral-50, #F8FAFC); border-bottom: 1px solid var(--color-border, #E2E8F0); }
 .bac-datatable__row { transition: background-color 0.12s; cursor: default; }
-.bac-datatable__row:hover { background-color: var(--color-primary-100, #DBEAFE); }
-.bac-datatable__row:hover .bac-datatable__td:first-child { border-left: 3px solid var(--color-primary-600, #2563EB); padding-left: calc(var(--sp-4, 16px) - 3px); }
+.bac-datatable__row:hover { background-color: var(--color-primary-50, #EFF6FF); }
+.bac-datatable__row:hover .bac-datatable__td:first-child { border-left: 3px solid var(--color-primary-400, #60A5FA); padding-left: calc(var(--sp-4, 16px) - 3px); }
 .bac-datatable__row:not(:last-child) { border-bottom: 1px solid var(--color-border, #E2E8F0); }
 .bac-datatable__td { padding: var(--sp-3, 12px) var(--sp-4, 16px); font-size: var(--text-sm, 0.875rem); color: var(--color-text-primary, #1E293B); transition: padding-left 0.12s, border-left 0.12s; }
 /* Action buttons inside table cells */
