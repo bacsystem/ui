@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -35,13 +35,21 @@ export function Tabs({
   onChange,
   className = '',
 }: TabsProps) {
+  const firstEnabledId = useMemo(() => items.find((t) => !t.disabled)?.id ?? '', [items])
   const isControlled = controlledTab !== undefined
-  const [internalTab, setInternalTab] = useState(
-    defaultTab ?? items.find((t) => !t.disabled)?.id ?? ''
-  )
+  const [internalTab, setInternalTab] = useState(() => {
+    if (defaultTab !== undefined && items.some((t) => t.id === defaultTab && !t.disabled)) {
+      return defaultTab
+    }
+    return firstEnabledId
+  })
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
-  const activeId = isControlled ? controlledTab : internalTab
+  const rawActiveId = isControlled ? controlledTab : internalTab
+  const activeId = useMemo(
+    () => (items.some((t) => t.id === rawActiveId && !t.disabled) ? rawActiveId : firstEnabledId),
+    [items, rawActiveId, firstEnabledId],
+  )
 
   const handleSelect = (id: string) => {
     if (!isControlled) setInternalTab(id)
