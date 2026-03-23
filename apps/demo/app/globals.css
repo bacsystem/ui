@@ -234,4 +234,6 @@ body {
   text-align: center;
 }
 
-/* Component styles come from @bacsystem/ui/styles.css */
+/* Component styles are in @bacsystem/ui globals.css */
+
+/* @bacsystem/ui component styles are imported from the library's dist/styles.css */
