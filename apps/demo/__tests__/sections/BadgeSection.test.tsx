@@ -35,9 +35,9 @@ describe('BadgeSection', () => {
     }
   })
 
-  it('renders badges for all 6 variants in the soft group', () => {
-    render(<BadgeSection />)
-    const badges = document.querySelectorAll('[data-variant]')
+  it('renders all 6 variants across all appearance groups', () => {
+    const { container } = render(<BadgeSection />)
+    const badges = container.querySelectorAll('[data-variant]')
     const variantValues = Array.from(badges).map((b) => b.getAttribute('data-variant'))
     expect(variantValues).toContain('default')
     expect(variantValues).toContain('primary')

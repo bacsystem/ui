@@ -85,7 +85,7 @@ export const Modal = vi.fn(({ open, onClose, title, size, children }: any) => {
     <div role="dialog" aria-modal="true" data-size={size}>
       <div>
         {title && <h2>{title}</h2>}
-        <button onClick={onClose} aria-label="Cerrar modal">×</button>
+        <button onClick={onClose} aria-label="close">×</button>
       </div>
       <div>{children}</div>
     </div>

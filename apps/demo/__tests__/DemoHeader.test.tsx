@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { DemoHeader } from '../app/DemoHeader'
 import { useTheme, useBreakpoint } from '@bacsystem/ui'
 
+vi.mock('@bacsystem/ui')
+
 describe('DemoHeader', () => {
   const mockToggleTheme = vi.fn()
   const mockSetTheme = vi.fn()
@@ -35,7 +37,7 @@ describe('DemoHeader', () => {
   it('shows "Dark mode" text and correct aria-label when theme is light', () => {
     render(<DemoHeader />)
     expect(screen.getByText('Dark mode')).toBeInTheDocument()
-    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activar modo oscuro')
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activate dark mode')
   })
 
   it('shows "Light mode" text and correct aria-label when theme is dark', () => {
@@ -46,7 +48,7 @@ describe('DemoHeader', () => {
     })
     render(<DemoHeader />)
     expect(screen.getByText('Light mode')).toBeInTheDocument()
-    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activar modo claro')
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activate light mode')
   })
 
   it('calls toggleTheme when the button is clicked', () => {

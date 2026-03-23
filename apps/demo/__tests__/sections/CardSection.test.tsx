@@ -4,8 +4,8 @@ import { CardSection } from '../../app/sections/CardSection'
 
 describe('CardSection', () => {
   it('renders without crashing', () => {
-    const { container } = render(<CardSection />)
-    expect(container).toBeInTheDocument()
+    render(<CardSection />)
+    expect(screen.getByRole('heading', { name: 'Card' })).toBeInTheDocument()
   })
 
   it('has the id="card" anchor', () => {

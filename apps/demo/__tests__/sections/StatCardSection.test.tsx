@@ -4,8 +4,8 @@ import { StatCardSection } from '../../app/sections/StatCardSection'
 
 describe('StatCardSection', () => {
   it('renders without crashing', () => {
-    const { container } = render(<StatCardSection />)
-    expect(container).toBeInTheDocument()
+    render(<StatCardSection />)
+    expect(screen.getByRole('heading', { name: 'StatCard' })).toBeInTheDocument()
   })
 
   it('has the id="statcard" anchor', () => {

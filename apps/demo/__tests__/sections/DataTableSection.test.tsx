@@ -12,8 +12,8 @@ describe('DataTableSection', () => {
   })
 
   it('renders without crashing', () => {
-    const { container } = render(<DataTableSection />)
-    expect(container).toBeInTheDocument()
+    render(<DataTableSection />)
+    expect(screen.getByRole('heading', { name: 'DataTable' })).toBeInTheDocument()
   })
 
   it('has the id="datatable" anchor', () => {
@@ -43,6 +43,9 @@ describe('DataTableSection', () => {
   it('shows all 5 invoice rows in data state', () => {
     render(<DataTableSection />)
     expect(screen.getByText('F-0001')).toBeInTheDocument()
+    expect(screen.getByText('F-0002')).toBeInTheDocument()
+    expect(screen.getByText('F-0003')).toBeInTheDocument()
+    expect(screen.getByText('F-0004')).toBeInTheDocument()
     expect(screen.getByText('F-0005')).toBeInTheDocument()
   })
 

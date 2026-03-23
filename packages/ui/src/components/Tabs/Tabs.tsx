@@ -50,6 +50,7 @@ export function Tabs({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const enabledItems = items.filter((t) => !t.disabled)
+    if (enabledItems.length === 0) return
     const currentIndex = enabledItems.findIndex((t) => t.id === activeId)
 
     let nextIndex: number | null = null

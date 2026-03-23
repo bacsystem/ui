@@ -37,12 +37,15 @@ describe('AlertSection', () => {
 
   it('renders 4 soft alerts with correct variants', () => {
     render(<AlertSection />)
-    const alerts = screen.getAllByRole('alert')
-    const variants = alerts.map((el) => el.getAttribute('data-variant'))
+    const softAlerts = screen.getAllByRole('alert').filter(
+      (el) => el.getAttribute('data-appearance') === 'soft' || el.getAttribute('data-appearance') === null
+    )
+    const variants = softAlerts.map((el) => el.getAttribute('data-variant'))
     expect(variants).toContain('info')
     expect(variants).toContain('success')
     expect(variants).toContain('warning')
     expect(variants).toContain('error')
+    expect(softAlerts).toHaveLength(4)
   })
 
   it('renders filled alerts for all 4 variants', () => {
@@ -70,7 +73,7 @@ describe('AlertSection', () => {
     expect(screen.getAllByText('Info').length).toBeGreaterThanOrEqual(2)
     expect(screen.getAllByText('Success').length).toBeGreaterThanOrEqual(2)
     expect(screen.getAllByText('Warning').length).toBeGreaterThanOrEqual(2)
-    // "Error" also appears as the soft alert title, so at least 3
+    // "Error" also appears as the soft alert title, so at least 2
     expect(screen.getAllByText('Error').length).toBeGreaterThanOrEqual(2)
   })
 

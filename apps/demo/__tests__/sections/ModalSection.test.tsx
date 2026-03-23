@@ -4,8 +4,8 @@ import { ModalSection } from '../../app/sections/ModalSection'
 
 describe('ModalSection', () => {
   it('renders without crashing', () => {
-    const { container } = render(<ModalSection />)
-    expect(container).toBeInTheDocument()
+    render(<ModalSection />)
+    expect(screen.getByText('Abrir Modal')).toBeInTheDocument()
   })
 
   it('has the id="modal" anchor', () => {
@@ -65,7 +65,7 @@ describe('ModalSection', () => {
   it('closes the modal when the close button (×) is clicked', () => {
     render(<ModalSection />)
     fireEvent.click(screen.getByText('Abrir Modal'))
-    fireEvent.click(screen.getByLabelText('Cerrar modal'))
+    fireEvent.click(screen.getByLabelText('close'))
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
