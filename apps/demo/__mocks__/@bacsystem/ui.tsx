@@ -173,6 +173,53 @@ export const Tabs = vi.fn(({ items, defaultTab }: any) => {
   )
 })
 
+export const Tooltip = vi.fn(({ children, content, placement, disabled }: any) => (
+  <span data-tooltip={typeof content === 'string' ? content : 'node'} data-placement={placement} data-disabled={disabled}>
+    {children}
+  </span>
+))
+
+export const Skeleton = vi.fn(({ variant, width, height, className }: any) => (
+  <span data-variant={variant} data-width={width} data-height={height} className={className} aria-hidden="true" />
+))
+
+export const Select = vi.fn(({ label, options = [], placeholder, value, defaultValue, disabled, error, success, hint, onChange }: any) => (
+  <label>
+    {label && <span>{label}</span>}
+    <select
+      aria-label={label}
+      defaultValue={defaultValue}
+      value={value}
+      disabled={disabled}
+      onChange={(event) => onChange?.(event.target.value)}
+      aria-invalid={!!error}
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {options.map((option: any) => (
+        <option key={option.value} value={option.value} disabled={option.disabled}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+    {error && <span data-error>{error}</span>}
+    {success && <span data-success>{success}</span>}
+    {hint && <span data-hint>{hint}</span>}
+  </label>
+))
+
+export const Breadcrumb = vi.fn(({ items, separator = '/' }: any) => (
+  <nav aria-label="Breadcrumb">
+    <ol>
+      {items.map((item: any, index: number) => (
+        <li key={`${item.label}-${index}`}>
+          {index > 0 ? <span aria-hidden="true">{separator}</span> : null}
+          {index === items.length - 1 || !item.href ? <span aria-current={index === items.length - 1 ? 'page' : undefined}>{item.label}</span> : <a href={item.href}>{item.label}</a>}
+        </li>
+      ))}
+    </ol>
+  </nav>
+))
+
 // Types
 export type DataTableColumn<T> = {
   key: keyof T | string

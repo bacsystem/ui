@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.2.0 — 2026-04-17
+
+### New components
+
+- **Tooltip** — new `Tooltip` component with `top | bottom | left | right` placements, hover/focus activation, Escape close support, and `aria-describedby` wiring.
+- **Skeleton** — new shimmer placeholder component with `text`, `circle`, and `rect` variants.
+- **Select** — new native `<select>`-based form control aligned visually with `Input`, including `label`, `hint`, `error`, `success`, and `sm | md | lg` sizes.
+- **Breadcrumb** — new semantic navigation component with `<nav aria-label="Breadcrumb">`, linked items, current-page handling, and custom separator support.
+
+### Demo improvements
+
+- **Responsive demo layout** — mobile navigation drawer with hamburger trigger, overlay close behavior, Escape handling, and desktop reset behavior for the component showcase.
+- **Props tables** — every demo section now supports a **"Ver props"** toggle showing `Prop`, `Tipo`, `Default`, and `Descripción` in a horizontally scrollable table.
+- **New demo sections** — added showcase sections for `Tooltip`, `Skeleton`, `Select`, and `Breadcrumb` in the demo sidebar and page flow.
+
+### Validation
+
+- `npm run build` passes for both `@bacsystem/ui` and `@bacsystem/demo`
+- `npm run test -w @bacsystem/demo` passes (`169` tests)
+
 ## demo v0.2.0 — 2026-03-23
 
 ### New features

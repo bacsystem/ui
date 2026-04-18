@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { ButtonSection } from '../../app/sections/ButtonSection'
 
 vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
@@ -68,5 +68,23 @@ describe('ButtonSection', () => {
     // each variant appears multiple times across groups
     expect(primaryBtns.length).toBeGreaterThanOrEqual(4)
     expect(secondaryBtns.length).toBeGreaterThanOrEqual(4)
+  })
+
+  it('toggles the props table from the Ver props button', () => {
+    render(<ButtonSection />)
+
+    const toggle = screen.getByRole('button', { name: 'Ver props' })
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
+
+    fireEvent.click(toggle)
+
+    expect(screen.getByRole('table')).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Prop' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Tipo' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Default' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Descripción' })).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Ocultar props' }))
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
   })
 })

@@ -3,13 +3,14 @@
 import { Input } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
 import { Search, Mail, Eye, Lock, User } from 'lucide-react'
+import { inputPropRows } from '../../components/propTables'
 
 export function InputSection() {
   return (
     <div id="input">
 
       {/* States */}
-      <DemoSection title="Input" tag="Component" description="Default, error, success, hint, and disabled states" code={`
+      <DemoSection title="Input" tag="Component" description="Default, error, success, hint, and disabled states" props={inputPropRows} code={`
 import { Input } from '@bacsystem/ui'
 
 <Input label="Email" placeholder="correo@ejemplo.com" />

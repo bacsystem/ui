@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Modal, Button } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { modalPropRows } from '../../components/propTables'
 
 /**
  * Renders a demo section with a controllable modal, including an open button and actions to close it.
@@ -17,7 +18,7 @@ export function ModalSection() {
 
   return (
     <div id="modal">
-      <DemoSection title="Modal" tag="Component" description="Focus trap, Escape key, backdrop click to close" code={`
+      <DemoSection title="Modal" tag="Component" description="Focus trap, Escape key, backdrop click to close" props={modalPropRows} code={`
 import { useState } from 'react'
 import { Modal, Button } from '@bacsystem/ui'
 

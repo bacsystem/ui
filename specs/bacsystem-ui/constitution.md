@@ -128,12 +128,13 @@ requires a `.npmrc` entry pointing `@bacsystem:registry` to `https://npm.pkg.git
 
 ### Roadmap Snapshot
 
-| Version | Status     | Scope                                               |
-|---------|------------|-----------------------------------------------------|
-| v1.0.0  | In Progress| 11 components + 2 hooks + full token set            |
-| v1.1.0  | Planned    | Tooltip, Skeleton, Select, Breadcrumb               |
-| v1.2.0  | Planned    | DatePicker, FileUpload, Toast, Sidebar              |
-| v2.0.0  | Idea       | Vue 3 support, Storybook docs, Figma token sync     |
+| Version | Status    | Scope                                                                  |
+|---------|-----------|------------------------------------------------------------------------|
+| v1.0.0  | ✅ Released | 11 components + 2 hooks + full token set                             |
+| v1.1.0  | ✅ Released | Appearance system (filled/outline/soft/link), dark mode overhaul, demo interactive code blocks, GitHub Pages deploy, npm public publish |
+| v1.2.0  | 🔄 Next   | Tooltip, Skeleton, Select, Breadcrumb + props tables in demo (FR-023) |
+| v1.3.0  | 📋 Planned | DatePicker, FileUpload, Toast, Sidebar                                |
+| v2.0.0  | 💡 Idea   | Vue 3 support, Storybook docs, Figma token sync                       |
 
 ## Governance
 

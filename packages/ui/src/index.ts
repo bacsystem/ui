@@ -12,6 +12,10 @@ export * from './components/Modal'
 export * from './components/DataTable'
 export * from './components/StatCard'
 export * from './components/Tabs'
+export * from './components/Tooltip'
+export * from './components/Skeleton'
+export * from './components/Select'
+export * from './components/Breadcrumb'
 
 // Hooks
 export * from './hooks/useTheme'

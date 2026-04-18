@@ -2,6 +2,7 @@
 
 import { Badge } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { badgePropRows } from '../../components/propTables'
 
 const variants = ['default', 'primary', 'success', 'warning', 'danger', 'info'] as const
 
@@ -13,7 +14,7 @@ const variants = ['default', 'primary', 'success', 'warning', 'danger', 'info'] 
 export function BadgeSection() {
   return (
     <div id="badge">
-      <DemoSection title="Badge" tag="Component" description="6 variantes × 3 estilos: soft, filled y outline" code={`
+      <DemoSection title="Badge" tag="Component" description="6 variantes × 3 estilos: soft, filled y outline" props={badgePropRows} code={`
 import { Badge } from '@bacsystem/ui'
 
 // Soft (default)

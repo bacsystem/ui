@@ -5,6 +5,7 @@ import { DataTable, Badge, Button } from '@bacsystem/ui'
 import type { DataTableColumn } from '@bacsystem/ui'
 import { Eye, Pencil, Trash2 } from 'lucide-react'
 import { DemoSection } from '../../components/DemoSection'
+import { dataTablePropRows } from '../../components/propTables'
 
 interface DemoInvoice {
   numero: string
@@ -84,7 +85,7 @@ export function DataTableSection() {
 
   return (
     <div id="datatable">
-      <DemoSection title="DataTable" tag="Component" description="Generic typed table with loading and empty states" code={`
+      <DemoSection title="DataTable" tag="Component" description="Generic typed table with loading and empty states" props={dataTablePropRows} code={`
 import { DataTable, Badge } from '@bacsystem/ui'
 import type { DataTableColumn } from '@bacsystem/ui'
 
@@ -120,7 +121,7 @@ const columns: DataTableColumn<Invoice>[] = [
 />
 `}>
         <div style={{ width: '100%' }}>
-          <div style={{ display: 'flex', gap: 'var(--sp-2)', marginBottom: 'var(--sp-4)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-2)', marginBottom: 'var(--sp-4)' }}>
             <Button size="sm" variant={state === 'data' ? 'primary' : 'secondary'} onClick={() => setState('data')}>
               Con datos
             </Button>

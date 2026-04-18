@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { DemoSection } from '../components/DemoSection'
 
 describe('DemoSection', () => {
@@ -64,5 +64,28 @@ describe('DemoSection', () => {
   it('renders an empty string title without crashing', () => {
     render(<DemoSection title=""><p>x</p></DemoSection>)
     expect(document.querySelector('.demo-section__title')).toBeInTheDocument()
+  })
+
+  it('toggles the props table when props are provided', () => {
+    render(
+      <DemoSection
+        title="With Props"
+        props={[
+          { prop: 'label', type: 'string', default: '—', description: 'Etiqueta visible' },
+        ]}
+      >
+        <p>x</p>
+      </DemoSection>
+    )
+
+    const toggle = screen.getByRole('button', { name: 'Ver props' })
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
+
+    fireEvent.click(toggle)
+    expect(screen.getByRole('table')).toBeInTheDocument()
+    expect(screen.getByText('label')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Ocultar props' }))
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
   })
 })

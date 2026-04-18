@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:3000` — interactive showcase of all 11 components, 2 hooks, and design tokens. Each component section includes a **"Ver código"** toggle button that reveals a copy-ready TSX snippet.
+Opens `http://localhost:3000` — interactive showcase of 15 components, 2 hooks, and design tokens. The demo is responsive on mobile, includes a collapsible navigation drawer, and every component section includes **"Ver código"** and **"Ver props"** toggles for quick evaluation.
 
 The demo is also deployed to GitHub Pages on every push to `main`.
 
@@ -43,14 +43,23 @@ npm install @bacsystem/ui
 import '@bacsystem/ui/styles.css'
 
 // Use components
-import { Button, Card, Badge, Input } from '@bacsystem/ui'
+import { Button, Card, Badge, Input, Tooltip, Select, Skeleton, Breadcrumb } from '@bacsystem/ui'
 
 export default function Page() {
   return (
     <Card variant="elevated">
+      <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Settings' }]} />
       <Badge variant="success">Active</Badge>
       <Input label="Email" placeholder="you@example.com" />
-      <Button variant="primary">Get started</Button>
+      <Select
+        label="Role"
+        options={[{ value: 'admin', label: 'Administrator' }]}
+        placeholder="Choose role"
+      />
+      <Skeleton variant="text" width="60%" />
+      <Tooltip content="Save changes">
+        <Button variant="primary">Get started</Button>
+      </Tooltip>
     </Card>
   )
 }
@@ -143,6 +152,10 @@ function ThemeToggle() {
 | DataTable | default, loading, empty | — | — | ✅ |
 | StatCard | blue, teal, amber, green, purple | soft (default), filled, outline | — | ✅ |
 | Tabs | — | — | — | ✅ |
+| Tooltip | top, bottom, left, right | — | — | ✅ |
+| Skeleton | text, circle, rect | — | — | ✅ |
+| Select | default, error, success, disabled | — | sm, md, lg | ✅ |
+| Breadcrumb | linked, current page, custom separator | — | — | ✅ |
 
 ### Input props
 
@@ -164,6 +177,13 @@ function ThemeToggle() {
 - `useTheme()` — theme state + toggle, persists to `localStorage`, SSR-safe
 - `useBreakpoint()` — reactive `sm | md | lg | xl`, SSR-safe
 
+## Demo Highlights
+
+- Mobile responsive layout with hamburger sidebar and overlay navigation for screens under `768px`
+- Props tables for all demoed components via the **"Ver props"** toggle
+- New v1.2.0 sections for `Tooltip`, `Skeleton`, `Select`, and `Breadcrumb`
+- Dark mode coverage for all components using design tokens only
+
 ## Package Exports
 
 ```json
@@ -181,8 +201,8 @@ function ThemeToggle() {
 Triggered automatically on `v*` tags via GitHub Actions:
 
 ```bash
-git tag v1.1.0
-git push origin v1.1.0
+git tag v1.2.0
+git push origin v1.2.0
 ```
 
 ## License

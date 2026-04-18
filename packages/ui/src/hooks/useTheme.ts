@@ -49,7 +49,7 @@ function readStoredTheme(): Theme {
  *  - `toggleTheme()` — switch the theme between `'light'` and `'dark'`
  */
 export function useTheme(): UseThemeReturn {
-  const [theme, setTheme] = useState<Theme>(readStoredTheme)
+  const [theme, setTheme] = useState<Theme>(() => readStoredTheme())
 
   useEffect(() => {
     applyTheme(theme)
@@ -60,9 +60,13 @@ export function useTheme(): UseThemeReturn {
     }
   }, [theme])
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
-  }, [setTheme])
+  const setResolvedTheme = useCallback((next: Theme) => {
+    setTheme(next)
+  }, [])
 
-  return { theme, setTheme, toggleTheme }
+  const toggleTheme = useCallback(() => {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
+  }, [])
+
+  return { theme, setTheme: setResolvedTheme, toggleTheme }
 }

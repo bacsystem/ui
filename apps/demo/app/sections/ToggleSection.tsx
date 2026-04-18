@@ -2,6 +2,7 @@
 
 import { Toggle } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { togglePropRows } from '../../components/propTables'
 
 /**
  * Render a demo section that demonstrates Toggle variants: three sizes and examples of checked, unchecked, and disabled states.
@@ -13,7 +14,7 @@ import { DemoSection } from '../../components/DemoSection'
 export function ToggleSection() {
   return (
     <div id="toggle">
-      <DemoSection title="Toggle" tag="Component" description="3 sizes with checked, unchecked, and disabled states" code={`
+      <DemoSection title="Toggle" tag="Component" description="3 sizes with checked, unchecked, and disabled states" props={togglePropRows} code={`
 import { Toggle } from '@bacsystem/ui'
 
 // Uncontrolled (defaultChecked)
@@ -37,12 +38,12 @@ import { Toggle } from '@bacsystem/ui'
 />
 `}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>
-          <div style={{ display: 'flex', gap: 'var(--sp-6)', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-6)', alignItems: 'center' }}>
             <Toggle size="sm" label="Small" defaultChecked />
             <Toggle size="md" label="Medium" defaultChecked />
             <Toggle size="lg" label="Large" defaultChecked />
           </div>
-          <div style={{ display: 'flex', gap: 'var(--sp-6)', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-6)', alignItems: 'center' }}>
             <Toggle size="sm" label="Unchecked" />
             <Toggle size="md" label="Disabled on" checked disabled />
             <Toggle size="md" label="Disabled off" disabled />
