@@ -2,6 +2,7 @@
 
 import { Alert } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { alertPropRows } from '../../components/propTables'
 
 const variants = ['info', 'success', 'warning', 'error'] as const
 
@@ -13,7 +14,7 @@ const variants = ['info', 'success', 'warning', 'error'] as const
 export function AlertSection() {
   return (
     <div id="alert">
-      <DemoSection title="Alert" tag="Component" description="4 variantes × 3 estilos: soft, filled y outline" code={`
+      <DemoSection title="Alert" tag="Component" description="4 variantes × 3 estilos: soft, filled y outline" props={alertPropRows} code={`
 import { Alert } from '@bacsystem/ui'
 
 // Soft (default)

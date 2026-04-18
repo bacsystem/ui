@@ -3,6 +3,7 @@
 import { Button } from '@bacsystem/ui'
 import { Mail, ArrowRight } from 'lucide-react'
 import { DemoSection } from '../../components/DemoSection'
+import { buttonPropRows } from '../../components/propTables'
 
 /**
  * Renders the Button demo section showcasing variants, appearances, sizes, states, and icon examples.
@@ -16,7 +17,7 @@ import { DemoSection } from '../../components/DemoSection'
 export function ButtonSection() {
   return (
     <div id="button">
-      <DemoSection title="Button" tag="Component" description="6 variants × 4 estilos × 5 tamaños — filled, outline, soft y link" code={`
+      <DemoSection title="Button" tag="Component" description="6 variants × 4 estilos × 5 tamaños — filled, outline, soft y link" props={buttonPropRows} code={`
 import { Button } from '@bacsystem/ui'
 import { Mail, ArrowRight } from 'lucide-react'
 

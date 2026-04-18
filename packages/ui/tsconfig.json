@@ -8,6 +8,7 @@
     "strict": true,
     "noEmit": false,
     "declaration": true,
+    "rootDir": "./src",
     "declarationDir": "./dist",
     "outDir": "./dist",
     "skipLibCheck": true,

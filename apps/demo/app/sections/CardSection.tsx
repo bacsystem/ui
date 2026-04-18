@@ -2,6 +2,7 @@
 
 import { Card } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { cardPropRows } from '../../components/propTables'
 
 /**
  * Renders a demo section showcasing Card component variants and sizes.
@@ -11,7 +12,7 @@ import { DemoSection } from '../../components/DemoSection'
 export function CardSection() {
   return (
     <div id="card">
-      <DemoSection title="Card" tag="Component" description="4 variants × 3 sizes" code={`
+      <DemoSection title="Card" tag="Component" description="4 variants × 3 sizes" props={cardPropRows} code={`
 import { Card } from '@bacsystem/ui'
 
 // variant: 'default' | 'elevated' | 'outlined' | 'tinted'

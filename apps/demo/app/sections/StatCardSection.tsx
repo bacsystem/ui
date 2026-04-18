@@ -2,6 +2,7 @@
 
 import { StatCard } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { statCardPropRows } from '../../components/propTables'
 
 const cards = [
   { title: 'Ingresos', value: 'S/ 48,200', trend: 'up', trendValue: '+12.5%', color: 'blue' },
@@ -19,7 +20,7 @@ const cards = [
 export function StatCardSection() {
   return (
     <div id="statcard">
-      <DemoSection title="StatCard" tag="Component" description="5 colores × 3 estilos: soft, filled y outline" code={`
+      <DemoSection title="StatCard" tag="Component" description="5 colores × 3 estilos: soft, filled y outline" props={statCardPropRows} code={`
 import { StatCard } from '@bacsystem/ui'
 
 // color: 'blue' | 'teal' | 'amber' | 'green' | 'purple'

@@ -3,6 +3,7 @@
 import { Tabs, Badge, StatCard } from '@bacsystem/ui'
 import { Package, Pencil, Image, Clock, Boxes, Tag } from 'lucide-react'
 import { DemoSection } from '../../components/DemoSection'
+import { tabsPropRows } from '../../components/propTables'
 
 const resumenContent = (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>
@@ -111,7 +112,7 @@ const promocionesContent = (
 export function TabsSection() {
   return (
     <div id="tabs">
-      <DemoSection title="Tabs" tag="Component" description="Pill container with icon support — controlled and uncontrolled" code={`
+      <DemoSection title="Tabs" tag="Component" description="Pill container with icon support — controlled and uncontrolled" props={tabsPropRows} code={`
 import { Tabs } from '@bacsystem/ui'
 import { Package, Pencil } from 'lucide-react'
 

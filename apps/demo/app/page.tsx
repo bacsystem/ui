@@ -10,6 +10,10 @@ import { ModalSection } from './sections/ModalSection'
 import { DataTableSection } from './sections/DataTableSection'
 import { StatCardSection } from './sections/StatCardSection'
 import { TabsSection } from './sections/TabsSection'
+import { TooltipSection } from './sections/TooltipSection'
+import { SkeletonSection } from './sections/SkeletonSection'
+import { SelectSection } from './sections/SelectSection'
+import { BreadcrumbSection } from './sections/BreadcrumbSection'
 import { HooksSection } from './sections/HooksSection'
 
 /**
@@ -32,6 +36,10 @@ export default function Home() {
       <DataTableSection />
       <StatCardSection />
       <TabsSection />
+      <TooltipSection />
+      <SkeletonSection />
+      <SelectSection />
+      <BreadcrumbSection />
       <HooksSection />
     </>
   )

@@ -32,6 +32,7 @@ describe('Home page', () => {
       'Colors',   // TokensSection sub-section
       'Button',
       'Badge',
+      'Input',
       'Card',
       'Alert',
       'Avatar',
@@ -40,6 +41,10 @@ describe('Home page', () => {
       'DataTable',
       'StatCard',
       'Tabs',
+      'Tooltip',
+      'Skeleton',
+      'Select',
+      'Breadcrumb',
       'Hooks',
     ]
     const headings = screen.getAllByRole('heading').map((h) => h.textContent)

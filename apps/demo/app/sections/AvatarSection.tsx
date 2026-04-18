@@ -2,6 +2,7 @@
 
 import { Avatar } from '@bacsystem/ui'
 import { DemoSection } from '../../components/DemoSection'
+import { avatarPropRows } from '../../components/propTables'
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 
@@ -15,7 +16,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
 export function AvatarSection() {
   return (
     <div id="avatar">
-      <DemoSection title="Avatar" tag="Component" description="5 tamaños × 3 estilos: soft, filled y outline" code={`
+      <DemoSection title="Avatar" tag="Component" description="5 tamaños × 3 estilos: soft, filled y outline" props={avatarPropRows} code={`
 import { Avatar } from '@bacsystem/ui'
 
 // Con iniciales
@@ -37,7 +38,7 @@ import { Avatar } from '@bacsystem/ui'
 
           <div>
             <p className="demo-label">Soft</p>
-            <div style={{ display: 'flex', gap: 'var(--sp-4)', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-4)', alignItems: 'center' }}>
               {sizes.map((s) => <Avatar key={s} initials="AB" size={s} />)}
               <Avatar src="https://i.pravatar.cc/150?img=3" alt="Usuario" size="md" />
               <Avatar size="md" />
@@ -46,7 +47,7 @@ import { Avatar } from '@bacsystem/ui'
 
           <div>
             <p className="demo-label">Filled</p>
-            <div style={{ display: 'flex', gap: 'var(--sp-4)', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-4)', alignItems: 'center' }}>
               {sizes.map((s) => <Avatar key={s} initials="AB" size={s} appearance="filled" />)}
               <Avatar src="https://i.pravatar.cc/150?img=5" alt="Usuario" size="md" appearance="filled" />
               <Avatar size="md" appearance="filled" />
@@ -55,7 +56,7 @@ import { Avatar } from '@bacsystem/ui'
 
           <div>
             <p className="demo-label">Outline</p>
-            <div style={{ display: 'flex', gap: 'var(--sp-4)', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--sp-4)', alignItems: 'center' }}>
               {sizes.map((s) => <Avatar key={s} initials="AB" size={s} appearance="outline" />)}
               <Avatar src="https://i.pravatar.cc/150?img=7" alt="Usuario" size="md" appearance="outline" />
               <Avatar size="md" appearance="outline" />
