@@ -1,8 +1,8 @@
 export const typography = {
   fonts: {
     display: 'Plus Jakarta Sans, sans-serif',
-    body: 'Inter, sans-serif',
-    mono: 'JetBrains Mono, monospace',
+    body: 'Plus Jakarta Sans, sans-serif',
+    mono: 'Plus Jakarta Sans, sans-serif',
   },
   sizes: {
     xs: '0.75rem',

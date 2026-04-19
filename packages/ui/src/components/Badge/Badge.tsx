@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react'
+import { cn } from '../../lib/cn'
 
-export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'
+export type BadgeModernVariant = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'
+export type BadgeLegacyVariant = 'secondary' | 'outline' | 'destructive' | 'gradient' | 'premium'
+export type BadgeVariant = BadgeModernVariant | BadgeLegacyVariant
 export type BadgeAppearance = 'soft' | 'filled' | 'outline'
 
 export interface BadgeProps {
@@ -10,6 +13,39 @@ export interface BadgeProps {
   readonly outline?: boolean
   readonly className?: string
   readonly children: ReactNode
+}
+
+interface ResolvedBadgeStyle {
+  readonly variant: BadgeModernVariant
+  readonly appearance: BadgeAppearance
+  readonly extraClassName?: string
+}
+
+function resolveBadgeStyle(variant: BadgeVariant, appearance?: BadgeAppearance, outline = false): ResolvedBadgeStyle {
+  if (variant === 'secondary') {
+    return { variant: 'default', appearance: appearance ?? (outline ? 'outline' : 'soft') }
+  }
+
+  if (variant === 'outline') {
+    return { variant: 'default', appearance: appearance ?? 'outline' }
+  }
+
+  if (variant === 'destructive') {
+    return { variant: 'danger', appearance: appearance ?? (outline ? 'outline' : 'soft') }
+  }
+
+  if (variant === 'gradient') {
+    return { variant: 'primary', appearance: appearance ?? 'filled', extraClassName: 'bac-badge--gradient' }
+  }
+
+  if (variant === 'premium') {
+    return { variant: 'warning', appearance: appearance ?? 'filled', extraClassName: 'bac-badge--premium' }
+  }
+
+  return {
+    variant,
+    appearance: appearance ?? (outline ? 'outline' : 'soft'),
+  }
 }
 
 /**
@@ -29,15 +65,16 @@ export interface BadgeProps {
 export function Badge({
   variant = 'default',
   appearance: appearanceProp,
-  outline = false, // NOSONAR: intentionally handling the deprecated prop for backward compat
+  outline: outlineProp = false,
   className = '',
   children,
 }: Readonly<BadgeProps>) {
-  const resolved = appearanceProp ?? (outline ? 'outline' : 'soft')
-  const appearanceClass = resolved === 'soft' ? '' : ` bac-badge--${resolved}`
-  const extraClass = className ? ` ${className}` : ''
+  const resolvedStyle = resolveBadgeStyle(variant, appearanceProp, outlineProp)
+  const appearanceClass = resolvedStyle.appearance === 'soft' ? '' : `bac-badge--${resolvedStyle.appearance}`
+  const badgeClassName = cn('bac-badge', `bac-badge--${resolvedStyle.variant}`, appearanceClass, resolvedStyle.extraClassName, className)
+
   return (
-    <span className={`bac-badge bac-badge--${variant}${appearanceClass}${extraClass}`}>
+    <span className={badgeClassName}>
       {children}
     </span>
   )

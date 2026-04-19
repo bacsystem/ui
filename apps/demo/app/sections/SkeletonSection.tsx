@@ -79,7 +79,7 @@ import { Skeleton } from '@bacsystem/ui'
               </div>
             ) : (
               <div style={{ display: 'flex', gap: 'var(--sp-3)', alignItems: 'center' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--color-primary-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: 'var(--color-primary-700)' }}>JD</div>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--demo-accent-soft)', border: '1px solid var(--demo-accent-soft-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: 'var(--demo-accent-strong)' }}>JD</div>
                 <div>
                   <p style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }}>Juan Díaz</p>
                   <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)' }}>juan@empresa.com</p>
@@ -93,7 +93,7 @@ import { Skeleton } from '@bacsystem/ui'
             {loading ? (
               <Skeleton variant="rect" width="100%" height={120} />
             ) : (
-              <div style={{ width: '100%', height: 120, background: 'var(--color-primary-50)', borderRadius: 'var(--radius-base)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary-700)', fontWeight: 600 }}>
+              <div style={{ width: '100%', height: 120, background: 'var(--demo-surface-muted)', border: '1px solid var(--demo-accent-soft-border)', borderRadius: 'var(--radius-base)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--demo-accent-strong)', fontWeight: 600 }}>
                 Imagen cargada
               </div>
             )}

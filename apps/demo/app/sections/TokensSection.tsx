@@ -35,8 +35,8 @@ const semanticColors = [
 
 const fontFamilies = [
   { token: '--font-display', family: 'var(--font-display)', name: 'Plus Jakarta Sans', usage: 'Títulos y headings' },
-  { token: '--font-body',    family: 'var(--font-body)',    name: 'Inter',             usage: 'Texto corrido y labels' },
-  { token: '--font-mono',    family: 'var(--font-mono)',    name: 'JetBrains Mono',    usage: 'Código y datos' },
+  { token: '--font-body',    family: 'var(--font-body)',    name: 'Plus Jakarta Sans', usage: 'Texto corrido y labels' },
+  { token: '--font-mono',    family: 'var(--font-mono)',    name: 'Plus Jakarta Sans', usage: 'Etiquetas técnicas y datos' },
 ]
 const typeSizes = [
   { name: 'xs',   px: '12px', sample: 'Caption, etiquetas pequeñas' },
@@ -216,7 +216,7 @@ function TypographySection() {
                   borderBottom: '1px solid var(--color-border)',
                 }}
               >
-                <code style={{ ...mono, color: 'var(--color-primary-700)', width: 120, flexShrink: 0 }}>{token}</code>
+                <code style={{ ...mono, color: 'var(--demo-accent-strong)', width: 120, flexShrink: 0 }}>{token}</code>
                 <span style={{ fontFamily: family, fontSize: 'var(--text-xl)', fontWeight: 600, color: 'var(--color-text-primary)', flex: 1 }}>
                   {name}
                 </span>
@@ -243,7 +243,7 @@ function TypographySection() {
                 }}
               >
                 <div style={{ width: 64, flexShrink: 0 }}>
-                  <div style={{ ...mono, color: 'var(--color-primary-700)', fontWeight: 600 }}>{name}</div>
+                  <div style={{ ...mono, color: 'var(--demo-accent-strong)', fontWeight: 600 }}>{name}</div>
                   <div style={{ ...mono, color: 'var(--color-text-secondary)' }}>{px}</div>
                 </div>
                 <span
@@ -287,7 +287,7 @@ function SpacingRadiusSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
             {spacingTokens.map(({ n, px }) => (
               <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-3)', height: 28 }}>
-                <code style={{ ...mono, color: 'var(--color-primary-700)', width: 40, flexShrink: 0 }}>sp-{n}</code>
+                <code style={{ ...mono, color: 'var(--demo-accent-strong)', width: 40, flexShrink: 0 }}>sp-{n}</code>
                 <div
                   style={{
                     height: 20,
@@ -314,12 +314,12 @@ function SpacingRadiusSection() {
                   style={{
                     width: 56,
                     height: 56,
-                    backgroundColor: 'var(--color-primary-100)',
-                    border: '2px solid var(--color-primary-400)',
+                    backgroundColor: 'var(--demo-accent-soft)',
+                    border: '2px solid var(--demo-accent-soft-border)',
                     borderRadius: `var(--radius-${name})`,
                   }}
                 />
-                <div style={{ ...mono, color: 'var(--color-primary-700)', fontWeight: 600, marginTop: 6 }}>{name}</div>
+                <div style={{ ...mono, color: 'var(--demo-accent-strong)', fontWeight: 600, marginTop: 6 }}>{name}</div>
                 <div style={{ ...mono, color: 'var(--color-text-secondary)' }}>{px}</div>
               </div>
             ))}
@@ -348,12 +348,12 @@ function ShadowsSection() {
                 width: 96,
                 height: 96,
                 backgroundColor: 'var(--color-bg-card)',
-                border: '1px solid var(--color-border)',
+                border: '1px solid var(--demo-border-strong)',
                 borderRadius: 'var(--radius-md)',
                 boxShadow: `var(--shadow-${s})`,
               }}
             />
-            <code style={{ ...mono, color: 'var(--color-primary-700)', fontWeight: 600, display: 'block', marginTop: 10 }}>
+            <code style={{ ...mono, color: 'var(--demo-accent-strong)', fontWeight: 600, display: 'block', marginTop: 10 }}>
               shadow-{s}
             </code>
           </div>

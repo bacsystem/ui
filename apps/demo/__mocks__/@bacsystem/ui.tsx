@@ -7,7 +7,8 @@ const mockToggleTheme = vi.fn()
 const mockSetTheme = vi.fn()
 
 export const useTheme = vi.fn(() => ({
-  theme: 'light' as 'light' | 'dark',
+  theme: 'light' as 'light' | 'dark' | 'system',
+  resolvedTheme: 'light' as 'light' | 'dark',
   setTheme: mockSetTheme,
   toggleTheme: mockToggleTheme,
 }))
@@ -19,13 +20,30 @@ export const useBreakpoint = vi.fn(() => ({
   isDesktop: false,
 }))
 
+function renderMockIcon(icon: unknown) {
+  if (!icon) {
+    return null
+  }
+
+  if (React.isValidElement(icon)) {
+    return icon
+  }
+
+  if (typeof icon === 'function') {
+    const IconComponent = icon as React.ComponentType<{ size?: number }>
+    return <IconComponent size={16} />
+  }
+
+  return null
+}
+
 // ── Components ─────────────────────────────────────────────────────────────
 
 export const Button = vi.fn(({ children, onClick, variant, size, loading, disabled, iconLeft: IconLeft, iconRight: IconRight, ...rest }: any) => (
   <button onClick={onClick} disabled={disabled || loading} data-variant={variant} data-size={size} data-loading={loading} {...rest}>
-    {IconLeft && <IconLeft size={16} />}
+    {renderMockIcon(IconLeft)}
     {children}
-    {IconRight && <IconRight size={16} />}
+    {renderMockIcon(IconRight)}
   </button>
 ))
 
@@ -44,6 +62,23 @@ export const Input = vi.fn(({ label, placeholder, error, success, hint, disabled
     {error && <span data-error>{error}</span>}
     {success && <span data-success>{success}</span>}
     {hint && <span data-hint>{hint}</span>}
+  </div>
+))
+
+export const Label = vi.fn(({ children, required, ...rest }: any) => (
+  <label {...rest}>
+    {children}
+    {required ? <span aria-hidden="true">*</span> : null}
+  </label>
+))
+
+export const Spinner = vi.fn(({ size }: any) => (
+  <span aria-label="loading" data-size={size} />
+))
+
+export const ProgressBar = vi.fn(({ value = 0, label, showLabel }: any) => (
+  <div role="progressbar" aria-label={label} aria-valuenow={value}>
+    {showLabel ? <span>{label} {value}%</span> : null}
   </div>
 ))
 
@@ -219,6 +254,55 @@ export const Breadcrumb = vi.fn(({ items, separator = '/' }: any) => (
     </ol>
   </nav>
 ))
+
+export const Table = vi.fn(({ children, ...rest }: any) => <div data-testid="table" {...rest}>{children}</div>)
+export const TableHeader = vi.fn(({ children }: any) => <div data-testid="table-header">{children}</div>)
+export const TableBody = vi.fn(({ children }: any) => <div data-testid="table-body">{children}</div>)
+export const TableFooter = vi.fn(({ children }: any) => <div data-testid="table-footer">{children}</div>)
+export const TableRow = vi.fn(({ children }: any) => <div data-testid="table-row">{children}</div>)
+export const TableHead = vi.fn(({ children }: any) => <span data-testid="table-head">{children}</span>)
+export const TableCell = vi.fn(({ children, ...rest }: any) => <span data-testid="table-cell" {...rest}>{children}</span>)
+export const TableCaption = vi.fn(({ children }: any) => <div data-testid="table-caption">{children}</div>)
+
+export const EmptyState = vi.fn(({ title, description, actions }: any) => (
+  <div data-testid="empty-state">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div>{actions}</div>
+  </div>
+))
+
+export const Stepper = vi.fn(({ children, orientation }: any) => (
+  <ol data-testid="stepper" data-orientation={orientation ?? 'horizontal'}>{children}</ol>
+))
+
+export const StepperStep = vi.fn(({ label, description, status }: any) => (
+  <li data-testid="stepper-step" data-status={status}>
+    <span>{label}</span>
+    {description ? <span>{description}</span> : null}
+  </li>
+))
+
+export const Header = vi.fn(({ title, subtitle, actions }: any) => (
+  <div data-testid="header">
+    <h3>{title}</h3>
+    {subtitle ? <p>{subtitle}</p> : null}
+    <div>{actions}</div>
+  </div>
+))
+
+export const Sidebar = vi.fn(({ children, ...rest }: any) => <aside data-testid="sidebar" {...rest}>{children}</aside>)
+export const SidebarHeader = vi.fn(({ children }: any) => <div data-testid="sidebar-header">{children}</div>)
+export const SidebarContent = vi.fn(({ children }: any) => <div data-testid="sidebar-content">{children}</div>)
+export const SidebarFooter = vi.fn(({ children }: any) => <div data-testid="sidebar-footer">{children}</div>)
+export const SidebarNav = vi.fn(({ children }: any) => <nav data-testid="sidebar-nav">{children}</nav>)
+export const SidebarNavGroup = vi.fn(({ children, label }: any) => (
+  <div data-testid="sidebar-nav-group">
+    <span>{label}</span>
+    {children}
+  </div>
+))
+export const SidebarNavItem = vi.fn(({ children, href, active }: any) => <a href={href} data-active={active}>{children}</a>)
 
 // Types
 export type DataTableColumn<T> = {

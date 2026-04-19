@@ -13,6 +13,7 @@ describe('HooksSection', () => {
     vi.clearAllMocks()
     vi.mocked(useTheme).mockReturnValue({
       theme: 'light',
+      resolvedTheme: 'light',
       setTheme: mockSetTheme,
       toggleTheme: mockToggleTheme,
     })
@@ -41,17 +42,32 @@ describe('HooksSection', () => {
 
   it('displays the current theme value', () => {
     render(<HooksSection />)
-    expect(screen.getByText(/"light"/)).toBeInTheDocument()
+    const themeRow = screen.getByText((_, element) => element?.textContent === 'theme: "light"')
+    expect(themeRow).toBeInTheDocument()
   })
 
   it('displays theme as "dark" when useTheme returns dark', () => {
     vi.mocked(useTheme).mockReturnValue({
       theme: 'dark',
+      resolvedTheme: 'dark',
       setTheme: mockSetTheme,
       toggleTheme: mockToggleTheme,
     })
     render(<HooksSection />)
-    expect(screen.getByText(/"dark"/)).toBeInTheDocument()
+    const themeRow = screen.getByText((_, element) => element?.textContent === 'theme: "dark"')
+    expect(themeRow).toBeInTheDocument()
+  })
+
+  it('displays the resolved theme value', () => {
+    vi.mocked(useTheme).mockReturnValue({
+      theme: 'system',
+      resolvedTheme: 'dark',
+      setTheme: mockSetTheme,
+      toggleTheme: mockToggleTheme,
+    })
+    render(<HooksSection />)
+    expect(screen.getAllByText(/resolvedTheme:/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/"dark"/).length).toBeGreaterThan(0)
   })
 
   it('calls setTheme("light") when setTheme light button is clicked', () => {
@@ -66,9 +82,15 @@ describe('HooksSection', () => {
     expect(mockSetTheme).toHaveBeenCalledWith('dark')
   })
 
+  it('calls setTheme("system") when system button is clicked', () => {
+    render(<HooksSection />)
+    fireEvent.click(screen.getByText("setTheme('system')"))
+    expect(mockSetTheme).toHaveBeenCalledWith('system')
+  })
+
   it('calls toggleTheme when the toggle button is clicked', () => {
     render(<HooksSection />)
-    fireEvent.click(screen.getByText('toggleTheme()'))
+    fireEvent.click(screen.getAllByText('toggleTheme()')[0])
     expect(mockToggleTheme).toHaveBeenCalledTimes(1)
   })
 
@@ -79,19 +101,19 @@ describe('HooksSection', () => {
 
   it('displays isMobile as "false"', () => {
     render(<HooksSection />)
-    const text = screen.getByText('isMobile:', { exact: false })
+    const text = screen.getAllByText('isMobile:', { exact: false })[0]
     expect(text.parentElement?.textContent).toContain('false')
   })
 
   it('displays isTablet as "true" when isTablet is true', () => {
     render(<HooksSection />)
-    const text = screen.getByText('isTablet:', { exact: false })
+    const text = screen.getAllByText('isTablet:', { exact: false })[0]
     expect(text.parentElement?.textContent).toContain('true')
   })
 
   it('displays isDesktop as "false"', () => {
     render(<HooksSection />)
-    const text = screen.getByText('isDesktop:', { exact: false })
+    const text = screen.getAllByText('isDesktop:', { exact: false })[0]
     expect(text.parentElement?.textContent).toContain('false')
   })
 
@@ -110,5 +132,11 @@ describe('HooksSection', () => {
     render(<HooksSection />)
     expect(screen.getByText('useTheme()')).toBeInTheDocument()
     expect(screen.getByText('useBreakpoint()')).toBeInTheDocument()
+  })
+
+  it('renders the dynamic motion showcase for hooks', () => {
+    render(<HooksSection />)
+    expect(screen.getByText('Dynamic Motion')).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Hooks motion playground' })).toBeInTheDocument()
   })
 })

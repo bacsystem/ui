@@ -33,6 +33,24 @@ export const inputPropRows: readonly PropRow[] = [
   { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
 ]
 
+export const labelPropRows: readonly PropRow[] = [
+  { prop: 'htmlFor', type: 'string', default: '—', description: 'Asocia el label con el control mediante su id.' },
+  { prop: 'required', type: 'boolean', default: 'false', description: 'Muestra el indicador visual de campo obligatorio.' },
+  { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
+]
+
+export const spinnerPropRows: readonly PropRow[] = [
+  { prop: 'size', type: "'sm' | 'md' | 'lg'", default: 'md', description: 'Define el diámetro del spinner.' },
+  { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
+]
+
+export const progressBarPropRows: readonly PropRow[] = [
+  { prop: 'value', type: 'number', default: '—', description: 'Valor del progreso. Se limita automáticamente entre 0 y 100.' },
+  { prop: 'label', type: 'string', default: '—', description: 'Texto visible y accesible del progreso.' },
+  { prop: 'showLabel', type: 'boolean', default: 'false', description: 'Muestra el porcentaje actual junto al label.' },
+  { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
+]
+
 export const cardPropRows: readonly PropRow[] = [
   { prop: 'variant', type: "'default' | 'elevated' | 'outlined' | 'tinted'", default: 'default', description: 'Variante visual de la card.' },
   { prop: 'size', type: "'sm' | 'md' | 'lg'", default: 'md', description: 'Espaciado interno del contenedor.' },
@@ -85,6 +103,42 @@ export const dataTablePropRows: readonly PropRow[] = [
   { prop: 'emptyText', type: 'string', default: 'No hay datos disponibles', description: 'Mensaje del estado vacío.' },
   { prop: 'getRowKey', type: '(row: T, index: number) => string | number', default: 'index', description: 'Genera una key estable por fila.' },
   { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales para el contenedor.' },
+]
+
+export const tablePropRows: readonly PropRow[] = [
+  { prop: 'className', type: 'string', default: '—', description: 'Se aplica al elemento específico: tabla, fila, celda o caption.' },
+  { prop: 'children', type: 'ReactNode', default: '—', description: 'Permite componer Table, TableHeader, TableBody, TableRow, TableHead y TableCell libremente.' },
+]
+
+export const emptyStatePropRows: readonly PropRow[] = [
+  { prop: 'title', type: 'string', default: '—', description: 'Título principal del estado vacío.' },
+  { prop: 'description', type: 'string', default: '—', description: 'Texto secundario que explica el siguiente paso.' },
+  { prop: 'icon', type: 'LucideIcon | ReactNode', default: '—', description: 'Ícono o nodo visual opcional.' },
+  { prop: 'actions', type: 'ReactNode', default: '—', description: 'Área para botones o enlaces de acción.' },
+  { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
+]
+
+export const stepperPropRows: readonly PropRow[] = [
+  { prop: 'orientation', type: "'horizontal' | 'vertical'", default: 'horizontal', description: 'Distribución de los pasos.' },
+  { prop: 'status', type: "'pending' | 'current' | 'completed' | 'error'", default: 'pending', description: 'Estado visual de cada StepperStep.' },
+  { prop: 'label', type: 'string', default: '—', description: 'Etiqueta principal del paso.' },
+  { prop: 'description', type: 'string', default: '—', description: 'Descripción secundaria del paso.' },
+]
+
+export const headerPropRows: readonly PropRow[] = [
+  { prop: 'title', type: 'string | ReactNode', default: '—', description: 'Título principal del bloque.' },
+  { prop: 'subtitle', type: 'string | ReactNode', default: '—', description: 'Texto secundario bajo el título.' },
+  { prop: 'actions', type: 'ReactNode', default: '—', description: 'Zona de acciones alineada a la derecha.' },
+  { prop: 'className', type: 'string', default: '—', description: 'Clases CSS adicionales.' },
+]
+
+export const sidebarPropRows: readonly PropRow[] = [
+  { prop: 'label', type: 'string', default: 'Sidebar navigation', description: 'Etiqueta accesible del contenedor SidebarNav.' },
+  { prop: 'icon', type: 'LucideIcon | ReactNode', default: '—', description: 'Ícono opcional para SidebarNavItem o SidebarNavGroup.' },
+  { prop: 'active', type: 'boolean', default: 'false', description: 'Marca visualmente un item como activo.' },
+  { prop: 'disabled', type: 'boolean', default: 'false', description: 'Deshabilita interacción en un item.' },
+  { prop: 'defaultOpen', type: 'boolean', default: 'true', description: 'Estado inicial de apertura en SidebarNavGroup.' },
+  { prop: 'collapsible', type: 'boolean', default: 'true', description: 'Activa o desactiva el colapso del grupo.' },
 ]
 
 export const statCardPropRows: readonly PropRow[] = [

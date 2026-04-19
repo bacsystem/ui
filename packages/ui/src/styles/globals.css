@@ -27,20 +27,29 @@
   --color-success-base: #10B981;
   --color-success-dark: #065F46;
   --color-success-text: #065F46;
+  --color-success-surface: #D1FAE5;
+  --color-success-border: #10B981;
 
   --color-warning-light: #FEF3C7;
   --color-warning-base: #F59E0B;
   --color-warning-dark: #92400E;
   --color-warning-text: #92400E;
+  --color-warning-surface: #FEF3C7;
+  --color-warning-border: #F59E0B;
 
   --color-error-light: #FEE2E2;
   --color-error-base: #EF4444;
   --color-error-dark: #991B1B;
   --color-error-text: #991B1B;
+  --color-error-surface: #FEE2E2;
+  --color-error-border: #EF4444;
 
   --color-info-light: #DBEAFE;
   --color-info-base: #3B82F6;
   --color-info-dark: #1E3A8A;
+  --color-info-text: #1E3A8A;
+  --color-info-surface: #DBEAFE;
+  --color-info-border: #3B82F6;
 
   /* ── Colors: Neutral ──────────────────────────────────────── */
   --color-neutral-0: #FFFFFF;
@@ -65,9 +74,9 @@
   --color-text-disabled: var(--color-neutral-400);
 
   /* ── Typography ───────────────────────────────────────────── */
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
+  --font-body: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
+  --font-mono: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -147,6 +156,17 @@
   --color-success-text: #6EE7B7;
   --color-warning-text: #FCD34D;
   --color-error-text:   #FCA5A5;
+  --color-info-text:    #BFDBFE;
+
+  /* Semantic surfaces — darker, more legible backgrounds in dark mode */
+  --color-success-surface: rgba(6, 95, 70, 0.4);
+  --color-success-border: rgba(52, 211, 153, 0.6);
+  --color-warning-surface: rgba(146, 64, 14, 0.42);
+  --color-warning-border: rgba(251, 191, 36, 0.58);
+  --color-error-surface: rgba(127, 29, 29, 0.42);
+  --color-error-border: rgba(252, 165, 165, 0.52);
+  --color-info-surface: rgba(30, 58, 138, 0.4);
+  --color-info-border: rgba(96, 165, 250, 0.58);
 
   /* Shadows — stronger on dark backgrounds */
   --shadow-sm:   0 1px 2px 0 rgb(0 0 0 / 0.4);

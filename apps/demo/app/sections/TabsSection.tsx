@@ -30,7 +30,7 @@ const editarContent = (
     ].map(({ label, value }) => (
       <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-1)' }}>
         <label style={{ fontSize: 'var(--text-xs)', fontWeight: 'var(--font-weight-medium)', color: 'var(--color-text-secondary)' }}>{label}</label>
-        <div style={{ padding: 'var(--sp-2) var(--sp-3)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-base)', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)', backgroundColor: 'var(--color-neutral-50)' }}>
+        <div style={{ padding: 'var(--sp-2) var(--sp-3)', border: '1px solid var(--demo-border-strong)', borderRadius: 'var(--radius-base)', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)', backgroundColor: 'var(--demo-surface-soft)' }}>
           {value}
         </div>
       </div>
@@ -41,11 +41,11 @@ const editarContent = (
 const imagenesContent = (
   <div style={{ display: 'flex', gap: 'var(--sp-3)', flexWrap: 'wrap' }}>
     {[1, 2, 3, 4].map((slotNum) => (
-      <div key={slotNum} style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-primary-50)', border: '2px dashed var(--color-primary-200)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Image size={28} style={{ color: 'var(--color-primary-300)' }} aria-hidden />
+      <div key={slotNum} style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--demo-surface-muted)', border: '2px dashed var(--demo-accent-soft-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Image size={28} style={{ color: 'var(--demo-icon-soft)' }} aria-hidden />
       </div>
     ))}
-    <div style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-neutral-50)', border: '2px dashed var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 'var(--text-2xl)', color: 'var(--color-neutral-400)' }}>
+    <div style={{ width: 100, height: 100, borderRadius: 'var(--radius-md)', backgroundColor: 'var(--demo-surface-soft)', border: '2px dashed var(--demo-border-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 'var(--text-2xl)', color: 'var(--demo-muted-copy)' }}>
       +
     </div>
   </div>

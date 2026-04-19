@@ -9,6 +9,7 @@ describe('Home page', () => {
   beforeEach(() => {
     vi.mocked(useTheme).mockReturnValue({
       theme: 'light',
+      resolvedTheme: 'light',
       setTheme: vi.fn(),
       toggleTheme: vi.fn(),
     })

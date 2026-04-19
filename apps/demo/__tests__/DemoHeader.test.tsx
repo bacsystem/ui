@@ -6,15 +6,15 @@ import { useTheme, useBreakpoint } from '@bacsystem/ui'
 vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
 
 describe('DemoHeader', () => {
-  const mockToggleTheme = vi.fn()
   const mockSetTheme = vi.fn()
 
   beforeEach(() => {
     vi.clearAllMocks()
     vi.mocked(useTheme).mockReturnValue({
       theme: 'light',
+      resolvedTheme: 'light',
       setTheme: mockSetTheme,
-      toggleTheme: mockToggleTheme,
+      toggleTheme: vi.fn(),
     })
     vi.mocked(useBreakpoint).mockReturnValue({
       current: 'md',
@@ -31,30 +31,33 @@ describe('DemoHeader', () => {
 
   it('displays the current breakpoint', () => {
     render(<DemoHeader />)
-    expect(screen.getByText(/breakpoint: md/i)).toBeInTheDocument()
+    expect(screen.getByText('viewport')).toBeInTheDocument()
+    expect(screen.getByText('md')).toBeInTheDocument()
   })
 
-  it('shows "Dark mode" text and correct aria-label when theme is light', () => {
+  it('renders the three theme options', () => {
     render(<DemoHeader />)
-    expect(screen.getByText('Dark mode')).toBeInTheDocument()
-    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activate dark mode')
+    expect(screen.getByRole('button', { name: 'Aplicar tema claro' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Aplicar tema oscuro' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Aplicar tema sistema' })).toBeInTheDocument()
   })
 
-  it('shows "Light mode" text and correct aria-label when theme is dark', () => {
+  it('shows the resolved active theme', () => {
     vi.mocked(useTheme).mockReturnValue({
-      theme: 'dark',
+      theme: 'system',
+      resolvedTheme: 'dark',
       setTheme: mockSetTheme,
-      toggleTheme: mockToggleTheme,
+      toggleTheme: vi.fn(),
     })
     render(<DemoHeader />)
-    expect(screen.getByText('Light mode')).toBeInTheDocument()
-    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Activate light mode')
+    expect(screen.getByText('activo')).toBeInTheDocument()
+    expect(screen.getByText('dark')).toBeInTheDocument()
   })
 
-  it('calls toggleTheme when the button is clicked', () => {
+  it('calls setTheme when a theme option is clicked', () => {
     render(<DemoHeader />)
-    fireEvent.click(screen.getByRole('button'))
-    expect(mockToggleTheme).toHaveBeenCalledTimes(1)
+    fireEvent.click(screen.getByRole('button', { name: 'Aplicar tema oscuro' }))
+    expect(mockSetTheme).toHaveBeenCalledWith('dark')
   })
 
   it('updates the displayed breakpoint when useBreakpoint returns a different value', () => {
@@ -65,7 +68,7 @@ describe('DemoHeader', () => {
       isDesktop: true,
     })
     render(<DemoHeader />)
-    expect(screen.getByText(/breakpoint: xl/i)).toBeInTheDocument()
+    expect(screen.getByText('xl')).toBeInTheDocument()
   })
 
   it('displays "sm" breakpoint correctly', () => {
@@ -76,6 +79,6 @@ describe('DemoHeader', () => {
       isDesktop: false,
     })
     render(<DemoHeader />)
-    expect(screen.getByText(/breakpoint: sm/i)).toBeInTheDocument()
+    expect(screen.getByText('sm')).toBeInTheDocument()
   })
 })
