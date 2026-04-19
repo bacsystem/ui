@@ -34,7 +34,7 @@ import { Toggle } from '@bacsystem/ui'
 <Toggle
   label="Controlled"
   checked={checked}
-  onChange={(e) => setChecked(e.target.checked)}
+  onChange={setChecked}
 />
 `}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)' }}>

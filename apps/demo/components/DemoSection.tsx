@@ -4,6 +4,7 @@ import { useId, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Code, ChevronUp, List } from 'lucide-react'
 import { CodeBlock } from './CodeBlock'
+import { DynamicComponentShowcase, hasDynamicShowcase } from './DynamicComponentShowcase'
 
 export interface PropRow {
   readonly prop: string
@@ -27,13 +28,22 @@ export function DemoSection({ title, description, tag, code, props, children }: 
   const sectionId = useId().replaceAll(':', '')
   const propsPanelId = `demo-props-${sectionId}`
   const codePanelId = `demo-code-${sectionId}`
+  const accentLabel = tag ?? 'component demo'
+  const shouldRenderDynamicShowcase = hasDynamicShowcase({ title, tag })
 
   return (
     <section className="demo-section">
+      <div className="demo-section__ambient" aria-hidden="true" />
       <div className="demo-section__header">
         <div className="demo-section__header-top">
-          {tag && <span className="demo-section__tag">{tag}</span>}
-          <h2 className="demo-section__title">{title}</h2>
+          <div className="demo-section__title-group">
+            <span className="demo-section__eyebrow">{accentLabel}</span>
+            <div className="demo-section__title-row">
+              {tag && <span className="demo-section__tag">{tag}</span>}
+              <h2 className="demo-section__title">{title}</h2>
+            </div>
+            {description && <p className="demo-section__description">{description}</p>}
+          </div>
           {(code || props?.length) && (
             <div className="demo-section__actions">
               {props?.length ? (
@@ -67,9 +77,16 @@ export function DemoSection({ title, description, tag, code, props, children }: 
             </div>
           )}
         </div>
-        {description && <p className="demo-section__description">{description}</p>}
       </div>
-      <div className="demo-section__content">{children}</div>
+      <div className="demo-section__content">
+        {children}
+        {shouldRenderDynamicShowcase && (
+          <div style={{ marginTop: 'var(--sp-8, 32px)' }}>
+            <p className="demo-label">Dynamic Motion</p>
+            <DynamicComponentShowcase title={title} tag={tag} />
+          </div>
+        )}
+      </div>
       {props?.length && showProps && (
         <div id={propsPanelId} className="demo-props-table-wrapper">
           <table className="demo-props-table">

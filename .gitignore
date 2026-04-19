@@ -19,3 +19,4 @@ out/
 *.log
 npm-debug.log*
 *.tsbuildinfo
+apps/demo/.playwright-artifacts/

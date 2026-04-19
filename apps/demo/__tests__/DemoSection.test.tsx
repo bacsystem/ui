@@ -15,7 +15,7 @@ describe('DemoSection', () => {
 
   it('renders the tag when provided', () => {
     render(<DemoSection title="Test" tag="Component"><p>x</p></DemoSection>)
-    expect(screen.getByText('Component')).toBeInTheDocument()
+    expect(document.querySelector('.demo-section__tag')).toHaveTextContent('Component')
   })
 
   it('does not render the tag element when tag prop is omitted', () => {
@@ -56,7 +56,7 @@ describe('DemoSection', () => {
       </DemoSection>
     )
     expect(screen.getByText('All Props')).toBeInTheDocument()
-    expect(screen.getByText('Hook')).toBeInTheDocument()
+    expect(document.querySelector('.demo-section__tag')).toHaveTextContent('Hook')
     expect(screen.getByText('Desc')).toBeInTheDocument()
     expect(screen.getByText('child content')).toBeInTheDocument()
   })

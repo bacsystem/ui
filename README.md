@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:3000` — interactive showcase of 15 components, 2 hooks, and design tokens. The demo is responsive on mobile, includes a collapsible navigation drawer, and every component section includes **"Ver código"** and **"Ver props"** toggles for quick evaluation.
+Opens `http://localhost:3000` — interactive showcase of 23 component sections, 4 hooks/utilities, and design tokens. The demo is responsive on mobile, includes a collapsible navigation drawer, motion-driven playgrounds for components, tokens and hooks, and every section supports **"Ver código"** and **"Ver props"** toggles for quick evaluation.
 
 The demo is also deployed to GitHub Pages on every push to `main`.
 
@@ -144,14 +144,23 @@ function ThemeToggle() {
 | Button | primary, secondary, accent, ghost, danger, success | filled, outline, soft, link | xs, sm, md, lg, xl | ✅ |
 | Badge | default, primary, success, warning, danger, info | soft (default), filled, outline | — | ✅ |
 | Input | default, error, success, disabled | — | sm, md, lg | ✅ |
+| Label | required indicator | — | — | ✅ |
+| Spinner | — | — | sm, md, lg | ✅ |
+| ProgressBar | value, label, meta | — | — | ✅ |
 | Card | default, elevated, outlined, tinted | — | sm, md, lg | ✅ |
+| Table | composable primitives | — | — | ✅ |
 | Alert | info, success, warning, error | soft (default), filled, outline | — | ✅ |
 | Avatar | image, initials | soft (default), filled, outline | xs, sm, md, lg, xl | ✅ |
 | Toggle | checked, unchecked, disabled | — | sm, md, lg | ✅ |
 | Modal | — | — | sm, md, lg | ✅ |
 | DataTable | default, loading, empty | — | — | ✅ |
+| EmptyState | icon, actions, copy | — | — | ✅ |
 | StatCard | blue, teal, amber, green, purple | soft (default), filled, outline | — | ✅ |
-| Tabs | — | — | — | ✅ |
+| Stepper | pending, current, completed, error | — | horizontal, vertical | ✅ |
+| Tabs | composable primitives | — | — | ✅ |
+| DropdownMenu | composable primitives | — | — | ✅ |
+| Header | title, subtitle, actions | — | — | ✅ |
+| Sidebar | shell, nav, collapsible groups | — | — | ✅ |
 | Tooltip | top, bottom, left, right | — | — | ✅ |
 | Skeleton | text, circle, rect | — | — | ✅ |
 | Select | default, error, success, disabled | — | sm, md, lg | ✅ |
@@ -176,12 +185,16 @@ function ThemeToggle() {
 
 - `useTheme()` — theme state + toggle, persists to `localStorage`, SSR-safe
 - `useBreakpoint()` — reactive `sm | md | lg | xl`, SSR-safe
+- `useControllableState()` — patrón controlled/uncontrolled reutilizable
+- `useDisclosure()` — open/close/toggle construido sobre estado controlable
+- `cn()` — utilidad mínima para composición de clases
 
 ## Demo Highlights
 
 - Mobile responsive layout with hamburger sidebar and overlay navigation for screens under `768px`
+- Dynamic motion playgrounds for all component sections plus dedicated treatments for tokens and hooks
 - Props tables for all demoed components via the **"Ver props"** toggle
-- New v1.2.0 sections for `Tooltip`, `Skeleton`, `Select`, and `Breadcrumb`
+- Showcase expanded with `Label`, `Spinner`, `ProgressBar`, `Table`, `EmptyState`, `Stepper`, `Sidebar`, and `Header`
 - Dark mode coverage for all components using design tokens only
 
 ## Package Exports

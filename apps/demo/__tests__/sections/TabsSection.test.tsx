@@ -70,11 +70,11 @@ describe('TabsSection', () => {
 
   it('has a tablist container', () => {
     render(<TabsSection />)
-    expect(screen.getByRole('tablist')).toBeInTheDocument()
+    expect(screen.getAllByRole('tablist').length).toBeGreaterThanOrEqual(1)
   })
 
   it('has a tabpanel container', () => {
     render(<TabsSection />)
-    expect(screen.getByRole('tabpanel')).toBeInTheDocument()
+    expect(screen.getAllByRole('tabpanel').length).toBeGreaterThanOrEqual(1)
   })
 })

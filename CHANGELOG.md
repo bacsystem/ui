@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.2.0 — 2026-04-17
+## v1.2.0 — 2026-04-19
 
 ### New components
 
@@ -8,17 +8,39 @@
 - **Skeleton** — new shimmer placeholder component with `text`, `circle`, and `rect` variants.
 - **Select** — new native `<select>`-based form control aligned visually with `Input`, including `label`, `hint`, `error`, `success`, and `sm | md | lg` sizes.
 - **Breadcrumb** — new semantic navigation component with `<nav aria-label="Breadcrumb">`, linked items, current-page handling, and custom separator support.
+- **Label** — accessible form label primitive with optional required indicator.
+- **Spinner** — lightweight loading indicator with `sm | md | lg` sizes.
+- **ProgressBar** — determinate progress primitive with value clamping, native `<progress>` support, and optional visual meta.
+- **Table** — composable table primitives for static admin and reporting layouts.
+- **EmptyState** — reusable empty-state block with icon and action slots.
+- **Stepper** — horizontal or vertical multi-step indicator with `pending | current | completed | error` states.
+- **Sidebar** — shell and navigation primitives with collapsible groups powered by `useDisclosure`.
+- **Header** — page and section header primitive with title, subtitle, and actions.
+
+### Package API
+
+- **Expanded exports** — `DropdownMenu`, `useControllableState`, `useDisclosure`, and `cn` are now part of the documented public surface alongside the new component groups.
+- **Minor release bump** — all changes are additive; existing APIs remain compatible with prior consumers.
 
 ### Demo improvements
 
 - **Responsive demo layout** — mobile navigation drawer with hamburger trigger, overlay close behavior, Escape handling, and desktop reset behavior for the component showcase.
 - **Props tables** — every demo section now supports a **"Ver props"** toggle showing `Prop`, `Tipo`, `Default`, and `Descripción` in a horizontally scrollable table.
 - **New demo sections** — added showcase sections for `Tooltip`, `Skeleton`, `Select`, and `Breadcrumb` in the demo sidebar and page flow.
+- **Dynamic motion showcases** — every component section now renders a second interactive motion playground.
+- **Foundation motion** — `Tokens` and `Hooks` also receive dedicated dynamic showcases with behavior distinct from component demos.
+- **Centralized motion infrastructure** — button motion was unified into the shared showcase registry instead of a bespoke local implementation.
+- **Richer button feedback** — button icon gestures now differentiate hover, press, and release interactions.
+- **Visual regression stability** — top-level Playwright snapshots were clipped to the intended hero region so page-height growth no longer invalidates the baseline.
 
 ### Validation
 
 - `npm run build` passes for both `@bacsystem/ui` and `@bacsystem/demo`
 - `npm run test -w @bacsystem/demo` passes (`169` tests)
+- `npm run typecheck -w @bacsystem/ui` passes
+- `npm run build` passes for `@bacsystem/ui` and `@bacsystem/demo`
+- `npm test -w @bacsystem/demo` passes (`176` tests)
+- `npm run test:visual -w @bacsystem/demo` passes (`8` passed, `1` skipped)
 
 ## demo v0.2.0 — 2026-03-23
 

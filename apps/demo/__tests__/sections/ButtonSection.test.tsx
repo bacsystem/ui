@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { ButtonSection } from '../../app/sections/ButtonSection'
 
 vi.mock('@bacsystem/ui', async () => await import('@ui-mock'))
@@ -28,6 +28,7 @@ describe('ButtonSection', () => {
     expect(screen.getByText('Link')).toBeInTheDocument()
     expect(screen.getByText('Sizes')).toBeInTheDocument()
     expect(screen.getByText('States & Icons')).toBeInTheDocument()
+    expect(screen.getByText('Dynamic Motion')).toBeInTheDocument()
   })
 
   it('renders Primary buttons in each appearance group', () => {
@@ -86,5 +87,34 @@ describe('ButtonSection', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Ocultar props' }))
     expect(screen.queryByRole('table')).not.toBeInTheDocument()
+  })
+
+  it('updates the motion playground when changing scenario', async () => {
+    render(<ButtonSection />)
+
+    const playground = screen.getByRole('region', { name: 'Button motion playground' })
+    expect(within(playground).getByText('Publicar release')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Soporte' }))
+
+    expect(await within(playground).findByText('Escalar ticket crítico')).toBeInTheDocument()
+    expect(await within(playground).findByText('SLA · 4 min')).toBeInTheDocument()
+  })
+
+  it('tracks the last click interaction inside the motion playground', () => {
+    render(<ButtonSection />)
+
+    const playground = screen.getByRole('region', { name: 'Button motion playground' })
+    fireEvent.mouseEnter(within(playground).getByRole('button', { name: 'Publicar release' }))
+
+    expect(within(playground).getByText('Ultimo gesto: Publicar release · hover')).toBeInTheDocument()
+
+    fireEvent.pointerDown(within(playground).getByRole('button', { name: 'Publicar release' }))
+
+    expect(within(playground).getByText('Ultimo gesto: Publicar release · press')).toBeInTheDocument()
+
+    fireEvent.mouseUp(within(playground).getByRole('button', { name: 'Publicar release' }))
+
+    expect(within(playground).getByText('Ultimo gesto: Publicar release · release')).toBeInTheDocument()
   })
 })

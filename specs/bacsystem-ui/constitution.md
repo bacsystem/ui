@@ -132,8 +132,7 @@ requires a `.npmrc` entry pointing `@bacsystem:registry` to `https://npm.pkg.git
 |---------|-----------|------------------------------------------------------------------------|
 | v1.0.0  | ✅ Released | 11 components + 2 hooks + full token set                             |
 | v1.1.0  | ✅ Released | Appearance system (filled/outline/soft/link), dark mode overhaul, demo interactive code blocks, GitHub Pages deploy, npm public publish |
-| v1.2.0  | 🔄 Next   | Tooltip, Skeleton, Select, Breadcrumb + props tables in demo (FR-023) |
-| v1.3.0  | 📋 Planned | DatePicker, FileUpload, Toast, Sidebar                                |
+| v1.2.0  | ✅ Released | Tooltip, Skeleton, Select, Breadcrumb, Label, Spinner, ProgressBar, Table, EmptyState, Stepper, Sidebar, Header + props tables and dynamic motion showcases in demo |
 | v2.0.0  | 💡 Idea   | Vue 3 support, Storybook docs, Figma token sync                       |
 
 ## Governance
