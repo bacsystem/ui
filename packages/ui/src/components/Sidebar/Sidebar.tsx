@@ -6,8 +6,14 @@ import { ChevronDown } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '../../lib/cn'
 import { useDisclosure } from '../../hooks/useDisclosure'
+import { useControllableState } from '../../hooks/useControllableState'
 
-export interface SidebarProps extends HTMLAttributes<HTMLElement> {}
+export interface SidebarProps extends HTMLAttributes<HTMLElement> {
+  readonly collapsible?: boolean
+  readonly collapsed?: boolean
+  readonly defaultCollapsed?: boolean
+  readonly onCollapsedChange?: (collapsed: boolean) => void
+}
 export interface SidebarHeaderProps extends HTMLAttributes<HTMLDivElement> {}
 export interface SidebarContentProps extends HTMLAttributes<HTMLDivElement> {}
 export interface SidebarFooterProps extends HTMLAttributes<HTMLDivElement> {}
@@ -60,9 +66,26 @@ function renderSidebarIcon(icon: SidebarIcon | undefined): ReactNode {
   })
 }
 
-export const Sidebar = forwardRef<HTMLElement, SidebarProps>(({ className = '', ...props }, ref) => (
-  <aside ref={ref} className={cn('bac-sidebar', className)} {...props} />
-))
+export const Sidebar = forwardRef<HTMLElement, SidebarProps>(({ collapsible = false, collapsed, defaultCollapsed, onCollapsedChange, className = '', ...props }, ref) => {
+  const collapseState = useControllableState<boolean>({
+    value: collapsed,
+    defaultValue: defaultCollapsed ?? false,
+    onChange: onCollapsedChange,
+  })
+
+  return (
+    <aside
+      ref={ref}
+      className={cn(
+        'bac-sidebar',
+        collapsible && 'bac-sidebar--collapsible',
+        collapsible && collapseState.value && 'bac-sidebar--collapsed',
+        className,
+      )}
+      {...props}
+    />
+  )
+})
 
 Sidebar.displayName = 'Sidebar'
 

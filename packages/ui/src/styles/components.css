@@ -1214,6 +1214,32 @@
   background-color: var(--color-neutral-100, #334155);
 }
 
+/* ── ProgressBar variants ── */
+.bac-progress--success .bac-progress__bar {
+  background: var(--color-success-base, #10B981);
+}
+
+.bac-progress--warning .bac-progress__bar {
+  background: var(--color-warning-base, #F59E0B);
+}
+
+.bac-progress--danger .bac-progress__bar {
+  background: var(--color-error-base, #EF4444);
+}
+
+/* ── ProgressBar sizes ── */
+.bac-progress--xs .bac-progress__track {
+  height: 4px;
+}
+
+.bac-progress--sm .bac-progress__track {
+  height: 6px;
+}
+
+.bac-progress--lg .bac-progress__track {
+  height: 16px;
+}
+
 /* ── Button compatibility additions ────────────────────── */
 .bac-btn__label {
   display: inline-flex;
@@ -1717,6 +1743,36 @@
   color: var(--color-text-secondary, #94A3B8);
 }
 
+/* ── Header slots ── */
+.bac-header--slots {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4, 16px);
+}
+
+.bac-header__slot--left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2, 8px);
+  flex-shrink: 0;
+}
+
+.bac-header__slot--center {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.bac-header__slot--right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2, 8px);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
 /* ── Sidebar ───────────────────────────────────────────── */
 .bac-sidebar {
   display: flex;
@@ -1834,4 +1890,136 @@
 [data-theme="dark"] .bac-sidebar__nav-item--active {
   background-color: rgba(59, 130, 246, 0.16);
   color: var(--color-primary-400, #60A5FA);
+}
+
+/* ── Sidebar collapsible ── */
+.bac-sidebar--collapsible {
+  transition: width 0.2s ease;
+  width: var(--bac-sidebar-width, 256px);
+  overflow: hidden;
+}
+
+.bac-sidebar--collapsed {
+  --bac-sidebar-width: 64px;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__nav-label {
+  display: none;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__nav-group-label {
+  display: none;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__nav-group-chevron {
+  display: none;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__nav-group-items {
+  display: none;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__nav-item,
+.bac-sidebar--collapsed .bac-sidebar__nav-group-header {
+  justify-content: center;
+  padding: var(--sp-2, 8px);
+}
+
+.bac-sidebar--collapsed .bac-sidebar__header {
+  padding: var(--sp-2, 8px);
+  text-align: center;
+}
+
+.bac-sidebar--collapsed .bac-sidebar__footer {
+  padding: var(--sp-2, 8px);
+  text-align: center;
+}
+
+/* ── Textarea ──────────────────────────────────────────── */
+.bac-textarea__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1, 4px);
+}
+
+.bac-textarea__label {
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #1E293B);
+}
+
+.bac-textarea {
+  width: 100%;
+  padding: var(--sp-2, 8px) var(--sp-3, 12px);
+  border: 1px solid var(--color-border, #CBD5E1);
+  border-radius: var(--radius-base, 6px);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-primary, #1E293B);
+  background: var(--color-bg-input, #fff);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.bac-textarea:focus {
+  border-color: var(--color-primary-500, #3B82F6);
+  box-shadow: 0 0 0 3px var(--color-primary-100, rgba(59, 130, 246, 0.15));
+}
+
+.bac-textarea--error {
+  border-color: var(--color-error-base, #EF4444);
+}
+
+.bac-textarea--error:focus {
+  box-shadow: 0 0 0 3px var(--color-error-light, rgba(239, 68, 68, 0.15));
+}
+
+.bac-textarea--success {
+  border-color: var(--color-success-base, #10B981);
+}
+
+.bac-textarea--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-neutral-50, #F8FAFC);
+}
+
+.bac-textarea__error-text {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-error-text, #DC2626);
+}
+
+.bac-textarea__success-text {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-success-text, #059669);
+}
+
+.bac-textarea__hint {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="dark"] .bac-textarea__label {
+  color: var(--color-text-primary, #F8FAFC);
+}
+
+[data-theme="dark"] .bac-textarea {
+  color: var(--color-text-primary, #F8FAFC);
+  background: var(--color-bg-input, #1E293B);
+  border-color: var(--color-border, #334155);
+}
+
+[data-theme="dark"] .bac-textarea:focus {
+  box-shadow: 0 0 0 3px var(--color-primary-100, rgba(59, 130, 246, 0.2));
+}
+
+[data-theme="dark"] .bac-textarea__hint {
+  color: var(--color-text-secondary, #94A3B8);
+}
+
+[data-theme="dark"] .bac-textarea__error-text {
+  color: var(--color-error-text, #F87171);
+}
+
+[data-theme="dark"] .bac-textarea__success-text {
+  color: var(--color-success-text, #34D399);
 }

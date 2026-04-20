@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.3.0 — 2026-04-20
+
+### Enhanced components
+
+- **ProgressBar** — new `variant` prop (`default | success | warning | danger`) with color-mapped bars, new `size` prop (`xs | sm | md | lg`) for track height control, and new `max` prop for custom value ranges (e.g. `value={3} max={5}`). Exports `ProgressBarVariant` and `ProgressBarSize` types.
+- **Header** — new composable slot layout with `left`, `center`, and `right` props for app shell layouts. `title` is now optional when using slot mode. Existing title/subtitle/actions layout unchanged.
+- **Sidebar** — new collapsible state management with `collapsible`, `collapsed`, `defaultCollapsed`, and `onCollapsedChange` props. Uses `useControllableState` internally. CSS transitions for width, label hiding, and icon-only mode.
+
+### New components
+
+- **Textarea** — form textarea component matching Input's visual contract. Supports `label`, `error`, `hint`, `success`, and `resize` (`none | vertical | horizontal | both`) props. Full accessibility wiring with `aria-invalid`, `aria-describedby`, and `role="alert"` for errors. Exports `TextareaProps` and `TextareaResize` types.
+
+### New hooks
+
+- **useReducedMotion** — SSR-safe hook that tracks `prefers-reduced-motion: reduce` media query. Returns `boolean`. Uses `matchMedia` change listener with proper cleanup.
+
+### Validation
+
+- `pnpm typecheck` passes with zero errors
+- `pnpm build` produces `dist/index.js`, `dist/index.mjs`, `dist/index.d.ts`, `dist/styles.css`
+- All new exports verified in `dist/index.d.ts`
+- All new CSS classes verified in `dist/styles.css`
+- Zero breaking changes — minor version bump per Constitution IV
+
 ## v1.2.0 — 2026-04-19
 
 ### New components
