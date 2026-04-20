@@ -4,6 +4,7 @@
 export * from './components/Button'
 export * from './components/Badge'
 export * from './components/Input'
+export * from './components/Textarea'
 export * from './components/Label'
 export * from './components/Spinner'
 export * from './components/ProgressBar'
@@ -31,6 +32,7 @@ export * from './hooks/useTheme'
 export * from './hooks/useBreakpoint'
 export * from './hooks/useControllableState'
 export * from './hooks/useDisclosure'
+export * from './hooks/useReducedMotion'
 
 // Utilities
 export * from './lib/cn'

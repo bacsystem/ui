@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:3000` — interactive showcase of 23 component sections, 4 hooks/utilities, and design tokens. The demo is responsive on mobile, includes a collapsible navigation drawer, motion-driven playgrounds for components, tokens and hooks, and every section supports **"Ver código"** and **"Ver props"** toggles for quick evaluation.
+Opens `http://localhost:3000` — interactive showcase of 24 component sections, 5 hooks/utilities, and design tokens. The demo is responsive on mobile, includes a collapsible navigation drawer, motion-driven playgrounds for components, tokens and hooks, and every section supports **"Ver código"** and **"Ver props"** toggles for quick evaluation.
 
 The demo is also deployed to GitHub Pages on every push to `main`.
 
@@ -43,7 +43,7 @@ npm install @bacsystem/ui
 import '@bacsystem/ui/styles.css'
 
 // Use components
-import { Button, Card, Badge, Input, Tooltip, Select, Skeleton, Breadcrumb } from '@bacsystem/ui'
+import { Button, Card, Badge, Input, Textarea, Tooltip, Select, Skeleton, Breadcrumb } from '@bacsystem/ui'
 
 export default function Page() {
   return (
@@ -146,7 +146,7 @@ function ThemeToggle() {
 | Input | default, error, success, disabled | — | sm, md, lg | ✅ |
 | Label | required indicator | — | — | ✅ |
 | Spinner | — | — | sm, md, lg | ✅ |
-| ProgressBar | value, label, meta | — | — | ✅ |
+| ProgressBar | default, success, warning, danger | — | xs, sm, md, lg | ✅ |
 | Card | default, elevated, outlined, tinted | — | sm, md, lg | ✅ |
 | Table | composable primitives | — | — | ✅ |
 | Alert | info, success, warning, error | soft (default), filled, outline | — | ✅ |
@@ -159,8 +159,9 @@ function ThemeToggle() {
 | Stepper | pending, current, completed, error | — | horizontal, vertical | ✅ |
 | Tabs | composable primitives | — | — | ✅ |
 | DropdownMenu | composable primitives | — | — | ✅ |
-| Header | title, subtitle, actions | — | — | ✅ |
-| Sidebar | shell, nav, collapsible groups | — | — | ✅ |
+| Textarea | default, error, success, disabled | — | — | ✅ |
+| Header | title/subtitle/actions, composable slots (left/center/right) | — | — | ✅ |
+| Sidebar | shell, nav, collapsible groups, collapsible state | — | — | ✅ |
 | Tooltip | top, bottom, left, right | — | — | ✅ |
 | Skeleton | text, circle, rect | — | — | ✅ |
 | Select | default, error, success, disabled | — | sm, md, lg | ✅ |
@@ -187,6 +188,7 @@ function ThemeToggle() {
 - `useBreakpoint()` — reactive `sm | md | lg | xl`, SSR-safe
 - `useControllableState()` — patrón controlled/uncontrolled reutilizable
 - `useDisclosure()` — open/close/toggle construido sobre estado controlable
+- `useReducedMotion()` — tracks `prefers-reduced-motion: reduce`, SSR-safe
 - `cn()` — utilidad mínima para composición de clases
 
 ## Demo Highlights
@@ -214,8 +216,8 @@ function ThemeToggle() {
 Triggered automatically on `v*` tags via GitHub Actions:
 
 ```bash
-git tag v1.2.0
-git push origin v1.2.0
+git tag v1.3.0
+git push origin v1.3.0
 ```
 
 ## License
